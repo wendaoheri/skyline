@@ -33,10 +33,10 @@ public class YarnApplicationFetcher {
   @Value("${hadoop.resourceManagerAddress}")
   private String resourceManagerAddress;
 
-  @Value("${dayu.fetcher.interval_time}")
+  @Value("${dayu.fetcher.interval_second}")
   private int fetchInterval;
 
-  @Value("${dayu.fetcher.before_running_interval_time}")
+  @Value("${dayu.fetcher.unfinished_interval_second}")
   private int beforeRunningFetchInterval;
 
   public void fetch() {
@@ -81,12 +81,12 @@ public class YarnApplicationFetcher {
    *
    * NEW, NEW_SAVING, SUBMITTED, ACCEPTED, RUNNING
    */
-  public void fetchBeforeRunningApplications() {
+  public void fetchUnfinishedApplications() {
     String runningAppListUrl = this.getRunningAppListUrl();
     try {
       String resp = httpCallService.doGet(runningAppListUrl);
       List<YarnApplication> apps = parseRespToYarnApplicationList(resp);
-      log.info("Got before RUNNING application list size : {}", apps.size());
+      log.info("Got unfinished application list size : {}", apps.size());
     } catch (IOException e) {
       log.error("Error occur while fetch yarn application list {}", e.getMessage());
     }

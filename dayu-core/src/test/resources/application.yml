@@ -8,6 +8,10 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+  data:
+    elasticsearch:
+      cluster-nodes: 10.25.164.23:9900,10.25.164.78:9900
+      cluster-name: paic-elasticsearch-v6
 
 http:
   maxTotal: 100 #最大连接数
@@ -31,10 +35,11 @@ logging:
     org.hibernate: ERROR
 dayu:
   fetcher:
-    interval_time: 60000                #  fetch by started & finished time interval
-    before_running_interval_time: 1000  #  YARN state before running fetch interval
+    interval_second: 60                #  fetch by started & finished time interval
+    unfinished_interval_second: 1      #  unfinished application state fetch interval
   plugin:
     schedule:
       class: org.dayu.plugin.schedule.mock.MockSchedulePlugin
+      interval_second: 60
       min_delay_second: 60              #  min time delay for fetch scheduleId after application finished
       max_delay_second: 3600            #  max time delay for fetch scheduleId after application finished

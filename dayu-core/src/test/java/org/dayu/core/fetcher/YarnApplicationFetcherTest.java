@@ -23,7 +23,7 @@ public class YarnApplicationFetcherTest {
 
   @Test
   public void testFetchRunningApplications() {
-    yarnApplicationFetcher.fetchBeforeRunningApplications();
+    yarnApplicationFetcher.fetchUnfinishedApplications();
   }
 
   @Test
