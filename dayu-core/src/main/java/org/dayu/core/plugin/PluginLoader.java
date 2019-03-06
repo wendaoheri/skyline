@@ -12,29 +12,28 @@ import org.springframework.context.annotation.Configuration;
 public class PluginLoader {
 
   @Value("${dayu.plugin.schedule.class}")
-  private String scheduleName;
+  private String scheduleClassName;
 
   @Value("${dayu.plugin.storage.class}")
-  private String traceStorage;
+  private String traceStorageClassName;
 
   @Bean
   public SchedulePlugin getSchedulePlugin() {
-    return loadPlugin(scheduleName);
+    return loadPlugin(scheduleClassName);
   }
 
   @Bean
   public TraceStorage getTraceStorage() {
-    return loadPlugin(traceStorage);
+    return loadPlugin(traceStorageClassName);
   }
 
   private <T> T loadPlugin(String className) {
     T obj = null;
     try {
       obj = (T) Class.forName(className).newInstance();
-      log.info("Loaded schedule plugin {}", scheduleName);
+      log.info("Loaded plugin {}", className);
     } catch (ClassNotFoundException e) {
-      log.error("Schedule plugin class not found : {}",
-          scheduleName);
+      log.error("Plugin class not found : {}", className);
       log.error(e.getMessage());
     } catch (IllegalAccessException e) {
       log.error(e.getMessage());
