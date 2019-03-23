@@ -1,6 +1,10 @@
 package org.dayu.core.service.impl;
 
 import java.util.List;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 import lombok.extern.slf4j.Slf4j;
 import org.dayu.core.model.ApplicationScheduleInfo;
 import org.dayu.core.model.RuntimeConfig;
@@ -10,8 +14,12 @@ import org.dayu.core.repository.RuntimeConfigRepository;
 import org.dayu.core.repository.YarnApplicationRepository;
 import org.dayu.core.service.YarnApplicationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+/**
+ * @author sean
+ */
 @Service
 @Slf4j
 public class YarnApplicationServiceImpl implements YarnApplicationService {
@@ -65,5 +73,21 @@ public class YarnApplicationServiceImpl implements YarnApplicationService {
   @Override
   public void saveApplicationScheduleInfoList(List<ApplicationScheduleInfo> asList) {
     applicationScheduleInfoRepository.saveAll(asList);
+  }
+
+  @Override
+  public List<YarnApplication> getApplications(long begin, long end) {
+    yarnApplicationRepository.findAll((Specification<YarnApplication>) (root, query, cb) -> {
+      Predicate p1 = cb.like(root.get("name"), "%ray%");
+      Predicate p2 = cb.greaterThan(root.get("rid"),"3");
+
+      return null;
+    });
+    return yarnApplicationRepository.findByFinishedTimeBetween(begin, end);
+  }
+
+  @Override
+  public YarnApplication getApplicationById(String applicationId) {
+    return yarnApplicationRepository.findById(applicationId).get();
   }
 }

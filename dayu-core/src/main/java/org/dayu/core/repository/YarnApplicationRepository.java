@@ -3,11 +3,16 @@ package org.dayu.core.repository;
 import java.util.List;
 import org.dayu.core.model.YarnApplication;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+/**
+ * @author sean
+ */
 @Repository
-public interface YarnApplicationRepository extends JpaRepository<YarnApplication, String> {
+public interface YarnApplicationRepository extends JpaSpecificationExecutor<YarnApplication>,
+    JpaRepository<YarnApplication, String> {
 
   @Query("select A.id "
       + "from YarnApplication A "
@@ -15,4 +20,6 @@ public interface YarnApplicationRepository extends JpaRepository<YarnApplication
       + "on A.id = B.applicationScheduleId.applicationId "
       + "where B.applicationScheduleId.applicationId is null and A.finishedTime BETWEEN ?1 and ?2")
   List<String> findIdsWithoutScheduleInfo(long begin, long end);
+
+  List<YarnApplication> findByFinishedTimeBetween(long begin, long end);
 }

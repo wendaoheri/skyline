@@ -18,4 +18,8 @@ public interface YarnApplicationService {
 
   void saveApplicationScheduleInfoList(List<ApplicationScheduleInfo> asList);
 
+  List<YarnApplication> getApplications(long begin, long end);
+
+  YarnApplication getApplicationById(String applicationId);
+
 }
