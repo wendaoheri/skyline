@@ -1,6 +1,7 @@
 package org.dayu.core.service;
 
 import java.util.List;
+import org.dayu.core.dto.SearchRequestDTO;
 import org.dayu.core.model.ApplicationScheduleInfo;
 import org.dayu.core.model.YarnApplication;
 
@@ -22,4 +23,5 @@ public interface YarnApplicationService {
 
   YarnApplication getApplicationById(String applicationId);
 
+  List<YarnApplication> search(SearchRequestDTO request);
 }
