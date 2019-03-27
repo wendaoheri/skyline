@@ -6,10 +6,15 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import lombok.Data;
 
+/**
+ * @author Sean Liu
+ */
 @Data
 @Entity
 @Table(name = "yarn_application")
@@ -101,4 +106,11 @@ public class YarnApplication implements Serializable {
 
   @Column(length = 100, name = "log_aggregation_status")
   private String logAggregationStatus;
+
+  @Column(name = "scheduleId")
+  private String scheduleId;
+
+//  @ManyToOne(fetch = FetchType.LAZY)
+//  @JoinColumn(name = "scheduleId", referencedColumnName = "scheduleId", updatable = false, insertable = false)
+//  private ScheduleInfo scheduleInfo;
 }

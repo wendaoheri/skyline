@@ -11,14 +11,14 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest(classes = TestBeanEntry.class)
 @RunWith(SpringRunner.class)
 @Slf4j
-public class ScheduleServiceTest {
+public class ScheduleInfoRunnerTest {
 
   @Autowired
-  private ScheduleService scheduleService;
+  private ScheduleInfoRunner scheduleInfoRunner;
 
   @Test
   public void testAddScheduleInfo() {
-    scheduleService.addScheduleInfo();
+    scheduleInfoRunner.addScheduleInfo();
   }
 
 }

@@ -16,4 +16,7 @@ public class SearchRequestDTO {
 
   private List<Order> orders;
 
+  private int page;
+
+  private int size = 10;
 }

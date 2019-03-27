@@ -1,26 +1,36 @@
 package org.dayu.core.schedule;
 
-import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
+import com.google.common.collect.Sets;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.dayu.core.model.ApplicationScheduleInfo;
-import org.dayu.core.model.ApplicationScheduleInfo.ApplicationScheduleId;
+import org.dayu.core.model.YarnApplication;
+import org.dayu.core.repository.ScheduleInfoRepository;
+import org.dayu.core.service.ScheduleInfoService;
 import org.dayu.core.service.YarnApplicationService;
 import org.dayu.plugin.schedule.SchedulePlugin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+/**
+ * @author Sean Liu
+ */
 @Service
 @Slf4j
-public class ScheduleService {
+public class ScheduleInfoRunner {
 
   @Autowired
   private SchedulePlugin schedulePlugin;
 
   @Autowired
   private YarnApplicationService yarnApplicationService;
+
+  @Autowired
+  private ScheduleInfoService scheduleInfoService;
 
   @Value("${dayu.plugin.schedule.min_delay_second}")
   private long minDelaySecond;
@@ -34,29 +44,25 @@ public class ScheduleService {
     long begin = curr - maxDelaySecond * 1000;
     long end = curr - minDelaySecond * 1000;
 
-    List<String> ids = yarnApplicationService
-        .getIdsWithoutScheduleInfo(begin, end);
+    List<YarnApplication> apps = yarnApplicationService
+        .getWithoutScheduleInfo(begin, end);
 
     log.info("Got yarn application without schedule info between {} and {} size : {}", begin, end,
-        ids.size());
+        apps.size());
 
-    List<ApplicationScheduleInfo> asList = Lists.newArrayList();
+    // applicationId -> scheduleId
+    Map<String, String> appSchMap = Maps.newHashMap();
 
-    for (String id : ids) {
-      String scheduleId = schedulePlugin.getScheduleIdByApplicationId(id);
+    apps.forEach(app -> {
+      String scheduleId = schedulePlugin.getScheduleIdByApplicationId(app.getId());
       if (StringUtils.isNotEmpty(scheduleId)) {
-        ApplicationScheduleInfo as = new ApplicationScheduleInfo();
-        ApplicationScheduleId asId = new ApplicationScheduleId();
-        asId.setApplicationId(id);
-        asId.setScheduleId(scheduleId);
-        as.setApplicationScheduleId(asId);
-
-        asList.add(as);
+        appSchMap.put(app.getId(), scheduleId);
       }
-    }
-    log.info("Got schedule info size : {}", asList.size());
-    yarnApplicationService.saveApplicationScheduleInfoList(asList);
-    log.info("Save schedule info size : {}", asList.size());
+    });
+    Set<String> scheduleIds = Sets.newHashSet(appSchMap.values());
+    scheduleInfoService.saveScheduleInfos(scheduleIds);
+    log.info("application schedule map size : {}", appSchMap.size());
+    yarnApplicationService.setScheduleInfo(appSchMap);
   }
 
 

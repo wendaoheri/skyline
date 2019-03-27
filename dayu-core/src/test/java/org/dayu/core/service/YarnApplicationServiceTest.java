@@ -15,6 +15,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
 import org.springframework.test.context.junit4.SpringRunner;
 
 @SpringBootTest(classes = TestBeanEntry.class)
@@ -52,10 +53,13 @@ public class YarnApplicationServiceTest {
 
     String json = JSON.toJSONString(request);
     log.info(json);
-    List<YarnApplication> applications = yarnApplicationService.search(request);
-    for (YarnApplication ya : applications) {
-      log.info(ya.toString());
-    }
+    Page<YarnApplication> page = yarnApplicationService.search(request);
+    long totalElements = page.getTotalElements();
+    int totalPages = page.getTotalPages();
+    List<YarnApplication> apps = page.getContent();
+    log.info("total elements : {}, total pages : {}", totalElements, totalPages);
+    log.info(JSON.toJSONString(apps));
+
   }
 
 }

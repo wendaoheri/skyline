@@ -6,6 +6,7 @@ import org.dayu.core.dto.SearchRequestDTO;
 import org.dayu.core.model.YarnApplication;
 import org.dayu.core.service.YarnApplicationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -30,7 +31,7 @@ public class YarnApplicationController {
   }
 
   @PostMapping(path = "search", produces = "application/json;charset=UTF-8", consumes = "application/json;charset=UTF-8")
-  public List<YarnApplication> search(@RequestBody SearchRequestDTO request) {
+  public Page<YarnApplication> search(@RequestBody SearchRequestDTO request) {
     log.info("request:{}", request);
     return yarnApplicationService.search(request);
   }
