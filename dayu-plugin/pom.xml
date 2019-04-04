@@ -16,6 +16,7 @@
     <module>dayu-mock-schedule-plugin</module>
     <module>dayu-trace-storage-plugin</module>
     <module>dayu-es-storage-plugin</module>
+    <module>dayu-dsp-schedule-plugin</module>
   </modules>
 
   <dependencyManagement>

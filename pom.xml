@@ -26,6 +26,8 @@
     <commons-logging.version>1.2</commons-logging.version>
     <guava.version>23.0</guava.version>
     <fastjson.version>1.2.56</fastjson.version>
+    <mysql.version>5.1.44</mysql.version>
+    <beanutils.version>1.9.3</beanutils.version>
   </properties>
 
   <dependencyManagement>
@@ -51,6 +53,11 @@
         <version>${project.version}</version>
       </dependency>
       <dependency>
+        <groupId>org.dayu</groupId>
+        <artifactId>dayu-dsp-schedule-plugin</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
         <groupId>commons-logging</groupId>
         <artifactId>commons-logging</artifactId>
         <version>${commons-logging.version}</version>
@@ -70,6 +77,12 @@
         <artifactId>commons-lang3</artifactId>
         <version>${commons-lang3.version}</version>
       </dependency>
+      <dependency>
+        <groupId>commons-beanutils</groupId>
+        <artifactId>commons-beanutils</artifactId>
+        <version>${beanutils.version}</version>
+      </dependency>
+
     </dependencies>
   </dependencyManagement>
 

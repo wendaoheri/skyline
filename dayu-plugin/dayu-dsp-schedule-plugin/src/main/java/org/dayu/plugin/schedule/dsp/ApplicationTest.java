@@ -1,5 +1,6 @@
-package org.dayu.web;
+package org.dayu.plugin.schedule.dsp;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
@@ -9,17 +10,19 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 /**
- * @author sean
+ * @author Sean Liu
+ * @date 2019-04-02
  */
-@SpringBootApplication
-@Configuration
-@ComponentScan("org.dayu")
-@EntityScan(basePackages = "org.dayu")
-@EnableCaching
-@EnableScheduling
-public class ApplicationEntry {
+//@SpringBootApplication
+//@Slf4j
+//@EnableCaching
+//@EnableScheduling
+//@Configuration
+//@ComponentScan("org.dayu")
+//@EntityScan(basePackages = "org.dayu")
+public class ApplicationTest {
 
   public static void main(String[] args) {
-    SpringApplication.run(ApplicationEntry.class, args);
+    SpringApplication.run(ApplicationTest.class, args);
   }
 }

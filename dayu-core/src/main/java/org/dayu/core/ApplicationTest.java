@@ -1,4 +1,4 @@
-package org.dayu.web;
+package org.dayu.core;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -9,17 +9,18 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 /**
- * @author sean
+ * @author Sean Liu
+ * @date 2019-04-02
  */
-@SpringBootApplication
-@Configuration
-@ComponentScan("org.dayu")
-@EntityScan(basePackages = "org.dayu")
-@EnableCaching
-@EnableScheduling
-public class ApplicationEntry {
+//@SpringBootApplication
+//@Configuration
+//@ComponentScan("org.dayu")
+//@EntityScan(basePackages = "org.dayu")
+//@EnableCaching
+//@EnableScheduling
+public class ApplicationTest {
 
   public static void main(String[] args) {
-    SpringApplication.run(ApplicationEntry.class, args);
+    SpringApplication.run(ApplicationTest.class, args);
   }
 }

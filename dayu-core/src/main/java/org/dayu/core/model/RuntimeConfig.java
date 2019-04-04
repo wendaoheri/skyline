@@ -26,8 +26,8 @@ public class RuntimeConfig implements Serializable {
   @Column(nullable = false, unique = true, name = "runtime_value")
   private String runtimeValue;
 
-  @Column(name = "create_time", insertable = false, updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-  private Date createTime;
+//  @Column(name = "create_time", insertable = false, updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+//  private Date createTime;
 
   @Column(name = "update_time", insertable = false, updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
   private Date updateTime;

@@ -14,6 +14,7 @@ import org.dayu.core.service.YarnApplicationService;
 import org.dayu.plugin.schedule.SchedulePlugin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 /**
@@ -38,6 +39,7 @@ public class ScheduleInfoRunner {
   @Value("${dayu.plugin.schedule.max_delay_second}")
   private long maxDelaySecond;
 
+  @Scheduled(fixedRate = 60000)
   public void addScheduleInfo() {
 
     long curr = System.currentTimeMillis();
@@ -64,6 +66,4 @@ public class ScheduleInfoRunner {
     log.info("application schedule map size : {}", appSchMap.size());
     yarnApplicationService.setScheduleInfo(appSchMap);
   }
-
-
 }

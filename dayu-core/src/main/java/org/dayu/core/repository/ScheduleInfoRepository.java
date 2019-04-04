@@ -14,7 +14,7 @@ import org.springframework.stereotype.Repository;
 public interface ScheduleInfoRepository extends JpaSpecificationExecutor<ScheduleInfo>,
     JpaRepository<ScheduleInfo, String> {
 
-  List<String> findScheduleIdByScheduleIdIn(Iterable<String> ids);
+  List<ScheduleInfo> findByScheduleIdIn(Iterable<String> ids);
 
 
 }

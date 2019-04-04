@@ -20,7 +20,7 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "schedule_info", indexes = {@Index(columnList = "scheduleId")})
+@Table(name = "schedule_info", indexes = {@Index(columnList = "schedule_id")})
 public class ScheduleInfo implements Serializable {
 
   @Id
@@ -28,8 +28,7 @@ public class ScheduleInfo implements Serializable {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  @Column(length = 50, unique = true)
-
+  @Column(length = 50, unique = true, name = "schedule_id")
   private String scheduleId;
 
 //  @OneToMany(mappedBy = "scheduleInfo", fetch = FetchType.LAZY)

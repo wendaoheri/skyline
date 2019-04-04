@@ -10,8 +10,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.dayu.common.http.HttpCallService;
 import org.dayu.core.model.YarnApplication;
 import org.dayu.core.service.YarnApplicationService;
+import org.dayu.plugin.storage.TraceStorage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -29,6 +31,9 @@ public class YarnApplicationFetcher {
   @Autowired
   private YarnApplicationService yarnApplicationService;
 
+  @Autowired
+  private TraceStorage traceStorage;
+
 
   @Value("${hadoop.resourceManagerAddress}")
   private String resourceManagerAddress;
@@ -39,6 +44,7 @@ public class YarnApplicationFetcher {
   @Value("${dayu.fetcher.unfinished_interval_second}")
   private int beforeRunningFetchInterval;
 
+  @Scheduled(fixedRate = 60000)
   public void fetch() {
     long begin = yarnApplicationService.getLastFetchTime();
     long end = System.currentTimeMillis();
@@ -67,11 +73,15 @@ public class YarnApplicationFetcher {
     String fetchAppListUrl = this.getAppListUrl(begin, end, startedOrFinished);
     log.info("Fetch started application url is : {}", fetchAppListUrl);
     List<YarnApplication> apps = null;
+    String resp = null;
     try {
-      String resp = httpCallService.doGet(fetchAppListUrl);
+      resp = httpCallService.doGet(fetchAppListUrl);
       apps = parseRespToYarnApplicationList(resp);
     } catch (IOException e) {
       log.error("Error occur while fetch yarn application list {}", e.getMessage());
+    } catch (Throwable e) {
+      log.info("response is : {}", resp);
+      log.error("Unexpected error occur while fetch yarn application list {}", e);
     }
     return apps != null ? apps : Lists.newArrayList();
   }
@@ -81,12 +91,19 @@ public class YarnApplicationFetcher {
    *
    * NEW, NEW_SAVING, SUBMITTED, ACCEPTED, RUNNING
    */
+  @Scheduled(fixedRate = 10000)
   public void fetchUnfinishedApplications() {
     String runningAppListUrl = this.getRunningAppListUrl();
     try {
       String resp = httpCallService.doGet(runningAppListUrl);
-      List<YarnApplication> apps = parseRespToYarnApplicationList(resp);
+      List apps = parseRespToYarnApplicationList(resp);
+
       log.info("Got unfinished application list size : {}", apps.size());
+
+      List<String> jsonData = Lists.newArrayList();
+      apps.forEach(x -> jsonData.add(JSON.toJSONString(x)));
+
+      traceStorage.trace(apps);
     } catch (IOException e) {
       log.error("Error occur while fetch yarn application list {}", e.getMessage());
     }
@@ -96,8 +113,13 @@ public class YarnApplicationFetcher {
 
   private List<YarnApplication> parseRespToYarnApplicationList(String resp) {
     JSONObject jo = JSON.parseObject(resp);
-    List<YarnApplication> apps = jo.getJSONObject("apps").getJSONArray("app")
-        .toJavaList(YarnApplication.class);
+    List<YarnApplication> apps = null;
+    try {
+      apps = jo.getJSONObject("apps").getJSONArray("app")
+          .toJavaList(YarnApplication.class);
+    } catch (NullPointerException e) {
+      log.info("None application list");
+    }
     return apps;
   }
 
