@@ -51,10 +51,12 @@ public class DSPSchedulePlugin implements SchedulePlugin {
     jobApplicationLogs.forEach(job -> {
       String jobId = String.valueOf(job.getJobId());
       String applicationLog = job.getApplicationLog();
+      Long frequency = job.getJobFrequency();
+      String jobIdAndFreq = String.format("%s_%d",jobId,frequency);
       Set<String> applicationIdSet = Sets.newHashSet(applicationLog.split(LOG_SPLIT));
       for (String applicationId : applicationIdSet) {
         if (cache.getScheduleIdByApplicationIdWithCache(applicationId) == null) {
-          cache.putCache(applicationId, jobId);
+          cache.putCache(applicationId, jobIdAndFreq);
           log.info(cache.getScheduleIdByApplicationIdWithCache(applicationId));
         }
       }
