@@ -1,5 +1,6 @@
 package org.dayu.core.model;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import java.io.Serializable;
 import java.util.Set;
 import javax.persistence.Column;
@@ -30,6 +31,10 @@ public class ScheduleInfo implements Serializable {
 
   @Column(length = 50, unique = true, name = "schedule_id")
   private String scheduleId;
+
+  @Column(name = "create_time")
+  @JSONField(name = "create_time")
+  private Long createTime;
 
 //  @OneToMany(mappedBy = "scheduleInfo", fetch = FetchType.LAZY)
 //  private Set<YarnApplication> applications;

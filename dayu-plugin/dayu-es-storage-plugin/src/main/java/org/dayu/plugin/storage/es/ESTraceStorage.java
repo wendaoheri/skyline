@@ -25,10 +25,10 @@ public class ESTraceStorage implements TraceStorage {
   public void trace(List<Object> data) {
     String indexName = String.format("dayu-%s", DateFormatUtils.format(new Date(), "yyyyMMdd"));
     BulkRequestBuilder bulkBuilder = client.prepareBulk();
-    Long curr = System.currentTimeMillis() / 1000;
+    Long curr = System.currentTimeMillis();
     for (Object x : data) {
       Map<String, Object> source = parseObj(x);
-      source.put("ts",curr);
+      source.put("@timestamp",curr);
       IndexRequestBuilder indexReq = client.prepareIndex(indexName, "application_metrics").setSource(source);
       bulkBuilder.add(indexReq);
     }

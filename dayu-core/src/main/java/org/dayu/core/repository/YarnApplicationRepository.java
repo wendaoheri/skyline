@@ -29,6 +29,6 @@ public interface YarnApplicationRepository extends JpaSpecificationExecutor<Yarn
 
   @Transactional(rollbackOn = Exception.class)
   @Modifying
-  @Query("update YarnApplication ya set ya.scheduleId = :scheduleId where ya.id = :id")
-  int setScheduleInfo(String id, String scheduleId);
+  @Query("update YarnApplication ya set ya.scheduleId = :scheduleId,ya.newSchedule = :newSchedule where ya.id = :id")
+  int setScheduleInfo(String id, String scheduleId,int newSchedule);
 }

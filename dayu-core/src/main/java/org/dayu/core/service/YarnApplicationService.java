@@ -3,6 +3,7 @@ package org.dayu.core.service;
 import java.util.List;
 import java.util.Map;
 import org.dayu.core.dto.SearchRequestDTO;
+import org.dayu.core.model.ScheduleInfo;
 import org.dayu.core.model.YarnApplication;
 import org.springframework.data.domain.Page;
 
@@ -28,5 +29,6 @@ public interface YarnApplicationService {
 
   Page<YarnApplication> search(SearchRequestDTO request);
 
-  int setScheduleInfo(Map<String, String> appSchMap);
+  int setScheduleInfo(Map<String, String> appSchMap,
+      List<ScheduleInfo> newSchedules);
 }

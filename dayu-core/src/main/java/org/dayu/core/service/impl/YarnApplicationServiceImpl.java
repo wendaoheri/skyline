@@ -3,12 +3,15 @@ package org.dayu.core.service.impl;
 import com.google.common.collect.Lists;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 import javax.persistence.criteria.Order;
 import javax.persistence.criteria.Predicate;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.dayu.core.dto.SearchRequestDTO;
 import org.dayu.core.model.RuntimeConfig;
+import org.dayu.core.model.ScheduleInfo;
 import org.dayu.core.model.YarnApplication;
 import org.dayu.core.repository.RuntimeConfigRepository;
 import org.dayu.core.repository.YarnApplicationRepository;
@@ -135,9 +138,18 @@ public class YarnApplicationServiceImpl implements YarnApplicationService {
 
 
   @Override
-  public int setScheduleInfo(Map<String, String> appSchMap) {
+  public int setScheduleInfo(Map<String, String> appSchMap,
+      List<ScheduleInfo> newSchedules) {
+    Set<String> newScheduleIds = newSchedules.parallelStream().map(x -> x.getScheduleId())
+        .collect(Collectors.toSet());
     appSchMap.entrySet()
-        .forEach(x -> yarnApplicationRepository.setScheduleInfo(x.getKey(), x.getValue()));
+        .forEach(x -> {
+          if (newScheduleIds.contains(x.getValue())) {
+            yarnApplicationRepository.setScheduleInfo(x.getKey(), x.getValue(), 1);
+          } else {
+            yarnApplicationRepository.setScheduleInfo(x.getKey(), x.getValue(), 0);
+          }
+        });
     return 0;
   }
 }

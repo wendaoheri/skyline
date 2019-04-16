@@ -133,6 +133,14 @@ public class YarnApplication implements Serializable {
   @JSONField(name = "schedule_id")
   private String scheduleId;
 
+  @Column(name = "new_schedule")
+  @JSONField(name = "new_schedule")
+  private Integer newSchedule;
+
+  @Column(name = "dt")
+  @JSONField(name = "dt")
+  private String dt;
+
 //  @ManyToOne(fetch = FetchType.LAZY)
 //  @JoinColumn(name = "scheduleId", referencedColumnName = "scheduleId", updatable = false, insertable = false)
 //  private ScheduleInfo scheduleInfo;

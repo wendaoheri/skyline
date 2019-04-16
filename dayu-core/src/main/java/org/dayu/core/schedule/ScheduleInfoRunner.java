@@ -7,8 +7,8 @@ import java.util.Map;
 import java.util.Set;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.dayu.core.model.ScheduleInfo;
 import org.dayu.core.model.YarnApplication;
-import org.dayu.core.repository.ScheduleInfoRepository;
 import org.dayu.core.service.ScheduleInfoService;
 import org.dayu.core.service.YarnApplicationService;
 import org.dayu.plugin.schedule.SchedulePlugin;
@@ -54,16 +54,18 @@ public class ScheduleInfoRunner {
 
     // applicationId -> scheduleId
     Map<String, String> appSchMap = Maps.newHashMap();
-
     apps.forEach(app -> {
-      String scheduleId = schedulePlugin.getScheduleIdByApplicationId(app.getId());
+      String scheduleId = schedulePlugin
+          .getScheduleIdByApplicationId(app.getId());
       if (StringUtils.isNotEmpty(scheduleId)) {
         appSchMap.put(app.getId(), scheduleId);
       }
     });
     Set<String> scheduleIds = Sets.newHashSet(appSchMap.values());
-    scheduleInfoService.saveScheduleInfos(scheduleIds);
+    // 第一次出现的schedule
+    List<ScheduleInfo> newSchedules = scheduleInfoService.saveScheduleInfos(scheduleIds);
     log.info("application schedule map size : {}", appSchMap.size());
-    yarnApplicationService.setScheduleInfo(appSchMap);
+
+    yarnApplicationService.setScheduleInfo(appSchMap, newSchedules);
   }
 }

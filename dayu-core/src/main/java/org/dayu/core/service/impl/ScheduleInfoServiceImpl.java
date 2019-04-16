@@ -24,17 +24,20 @@ public class ScheduleInfoServiceImpl implements ScheduleInfoService {
   private ScheduleInfoRepository scheduleInfoRepository;
 
   @Override
-  public void saveScheduleInfos(Set<String> scheduleIds) {
+  public List<ScheduleInfo> saveScheduleInfos(Set<String> scheduleIds) {
     Set<String> existsIds = scheduleInfoRepository.findByScheduleIdIn(scheduleIds).parallelStream()
         .map(x -> x.getScheduleId()).collect(Collectors.toSet());
     scheduleIds.removeAll(existsIds);
     log.debug("save schedule ids : {}", scheduleIds);
+    long curr = System.currentTimeMillis();
     List<ScheduleInfo> toSaved = scheduleIds.parallelStream().map(scheduleId -> {
       ScheduleInfo si = new ScheduleInfo();
       si.setScheduleId(scheduleId);
+      si.setCreateTime(curr);
       return si;
     }).collect(Collectors.toList());
 
     scheduleInfoRepository.saveAll(toSaved);
+    return toSaved;
   }
 }
