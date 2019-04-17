@@ -14,7 +14,7 @@
   <modules>
     <module>dayu-schedule-plugin</module>
     <module>dayu-mock-schedule-plugin</module>
-    <module>dayu-trace-storage-plugin</module>
+    <module>dayu-storage-plugin</module>
     <module>dayu-es-storage-plugin</module>
     <module>dayu-dsp-schedule-plugin</module>
   </modules>
@@ -29,7 +29,7 @@
       </dependency>
       <dependency>
         <groupId>org.dayu</groupId>
-        <artifactId>dayu-trace-storage-plugin</artifactId>
+        <artifactId>dayu-storage-plugin</artifactId>
         <version>${project.version}</version>
       </dependency>
     </dependencies>

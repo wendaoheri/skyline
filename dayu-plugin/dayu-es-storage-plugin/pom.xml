@@ -14,7 +14,7 @@
   <dependencies>
     <dependency>
       <groupId>org.dayu</groupId>
-      <artifactId>dayu-trace-storage-plugin</artifactId>
+      <artifactId>dayu-storage-plugin</artifactId>
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
