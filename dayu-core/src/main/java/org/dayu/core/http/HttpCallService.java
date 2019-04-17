@@ -1,4 +1,4 @@
-package org.dayu.common.http;
+package org.dayu.core.http;
 
 import com.google.common.collect.Lists;
 import java.io.IOException;

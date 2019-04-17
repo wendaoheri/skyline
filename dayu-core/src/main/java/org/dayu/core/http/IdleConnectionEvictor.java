@@ -1,4 +1,4 @@
-package org.dayu.common.http;
+package org.dayu.core.http;
 
 import org.apache.http.conn.HttpClientConnectionManager;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,4 +1,4 @@
-package org.dayu.common.http;
+package org.dayu.core.http;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

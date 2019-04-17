@@ -7,7 +7,7 @@ import com.google.common.collect.Lists;
 import java.io.IOException;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
-import org.dayu.common.http.HttpCallService;
+import org.dayu.core.http.HttpCallService;
 import org.dayu.core.model.YarnApplication;
 import org.dayu.core.service.YarnApplicationService;
 import org.dayu.plugin.storage.TraceStorage;
