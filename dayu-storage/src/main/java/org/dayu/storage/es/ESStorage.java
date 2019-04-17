@@ -7,15 +7,17 @@ import java.util.List;
 import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.time.DateFormatUtils;
-import org.dayu.plugin.storage.TraceStorage;
+import org.dayu.storage.IStorage;
 import org.elasticsearch.action.bulk.BulkRequestBuilder;
 import org.elasticsearch.action.bulk.BulkResponse;
 import org.elasticsearch.action.index.IndexRequestBuilder;
 import org.elasticsearch.client.transport.TransportClient;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 @Slf4j
-public class ESTraceStorage implements TraceStorage {
+@Service
+public class ESStorage implements IStorage {
 
   @Autowired
   private TransportClient client;
@@ -28,8 +30,9 @@ public class ESTraceStorage implements TraceStorage {
     Long curr = System.currentTimeMillis();
     for (Object x : data) {
       Map<String, Object> source = parseObj(x);
-      source.put("@timestamp",curr);
-      IndexRequestBuilder indexReq = client.prepareIndex(indexName, "application_metrics").setSource(source);
+      source.put("@timestamp", curr);
+      IndexRequestBuilder indexReq = client.prepareIndex(indexName, "application_metrics")
+          .setSource(source);
       bulkBuilder.add(indexReq);
     }
     BulkResponse bulkResponse = bulkBuilder.get();

@@ -65,4 +65,4 @@ dayu:
       min_delay_second: 60              #  min time delay for fetch scheduleId after application finished
       max_delay_second: 3600            #  max time delay for fetch scheduleId after application finished
     storage:
-      class: org.dayu.plugin.storage.es.ESTraceStorage
+      class: org.dayu.plugin.storage.es.ESStorage

@@ -28,7 +28,7 @@
     </dependency>
     <dependency>
       <groupId>org.dayu</groupId>
-      <artifactId>dayu-es-storage-plugin</artifactId>
+      <artifactId>dayu-storage</artifactId>
     </dependency>
 
     <dependency>

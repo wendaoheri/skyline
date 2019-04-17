@@ -5,6 +5,7 @@
   <modelVersion>4.0.0</modelVersion>
   <modules>
     <module>dayu-core</module>
+    <module>dayu-storage</module>
     <module>dayu-web</module>
     <module>dayu-common</module>
     <module>dayu-plugin</module>
@@ -49,7 +50,7 @@
       </dependency>
       <dependency>
         <groupId>org.dayu</groupId>
-        <artifactId>dayu-es-storage-plugin</artifactId>
+        <artifactId>dayu-storage</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>

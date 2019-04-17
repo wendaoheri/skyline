@@ -2,7 +2,6 @@ package org.dayu.core.plugin;
 
 import lombok.extern.slf4j.Slf4j;
 import org.dayu.plugin.schedule.SchedulePlugin;
-import org.dayu.plugin.storage.TraceStorage;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,18 +13,11 @@ public class PluginLoader {
   @Value("${dayu.plugin.schedule.class}")
   private String scheduleClassName;
 
-  @Value("${dayu.plugin.storage.class}")
-  private String traceStorageClassName;
-
   @Bean
   public SchedulePlugin getSchedulePlugin() {
     return loadPlugin(scheduleClassName);
   }
 
-  @Bean
-  public TraceStorage getTraceStorage() {
-    return loadPlugin(traceStorageClassName);
-  }
 
   private <T> T loadPlugin(String className) {
     T obj = null;

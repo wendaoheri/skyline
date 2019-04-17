@@ -10,7 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.dayu.core.http.HttpCallService;
 import org.dayu.core.model.YarnApplication;
 import org.dayu.core.service.YarnApplicationService;
-import org.dayu.plugin.storage.TraceStorage;
+import org.dayu.storage.IStorage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -32,7 +32,7 @@ public class YarnApplicationFetcher {
   private YarnApplicationService yarnApplicationService;
 
   @Autowired
-  private TraceStorage traceStorage;
+  private IStorage storage;
 
 
   @Value("${hadoop.resourceManagerAddress}")
@@ -103,7 +103,7 @@ public class YarnApplicationFetcher {
       List<String> jsonData = Lists.newArrayList();
       apps.forEach(x -> jsonData.add(JSON.toJSONString(x)));
 
-      traceStorage.trace(apps);
+      storage.trace(apps);
     } catch (IOException e) {
       log.error("Error occur while fetch yarn application list {}", e.getMessage());
     }
