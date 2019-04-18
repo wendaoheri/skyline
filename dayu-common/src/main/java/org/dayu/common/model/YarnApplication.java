@@ -30,13 +30,13 @@ public class YarnApplication implements Model{
   @JSONField(name = "final_status")
   private String finalStatus;
 
-  private int progress;
+  private Integer progress;
 
   @JSONField(name = "tracking_ui")
   private String trackingUI;
 
   @JSONField(name = "cluster_id")
-  private long clusterId;
+  private Long clusterId;
 
   @JSONField(name = "application_type")
   private String applicationType;
@@ -45,43 +45,43 @@ public class YarnApplication implements Model{
   private String applicationTags;
 
   @JSONField(name = "started_time")
-  private long startedTime;
+  private Long startedTime;
 
   @JSONField(name = "finished_time")
-  private long finishedTime;
+  private Long finishedTime;
 
   @JSONField(name = "elapsed_time")
-  private int elapsedTime;
+  private Integer elapsedTime;
 
   @JSONField(name = "am_host_http_address")
   private String amHostHttpAddress;
 
   @JSONField(name = "allocated_mb")
-  private long allocatedMB;
+  private Long allocatedMB;
 
   @JSONField(name = "allocated_vcores")
-  private long allocatedVCores;
+  private Long allocatedVCores;
 
   @JSONField(name = "running_containers")
-  private int runningContainers;
+  private Integer runningContainers;
 
   @JSONField(name = "memory_seconds")
-  private long memorySeconds;
+  private Long memorySeconds;
 
   @JSONField(name = "vcore_seconds")
-  private long vcoreSeconds;
+  private Long vcoreSeconds;
 
   @JSONField(name = "preempted_resource_mb")
-  private long preemptedResourceMB;
+  private Long preemptedResourceMB;
 
   @JSONField(name = "preempted_resource_vcores")
-  private long preemptedResourceVCores;
+  private Long preemptedResourceVCores;
 
   @JSONField(name = "num_non_am_container_preempted")
-  private int numNonAMContainerPreempted;
+  private Integer numNonAMContainerPreempted;
 
   @JSONField(name = "num_am_container_preempted")
-  private int numAMContainerPreempted;
+  private Integer numAMContainerPreempted;
 
   @JSONField(name = "log_aggregation_status")
   private String logAggregationStatus;
