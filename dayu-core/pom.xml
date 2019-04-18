@@ -17,10 +17,9 @@
       <groupId>org.dayu</groupId>
       <artifactId>dayu-common</artifactId>
     </dependency>
-
     <dependency>
       <groupId>org.dayu</groupId>
-      <artifactId>dayu-mock-schedule-plugin</artifactId>
+      <artifactId>dayu-schedule-plugin</artifactId>
     </dependency>
     <dependency>
       <groupId>org.dayu</groupId>
@@ -30,15 +29,6 @@
       <groupId>org.dayu</groupId>
       <artifactId>dayu-storage</artifactId>
     </dependency>
-
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-data-jpa</artifactId>
-    </dependency>
-    <!--<dependency>-->
-      <!--<groupId>org.springframework.boot</groupId>-->
-      <!--<artifactId>spring-boot-starter-quartz</artifactId>-->
-    <!--</dependency>-->
 
     <dependency>
       <groupId>mysql</groupId>

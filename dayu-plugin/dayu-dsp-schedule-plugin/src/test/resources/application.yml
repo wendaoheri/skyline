@@ -1,10 +1,9 @@
 spring:
   datasource:
-    schedue:
-      url: jdbc:oracle:thin:@10.25.154.169:1524:hsdspdata
-      username: dspmt
-      password: paic1234
-      driver-class-name: oracle.jdbc.OracleDriver
+    url: jdbc:oracle:thin:@10.25.154.169:1524:hsdspdata
+    username: dspmt
+    password: paic1234
+    driver-class-name: oracle.jdbc.OracleDriver
   jpa:
     hibernate:
       ddl-auto: none

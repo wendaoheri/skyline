@@ -1,4 +1,4 @@
-package org.dayu.plugin.schedule.mock;
+package org.dayu.plugin.schedule;
 
 import java.util.Random;
 import org.dayu.plugin.schedule.SchedulePlugin;

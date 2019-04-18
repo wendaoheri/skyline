@@ -1,18 +1,20 @@
+server:
+  port: 8099
 spring:
   datasource:
-    url: jdbc:oracle:thin:@10.25.154.169:1524:hsdspdata
-    username: dspmt
-    password: paic1234
+    url: jdbc:oracle:thin:@172.16.50.21:1537:dspdata
+    username: biebqry
+    password: kiop0987
     driver-class-name: oracle.jdbc.OracleDriver
     configuration:
       maximum-pool-size: 30
   jpa:
     hibernate:
       ddl-auto: none
-    show-sql: true
+    show-sql: false
   data:
     elasticsearch:
-      cluster-nodes: 10.25.164.23:9900,10.25.164.78:9900
+      cluster-nodes: 26.6.1.114:9300,26.6.1.115:9300,26.6.1.116:9300
       cluster-name: paic-elasticsearch-v6
   mvc:
     servlet:
@@ -33,7 +35,7 @@ http:
   redirectsEnabled: false # 是否允许重定向
 
 hadoop:
-  resourceManagerAddress: http://10.17.183.85:8088
+  resourceManagerAddress: http://26.6.0.31:8088
 
 spark:
   #  historyServerAddress: http://10.17.183.85:18080
@@ -43,9 +45,10 @@ logging:
   level:
     root: INFO
     org.hibernate: ERROR
-#  file: dayu.log
-#  max-size: 100M
-#  max-history: 3
+  file: dayu.log
+  max-size: 100M
+  max-history: 3
+
 dayu:
   fetcher:
     interval_second: 60                #  fetch by started & finished time interval

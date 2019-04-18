@@ -2,7 +2,7 @@ package org.dayu.core.service;
 
 import java.util.List;
 import java.util.Set;
-import org.dayu.core.model.ScheduleInfo;
+import org.dayu.common.model.ScheduleInfo;
 
 /**
  * @author Sean Liu
@@ -10,5 +10,10 @@ import org.dayu.core.model.ScheduleInfo;
  */
 public interface ScheduleInfoService {
 
+  /**
+   * return not existed schedules
+   * @param scheduleIds
+   * @return
+   */
   List<ScheduleInfo> saveScheduleInfos(Set<String> scheduleIds);
 }

@@ -45,12 +45,12 @@
       </dependency>
       <dependency>
         <groupId>org.dayu</groupId>
-        <artifactId>dayu-mock-schedule-plugin</artifactId>
+        <artifactId>dayu-storage</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>
         <groupId>org.dayu</groupId>
-        <artifactId>dayu-storage</artifactId>
+        <artifactId>dayu-schedule-plugin</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>

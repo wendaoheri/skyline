@@ -1,4 +1,4 @@
-package org.dayu.plugin.schedule.mock;
+package org.dayu.storage;
 
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;

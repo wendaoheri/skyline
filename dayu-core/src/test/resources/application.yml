@@ -1,22 +1,15 @@
 spring:
   datasource:
-    core:
-      url: jdbc:mysql://localhost:3306/dayu
-      username: root
-      password: 111111
-      driver-class-name: com.mysql.jdbc.Driver
-      configuration:
-        maximum-pool-size: 30
-    schedule:
-      url: jdbc:oracle:thin:@10.25.154.169:1524:hsdspdata
-      username: dspmt
-      password: paic1234
-      driver-class-name: oracle.jdbc.OracleDriver
-      configuration:
-        maximum-pool-size: 30
+#    schedule:
+    url: jdbc:oracle:thin:@10.25.154.169:1524:hsdspdata
+    username: dspmt
+    password: paic1234
+    driver-class-name: oracle.jdbc.OracleDriver
+    configuration:
+      maximum-pool-size: 30
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: none
     show-sql: true
   data:
     elasticsearch:

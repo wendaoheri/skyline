@@ -7,15 +7,17 @@ import com.google.common.collect.Lists;
 import java.io.IOException;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
+import org.dayu.common.model.YarnApplication;
 import org.dayu.core.http.HttpCallService;
-import org.dayu.core.model.YarnApplication;
 import org.dayu.core.service.YarnApplicationService;
-import org.dayu.storage.IStorage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
+/**
+ * @author sean
+ */
 @Service
 @Slf4j
 public class YarnApplicationFetcher {
@@ -30,10 +32,6 @@ public class YarnApplicationFetcher {
 
   @Autowired
   private YarnApplicationService yarnApplicationService;
-
-  @Autowired
-  private IStorage storage;
-
 
   @Value("${hadoop.resourceManagerAddress}")
   private String resourceManagerAddress;
@@ -95,15 +93,16 @@ public class YarnApplicationFetcher {
   public void fetchUnfinishedApplications() {
     String runningAppListUrl = this.getRunningAppListUrl();
     try {
+      log.info("Fetch unfinished application url is : {}", runningAppListUrl);
       String resp = httpCallService.doGet(runningAppListUrl);
-      List apps = parseRespToYarnApplicationList(resp);
+      List<YarnApplication> apps = parseRespToYarnApplicationList(resp);
 
       log.info("Got unfinished application list size : {}", apps.size());
 
-      List<String> jsonData = Lists.newArrayList();
-      apps.forEach(x -> jsonData.add(JSON.toJSONString(x)));
+      apps.forEach(x -> x.setId(null));
 
-      storage.trace(apps);
+      yarnApplicationService.saveApplicationListTrace(apps);
+
     } catch (IOException e) {
       log.error("Error occur while fetch yarn application list {}", e.getMessage());
     }
@@ -111,12 +110,14 @@ public class YarnApplicationFetcher {
 
   }
 
-  private List<YarnApplication> parseRespToYarnApplicationList(String resp) {
+  @VisibleForTesting
+  protected List<YarnApplication> parseRespToYarnApplicationList(String resp) {
     JSONObject jo = JSON.parseObject(resp);
     List<YarnApplication> apps = null;
     try {
       apps = jo.getJSONObject("apps").getJSONArray("app")
           .toJavaList(YarnApplication.class);
+      apps.forEach(x -> x.setApplicationId(x.getId()));
     } catch (NullPointerException e) {
       log.info("None application list");
     }

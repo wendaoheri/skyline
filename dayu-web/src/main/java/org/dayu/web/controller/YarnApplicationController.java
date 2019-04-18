@@ -2,8 +2,8 @@ package org.dayu.web.controller;
 
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
+import org.dayu.common.model.YarnApplication;
 import org.dayu.core.dto.SearchRequestDTO;
-import org.dayu.core.model.YarnApplication;
 import org.dayu.core.service.YarnApplicationService;
 import org.dayu.web.api.PageResponse;
 import org.springframework.beans.factory.annotation.Autowired;

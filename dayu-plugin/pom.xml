@@ -13,7 +13,6 @@
   <packaging>pom</packaging>
   <modules>
     <module>dayu-schedule-plugin</module>
-    <module>dayu-mock-schedule-plugin</module>
     <module>dayu-dsp-schedule-plugin</module>
   </modules>
 

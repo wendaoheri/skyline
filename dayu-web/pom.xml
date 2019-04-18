@@ -28,10 +28,6 @@
       <groupId>org.dayu</groupId>
       <artifactId>dayu-dsp-schedule-plugin</artifactId>
     </dependency>
-    <dependency>
-      <groupId>org.dayu</groupId>
-      <artifactId>dayu-dsp-schedule-plugin</artifactId>
-    </dependency>
   </dependencies>
   <build>
     <plugins>

@@ -2,9 +2,9 @@ package org.dayu.core.service;
 
 import java.util.List;
 import java.util.Map;
+import org.dayu.common.model.ScheduleInfo;
+import org.dayu.common.model.YarnApplication;
 import org.dayu.core.dto.SearchRequestDTO;
-import org.dayu.core.model.ScheduleInfo;
-import org.dayu.core.model.YarnApplication;
 import org.springframework.data.domain.Page;
 
 /**
@@ -20,6 +20,10 @@ public interface YarnApplicationService {
 
   void saveApplicationList(List<YarnApplication> apps);
 
+  void saveApplicationList(String databaseName,String tableName, List<YarnApplication> apps);
+
+  void saveApplicationListTrace(List<YarnApplication> apps);
+
   List<YarnApplication> getWithoutScheduleInfo(long begin, long end);
 
 
@@ -29,6 +33,12 @@ public interface YarnApplicationService {
 
   Page<YarnApplication> search(SearchRequestDTO request);
 
-  int setScheduleInfo(Map<String, String> appSchMap,
+  /**
+   *
+   * @param appSchMap appId -> schedule_id
+   * @param newSchedules
+   * @return
+   */
+  int addScheduleInfo(Map<String, String> appSchMap,
       List<ScheduleInfo> newSchedules);
 }
