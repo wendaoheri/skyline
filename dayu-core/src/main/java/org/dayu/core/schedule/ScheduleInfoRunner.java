@@ -5,6 +5,7 @@ import com.google.common.collect.Sets;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.dayu.common.model.ScheduleInfo;
@@ -12,6 +13,7 @@ import org.dayu.common.model.YarnApplication;
 import org.dayu.core.service.ScheduleInfoService;
 import org.dayu.core.service.YarnApplicationService;
 import org.dayu.plugin.schedule.SchedulePlugin;
+import org.dayu.plugin.schedule.ScheduleTrigger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -53,15 +55,16 @@ public class ScheduleInfoRunner {
         apps.size());
 
     // applicationId -> scheduleId
-    Map<String, String> appSchMap = Maps.newHashMap();
+    Map<String, ScheduleTrigger> appSchMap = Maps.newHashMap();
     apps.forEach(app -> {
-      String scheduleId = schedulePlugin
+      ScheduleTrigger scheduleTrigger = schedulePlugin
           .getScheduleIdByApplicationId(app.getId());
-      if (StringUtils.isNotEmpty(scheduleId)) {
-        appSchMap.put(app.getId(), scheduleId);
+      if (scheduleTrigger != null) {
+        appSchMap.put(app.getId(), scheduleTrigger);
       }
     });
-    Set<String> scheduleIds = Sets.newHashSet(appSchMap.values());
+    Set<String> scheduleIds = appSchMap.values().parallelStream().map(x -> x.getScheduleId())
+        .collect(Collectors.toSet());
     // 第一次出现的schedule
     List<ScheduleInfo> newSchedules = scheduleInfoService.saveScheduleInfos(scheduleIds);
 

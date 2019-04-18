@@ -1,6 +1,7 @@
 package org.dayu.plugin.schedule.dsp;
 
 import lombok.extern.slf4j.Slf4j;
+import org.dayu.plugin.schedule.ScheduleTrigger;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,16 +26,18 @@ public class DSPScheduleCacheTest {
   public void testGetScheduleIdByApplicationIdWithCache() throws InterruptedException {
 //    JobApplicationLog job = jobApplicationLogRepository
 //        .findJobApplicationLogByApplicationLogLike("%application_1547782571903_0664%");
+    ScheduleTrigger st = new ScheduleTrigger();
 
-    cache.putCache("application_1547782571903_0664", "job_idtttttt");
+    st.setScheduleId("dddddd");
+    st.setTriggerId("ttttt");
+    cache.putCache("application_1547782571903_0664", st);
 
-    String jobId = cache
+    ScheduleTrigger stCached = cache
         .getScheduleIdByApplicationIdWithCache("application_1547782571903_0664");
-    log.info(jobId);
+    log.info(stCached.toString());
 
-    jobId = cache
-        .getScheduleIdByApplicationIdWithCache("application_1547782571903_066");
-    log.info(jobId);
+    stCached = cache.getScheduleIdByApplicationIdWithCache("application_1547782571903_066");
+    log.info(String.valueOf(stCached));
   }
 
 }

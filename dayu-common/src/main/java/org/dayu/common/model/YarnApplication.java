@@ -35,11 +35,6 @@ public class YarnApplication implements Model{
   @JSONField(name = "tracking_ui")
   private String trackingUI;
 
-  @JSONField(name = "tracking_url")
-  private String trackingUrl;
-
-  private String diagnostics;
-
   @JSONField(name = "cluster_id")
   private long clusterId;
 
@@ -57,9 +52,6 @@ public class YarnApplication implements Model{
 
   @JSONField(name = "elapsed_time")
   private int elapsedTime;
-
-  @JSONField(name = "am_container_logs")
-  private String amContainerLogs;
 
   @JSONField(name = "am_host_http_address")
   private String amHostHttpAddress;
@@ -96,6 +88,9 @@ public class YarnApplication implements Model{
 
   @JSONField(name = "schedule_id")
   private String scheduleId;
+
+  @JSONField(name = "trigger_id")
+  private String triggerId;
 
   @JSONField(name = "new_schedule")
   private Integer newSchedule;

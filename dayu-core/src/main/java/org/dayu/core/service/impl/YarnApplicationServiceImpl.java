@@ -15,6 +15,7 @@ import org.dayu.common.model.ScheduleInfo;
 import org.dayu.common.model.YarnApplication;
 import org.dayu.core.dto.SearchRequestDTO;
 import org.dayu.core.service.YarnApplicationService;
+import org.dayu.plugin.schedule.ScheduleTrigger;
 import org.dayu.storage.IStorage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -129,7 +130,7 @@ public class YarnApplicationServiceImpl implements YarnApplicationService {
 
 
   @Override
-  public int addScheduleInfo(Map<String, String> appSchMap,
+  public int addScheduleInfo(Map<String, ScheduleTrigger> appSchMap,
       List<ScheduleInfo> newSchedules) {
     Set<String> newScheduleIds =
         newSchedules == null ? null : newSchedules.parallelStream().map(x -> x.getScheduleId())
@@ -139,7 +140,8 @@ public class YarnApplicationServiceImpl implements YarnApplicationService {
         .forEach(x -> {
           YarnApplication app = new YarnApplication();
           app.setId(x.getKey());
-          app.setScheduleId(x.getValue());
+          app.setScheduleId(x.getValue().getScheduleId());
+          app.setTriggerId(x.getValue().getTriggerId());
           if (newScheduleIds != null && newScheduleIds.contains(x.getValue())) {
             app.setNewSchedule(1);
           }

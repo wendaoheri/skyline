@@ -5,6 +5,7 @@ import java.util.Map;
 import org.dayu.common.model.ScheduleInfo;
 import org.dayu.common.model.YarnApplication;
 import org.dayu.core.dto.SearchRequestDTO;
+import org.dayu.plugin.schedule.ScheduleTrigger;
 import org.springframework.data.domain.Page;
 
 /**
@@ -39,6 +40,6 @@ public interface YarnApplicationService {
    * @param newSchedules
    * @return
    */
-  int addScheduleInfo(Map<String, String> appSchMap,
+  int addScheduleInfo(Map<String, ScheduleTrigger> appSchMap,
       List<ScheduleInfo> newSchedules);
 }

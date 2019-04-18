@@ -1,6 +1,7 @@
 package org.dayu.plugin.schedule.dsp;
 
 import lombok.extern.slf4j.Slf4j;
+import org.dayu.plugin.schedule.ScheduleTrigger;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
@@ -16,14 +17,14 @@ public class DSPScheduleCache {
   private static final String CACHE_NAME = "job_application_log";
 
   @Cacheable(cacheNames = CACHE_NAME, key = "#p0")
-  public String getScheduleIdByApplicationIdWithCache(String applicationId) {
+  public ScheduleTrigger getScheduleIdByApplicationIdWithCache(String applicationId) {
     return null;
   }
 
   @CachePut(cacheNames = CACHE_NAME, key = "#p0")
-  public String putCache(String applicationId, String jobId) {
-    log.info("put cache applicationId [{}] -> jobId [{}]", applicationId, jobId);
-    return jobId;
+  public ScheduleTrigger putCache(String applicationId, ScheduleTrigger scheduleTrigger) {
+    log.info("put cache applicationId [{}] -> jobId [{}]", applicationId, scheduleTrigger.toString());
+    return scheduleTrigger;
   }
 
 }

@@ -14,6 +14,6 @@ public interface SchedulePlugin {
    * @param applicationId
    * @return
    */
-  String getScheduleIdByApplicationId(String applicationId);
+  ScheduleTrigger getScheduleIdByApplicationId(String applicationId);
 
 }

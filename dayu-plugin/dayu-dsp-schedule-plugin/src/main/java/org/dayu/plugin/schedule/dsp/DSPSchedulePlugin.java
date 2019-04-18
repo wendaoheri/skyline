@@ -7,10 +7,12 @@ import java.util.List;
 import java.util.Set;
 import lombok.extern.slf4j.Slf4j;
 import org.dayu.plugin.schedule.SchedulePlugin;
+import org.dayu.plugin.schedule.ScheduleTrigger;
 import org.dayu.plugin.schedule.dsp.model.JobApplicationLog;
 import org.dayu.plugin.schedule.dsp.repository.JobApplicationLogRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Service;
 
 /**
  * @author Sean Liu
@@ -30,7 +32,7 @@ public class DSPSchedulePlugin implements SchedulePlugin {
   private JobApplicationLogRepository jobApplicationLogRepository;
 
   @Override
-  public String getScheduleIdByApplicationId(String applicationId) {
+  public ScheduleTrigger getScheduleIdByApplicationId(String applicationId) {
     return cache.getScheduleIdByApplicationIdWithCache(applicationId);
   }
 
@@ -51,13 +53,15 @@ public class DSPSchedulePlugin implements SchedulePlugin {
     jobApplicationLogs.forEach(job -> {
       String jobId = String.valueOf(job.getJobId());
       String applicationLog = job.getApplicationLog();
-      // TODO 执行周期需要带上
       Long frequency = job.getJobFrequency();
+      ScheduleTrigger st = new ScheduleTrigger();
+      st.setScheduleId(jobId);
+      st.setTriggerId(String.valueOf(frequency));
       Set<String> applicationIdSet = Sets.newHashSet(applicationLog.split(LOG_SPLIT));
       for (String applicationId : applicationIdSet) {
         if (cache.getScheduleIdByApplicationIdWithCache(applicationId) == null) {
-          cache.putCache(applicationId, jobId);
-          log.info(cache.getScheduleIdByApplicationIdWithCache(applicationId));
+          cache.putCache(applicationId, st);
+          log.info(cache.getScheduleIdByApplicationIdWithCache(applicationId).toString());
         }
       }
     });
