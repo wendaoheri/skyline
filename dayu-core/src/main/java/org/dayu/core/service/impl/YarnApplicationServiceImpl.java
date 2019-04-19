@@ -142,7 +142,7 @@ public class YarnApplicationServiceImpl implements YarnApplicationService {
           app.setId(x.getKey());
           app.setScheduleId(x.getValue().getScheduleId());
           app.setTriggerId(x.getValue().getTriggerId());
-          if (newScheduleIds != null && newScheduleIds.contains(x.getValue())) {
+          if (newScheduleIds != null && newScheduleIds.contains(x.getValue().getScheduleId())) {
             app.setNewSchedule(1);
           }
           apps.add(app);
