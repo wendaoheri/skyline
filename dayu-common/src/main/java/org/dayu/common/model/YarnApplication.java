@@ -89,6 +89,9 @@ public class YarnApplication implements Model{
   @JSONField(name = "schedule_id")
   private String scheduleId;
 
+  @JSONField(name = "job_id")
+  private String jobId;
+
   @JSONField(name = "trigger_id")
   private String triggerId;
 

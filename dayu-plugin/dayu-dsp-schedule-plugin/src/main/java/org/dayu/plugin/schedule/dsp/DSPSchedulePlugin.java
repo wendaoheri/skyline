@@ -2,9 +2,11 @@ package org.dayu.plugin.schedule.dsp;
 
 import com.google.common.collect.Sets;
 import java.text.SimpleDateFormat;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
 import org.dayu.plugin.schedule.SchedulePlugin;
 import org.dayu.plugin.schedule.ScheduleTrigger;
@@ -51,14 +53,26 @@ public class DSPSchedulePlugin implements SchedulePlugin {
   public void putCaches(List<JobApplicationLog> jobApplicationLogs) {
     log.info("Start add to cache application size : {}", jobApplicationLogs.size());
     jobApplicationLogs.forEach(job -> {
+
       String jobId = String.valueOf(job.getJobId());
       String applicationLog = job.getApplicationLog();
       Long frequency = job.getJobFrequency();
-      ScheduleTrigger st = new ScheduleTrigger();
-      st.setScheduleId(jobId);
-      st.setTriggerId(String.valueOf(frequency));
+
+      // 切割application_id，并且根据application_id从小到大排序
       Set<String> applicationIdSet = Sets.newHashSet(applicationLog.split(LOG_SPLIT));
-      for (String applicationId : applicationIdSet) {
+      List<String> applicationIdList = applicationIdSet.stream().sorted(
+          Comparator.comparing(o -> Long.valueOf(o.split("_")[2])))
+          .collect(Collectors.toList());
+
+      for (int i = 0; i < applicationIdList.size(); i++) {
+        String applicationId = applicationIdList.get(i);
+        ScheduleTrigger st = new ScheduleTrigger();
+
+        // 给每个schedule里面的yarn job按照 application_id从小到大打上虚拟的job_id
+        st.setScheduleId(jobId);
+        st.setTriggerId(String.valueOf(frequency));
+        st.setJobId(String.format("%s_%s", jobId, i + 1));
+
         if (cache.getScheduleIdByApplicationIdWithCache(applicationId) == null) {
           cache.putCache(applicationId, st);
           log.info(cache.getScheduleIdByApplicationIdWithCache(applicationId).toString());

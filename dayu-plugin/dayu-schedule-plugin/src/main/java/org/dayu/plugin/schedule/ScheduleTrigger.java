@@ -12,6 +12,7 @@ import lombok.Data;
 public class ScheduleTrigger {
 
   private String scheduleId;
+  private String jobId;
   private String triggerId;
 
 }

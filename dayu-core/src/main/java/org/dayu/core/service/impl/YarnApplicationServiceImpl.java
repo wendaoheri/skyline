@@ -138,11 +138,13 @@ public class YarnApplicationServiceImpl implements YarnApplicationService {
     List<YarnApplication> apps = Lists.newArrayList();
     appSchMap.entrySet()
         .forEach(x -> {
+          ScheduleTrigger st = x.getValue();
           YarnApplication app = new YarnApplication();
           app.setId(x.getKey());
-          app.setScheduleId(x.getValue().getScheduleId());
+          app.setScheduleId(st.getScheduleId());
+          app.setJobId(st.getJobId());
           app.setTriggerId(x.getValue().getTriggerId());
-          if (newScheduleIds != null && newScheduleIds.contains(x.getValue().getScheduleId())) {
+          if (newScheduleIds != null && newScheduleIds.contains(st.getScheduleId())) {
             app.setNewSchedule(1);
           }
           apps.add(app);
