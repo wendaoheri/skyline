@@ -31,3 +31,5 @@ dependency-reduced-pom.xml
 *.idea
 
 metastore_db/
+
+dayu-plugin/dayu-dsp-schedule-plugin

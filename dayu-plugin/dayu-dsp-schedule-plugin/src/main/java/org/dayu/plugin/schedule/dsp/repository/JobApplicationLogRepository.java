@@ -1,5 +1,6 @@
 package org.dayu.plugin.schedule.dsp.repository;
 
+import java.util.Date;
 import java.util.List;
 import org.dayu.plugin.schedule.dsp.model.JobApplicationLog;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -15,4 +16,6 @@ public interface JobApplicationLogRepository extends JpaRepository<JobApplicatio
   JobApplicationLog findJobApplicationLogByApplicationLogLike(String applicationId);
 
   List<JobApplicationLog> findJobApplicationLogsByJobFrequencyGreaterThanEqual(long jobFrequency);
+
+  List<JobApplicationLog> findJobApplicationLogsByCreatedTimeGreaterThanEqual(Date date);
 }

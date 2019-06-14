@@ -33,6 +33,8 @@ public class DSPSchedulePlugin implements SchedulePlugin {
   @Autowired
   private JobApplicationLogRepository jobApplicationLogRepository;
 
+  private Date last;
+
   @Override
   public ScheduleTrigger getScheduleIdByApplicationId(String applicationId) {
     return cache.getScheduleIdByApplicationIdWithCache(applicationId);
@@ -41,12 +43,15 @@ public class DSPSchedulePlugin implements SchedulePlugin {
   @Scheduled(fixedRate = 10000)
   public void refresh() {
     log.info("start refresh caches");
-    Date yest = new Date(System.currentTimeMillis() - 86400000L);
-    long todayFreq = Long.parseLong(sdf.format(yest));
-    log.info("start frequency : {}", todayFreq);
+    Date curr = new Date(System.currentTimeMillis() - 60000L);
+    if(last == null) {
+      last = new Date(System.currentTimeMillis() - 86400000L);
+    }
+    log.info("start last fetch schedule time : {}", last);
     List<JobApplicationLog> jobs = jobApplicationLogRepository
-        .findJobApplicationLogsByJobFrequencyGreaterThanEqual(todayFreq);
+        .findJobApplicationLogsByCreatedTimeGreaterThanEqual(last);
     putCaches(jobs);
+    last = curr;
     log.info("end refresh caches");
   }
 

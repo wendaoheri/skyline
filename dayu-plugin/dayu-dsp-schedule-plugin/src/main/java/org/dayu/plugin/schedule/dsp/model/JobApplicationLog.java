@@ -1,9 +1,12 @@
 package org.dayu.plugin.schedule.dsp.model;
 
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import lombok.Data;
 
 /**
@@ -33,4 +36,11 @@ public class JobApplicationLog {
   @Column(name = "application_log")
   private String applicationLog;
 
+  @Column(name = "created_time")
+  @Temporal(TemporalType.TIMESTAMP)
+  private Date createdTime;
+
+  @Column(name = "updated_time")
+  @Temporal(TemporalType.TIMESTAMP)
+  private Date updatedTime;
 }

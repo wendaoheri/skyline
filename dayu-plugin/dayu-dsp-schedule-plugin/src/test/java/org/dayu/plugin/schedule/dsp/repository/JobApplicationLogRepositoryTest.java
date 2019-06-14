@@ -1,5 +1,6 @@
 package org.dayu.plugin.schedule.dsp.repository;
 
+import java.util.Date;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.dayu.plugin.schedule.dsp.TestBeanEntry;
@@ -39,6 +40,13 @@ public class JobApplicationLogRepositoryTest {
   public void testFindJobApplicationLogsByJobFrequencyAfter(){
     List<JobApplicationLog> jobs = jobApplicationLogRepository
         .findJobApplicationLogsByJobFrequencyGreaterThanEqual(201902270000L);
+    log.info(jobs.toString());
+  }
+
+  @Test
+  public void testFindJobApplicationLogsByCreatedTimeGreaterThanEqual(){
+    List<JobApplicationLog> jobs = jobApplicationLogRepository
+        .findJobApplicationLogsByCreatedTimeGreaterThanEqual(new Date(System.currentTimeMillis() - 86400000L));
     log.info(jobs.toString());
   }
 }
