@@ -1,8 +1,8 @@
 spring:
   data:
     elasticsearch:
-      cluster-nodes: 10.25.164.23:9900,10.25.164.78:9900
-      cluster-name: paic-elasticsearch-v6
+      cluster-nodes: localhost:9300
+      cluster-name: docker-cluster
   cache:
     cache-names: job_application_log
     caffeine:
@@ -35,9 +35,7 @@ dayu:
     unfinished_interval_second: 1      #  unfinished application state fetch interval
   plugin:
     schedule:
-      class: org.dayu.plugin.schedule.dsp.DSPSchedulePlugin
+      class: org.dayu.plugin.schedule.MockSchedulePlugin
       interval_second: 60
       min_delay_second: 60              #  min time delay for fetch scheduleId after application finished
       max_delay_second: 2592000            #  max time delay for fetch scheduleId after application finished
-    storage:
-      class: org.dayu.plugin.storage.es.ESStorage
