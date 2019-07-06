@@ -1,4 +1,4 @@
-package org.dayu.storage;
+package org.dayu.core.storage;
 
 import java.lang.reflect.Type;
 import java.util.Collection;
@@ -21,11 +21,15 @@ public interface IStorage {
 
   void upsert(String indexName, String typeName, Record record);
 
-  <T> T findById(String indexName, String typeName, String id, Type clazz) throws IndexNotFoundException;
+  <T> T findById(String indexName, String typeName, String id, Type clazz)
+      throws IndexNotFoundException;
 
-  <T> List<T> findByDSL(String indexName,String typeName,String dsl,Type clazz) throws IndexNotFoundException;
+  <T> List<T> findByDSL(String indexName, String typeName, String dsl, Type clazz)
+      throws IndexNotFoundException;
 
-  <T> List<T> findByDSL(String indexName,String typeName,String dsl,Type clazz,String... fields) throws IndexNotFoundException;
+  <T> List<T> findByDSL(String indexName, String typeName, String dsl, Type clazz, String... fields)
+      throws IndexNotFoundException;
 
-  <T> List<T> findByIds(String indexName,String typeName, Set<String> ids,Type clazz,String... fields) throws IndexNotFoundException;
+  <T> List<T> findByIds(String indexName, String typeName, Set<String> ids, Type clazz,
+      String... fields) throws IndexNotFoundException;
 }

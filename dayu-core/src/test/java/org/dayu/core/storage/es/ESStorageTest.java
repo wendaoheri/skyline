@@ -1,13 +1,13 @@
-package org.dayu.storage.es;
+package org.dayu.core.storage.es;
 
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
+import org.dayu.TestBeanEntry;
 import org.dayu.common.model.Record;
 import org.dayu.common.model.Records;
 import org.dayu.common.model.RuntimeConfig;
 import org.dayu.common.model.YarnApplication;
-import org.dayu.storage.IStorage;
-import org.dayu.storage.TestBeanEntry;
+import org.dayu.core.storage.IStorage;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

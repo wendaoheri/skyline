@@ -1,16 +1,4 @@
 spring:
-  datasource:
-#    schedule:
-    url: jdbc:oracle:thin:@10.25.154.169:1524:hsdspdata
-    username: dspmt
-    password: paic1234
-    driver-class-name: oracle.jdbc.OracleDriver
-    configuration:
-      maximum-pool-size: 30
-  jpa:
-    hibernate:
-      ddl-auto: none
-    show-sql: true
   data:
     elasticsearch:
       cluster-nodes: 10.25.164.23:9900,10.25.164.78:9900
@@ -31,7 +19,7 @@ http:
   redirectsEnabled: false # 是否允许重定向
 
 hadoop:
-  resourceManagerAddress: http://10.17.183.85:8088
+  resourceManagerAddress: http://localhost:8088
 
 spark:
   #  historyServerAddress: http://10.17.183.85:18080

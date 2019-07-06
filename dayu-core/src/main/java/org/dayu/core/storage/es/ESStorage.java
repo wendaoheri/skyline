@@ -1,4 +1,4 @@
-package org.dayu.storage.es;
+package org.dayu.core.storage.es;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
@@ -15,7 +15,7 @@ import java.util.concurrent.ExecutionException;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.dayu.common.model.Record;
-import org.dayu.storage.IStorage;
+import org.dayu.core.storage.IStorage;
 import org.elasticsearch.action.ActionRequestBuilder;
 import org.elasticsearch.action.admin.indices.exists.indices.IndicesExistsRequestBuilder;
 import org.elasticsearch.action.admin.indices.exists.indices.IndicesExistsResponse;
@@ -40,11 +40,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class ESStorage implements IStorage {
 
-  @Autowired
-  private TransportClient client;
-
   private static final String KEY_ID = "_id";
   private static final String KEY_ROUTE = "_route";
+  @Autowired
+  private TransportClient client;
 
   @Override
   public void trace(List<Object> data) {
@@ -187,7 +186,7 @@ public class ESStorage implements IStorage {
   public <T> List<T> findByIds(String indexName, String typeName, Set<String> ids, Type clazz,
       String... fields) {
     IdsQueryBuilder query = QueryBuilders.idsQuery();
-    if(null != ids) {
+    if (null != ids) {
       ids.forEach(x -> query.addIds(x));
     }
     SearchRequestBuilder builder = fieldSearchBuilder(indexName, typeName, query,

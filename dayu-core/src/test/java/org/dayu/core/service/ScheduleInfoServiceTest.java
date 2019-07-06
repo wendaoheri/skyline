@@ -24,7 +24,7 @@ public class ScheduleInfoServiceTest {
   private ScheduleInfoService scheduleInfoService;
 
   @Test
-  public void testSaveScheduleInfos(){
+  public void testSaveScheduleInfos() {
     Set<String> ids = Sets.newHashSet();
 
     ids.add("id1");

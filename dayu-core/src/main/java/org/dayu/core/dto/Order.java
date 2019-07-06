@@ -11,13 +11,12 @@ import lombok.Data;
 @AllArgsConstructor
 public class Order {
 
+  private OrderType orderType;
+  private String name;
   public enum OrderType {
     DESC,
     ASC
   }
-
-  private OrderType orderType;
-  private String name;
 
 
 }

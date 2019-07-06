@@ -8,7 +8,7 @@ import lombok.Data;
  * @date 2019-04-17
  */
 @Data
-public class RuntimeConfig implements Model{
+public class RuntimeConfig implements Model {
 
   public static final String DATABASE_NAME = "runtime_config";
 

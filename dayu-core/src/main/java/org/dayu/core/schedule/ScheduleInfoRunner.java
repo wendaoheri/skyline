@@ -1,13 +1,11 @@
 package org.dayu.core.schedule;
 
 import com.google.common.collect.Maps;
-import com.google.common.collect.Sets;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
 import org.dayu.common.model.ScheduleInfo;
 import org.dayu.common.model.YarnApplication;
 import org.dayu.core.service.ScheduleInfoService;

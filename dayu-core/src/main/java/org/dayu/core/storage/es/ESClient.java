@@ -1,4 +1,4 @@
-package org.dayu.plugin.storage.es;
+package org.dayu.core.storage.es;
 
 import lombok.extern.slf4j.Slf4j;
 import org.elasticsearch.client.transport.TransportClient;
@@ -11,7 +11,6 @@ public class ESClient {
 
   @Autowired
   private TransportClient client;
-
 
 
 }
