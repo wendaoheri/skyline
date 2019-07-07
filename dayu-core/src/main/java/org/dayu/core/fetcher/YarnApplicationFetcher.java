@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.dayu.common.model.YarnApplication;
-import org.dayu.core.http.HttpCallService;
+import org.dayu.core.http.HadoopHACallService;
 import org.dayu.core.service.YarnApplicationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -22,13 +22,13 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class YarnApplicationFetcher {
 
-  public static final String YARN_APPLICATION_LIST_STARTED_URL_PATTERN = "%s/ws/v1/cluster/apps?startedTimeBegin=%d&startedTimeEnd=%d";
-  public static final String YARN_APPLICATION_LIST_FINISHED_URL_PATTERN = "%s/ws/v1/cluster/apps?finishedTimeBegin=%d&finishedTimeEnd=%d";
-  public static final String YARN_RUNNING_APPLICATION_LIST_URL_PATTERN = "%s/ws/v1/cluster/apps?states=NEW,NEW_SAVING,SUBMITTED,ACCEPTED,RUNNING";
+  public static final String YARN_APPLICATION_LIST_STARTED_URL_PATTERN = "/ws/v1/cluster/apps?startedTimeBegin=%d&startedTimeEnd=%d";
+  public static final String YARN_APPLICATION_LIST_FINISHED_URL_PATTERN = "/ws/v1/cluster/apps?finishedTimeBegin=%d&finishedTimeEnd=%d";
+  public static final String YARN_RUNNING_APPLICATION_LIST_URL_PATTERN = "/ws/v1/cluster/apps?states=NEW,NEW_SAVING,SUBMITTED,ACCEPTED,RUNNING";
 
 
   @Autowired
-  private HttpCallService httpCallService;
+  private HadoopHACallService hadoopHACallService;
 
   @Autowired
   private YarnApplicationService yarnApplicationService;
@@ -73,7 +73,7 @@ public class YarnApplicationFetcher {
     List<YarnApplication> apps = null;
     String resp = null;
     try {
-      resp = httpCallService.doGet(fetchAppListUrl);
+      resp = hadoopHACallService.doGet(resourceManagerAddress, fetchAppListUrl);
       apps = parseRespToYarnApplicationList(resp);
     } catch (IOException e) {
       log.error("Error occur while fetch yarn application list {}", e.getMessage());
@@ -94,7 +94,7 @@ public class YarnApplicationFetcher {
     String runningAppListUrl = this.getRunningAppListUrl();
     try {
       log.info("Fetch unfinished application url is : {}", runningAppListUrl);
-      String resp = httpCallService.doGet(runningAppListUrl);
+      String resp = hadoopHACallService.doGet(resourceManagerAddress, runningAppListUrl);
       List<YarnApplication> apps = parseRespToYarnApplicationList(resp);
 
       log.info("Got unfinished application list size : {}", apps.size());
@@ -135,15 +135,15 @@ public class YarnApplicationFetcher {
   protected String getAppListUrl(long begin, long end, int startedOrFinished) {
     if (startedOrFinished == 0) {
       return String
-          .format(YARN_APPLICATION_LIST_STARTED_URL_PATTERN, resourceManagerAddress, begin, end);
+          .format(YARN_APPLICATION_LIST_STARTED_URL_PATTERN, begin, end);
     } else {
       return String
-          .format(YARN_APPLICATION_LIST_FINISHED_URL_PATTERN, resourceManagerAddress, begin, end);
+          .format(YARN_APPLICATION_LIST_FINISHED_URL_PATTERN, begin, end);
     }
 
   }
 
   protected String getRunningAppListUrl() {
-    return String.format(YARN_RUNNING_APPLICATION_LIST_URL_PATTERN, resourceManagerAddress);
+    return YARN_RUNNING_APPLICATION_LIST_URL_PATTERN;
   }
 }

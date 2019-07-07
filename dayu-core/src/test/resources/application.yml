@@ -19,7 +19,7 @@ http:
   redirectsEnabled: false # 是否允许重定向
 
 hadoop:
-  resourceManagerAddress: http://localhost:8088
+  resourceManagerAddress: http://localhost:8088,localhost:8089
 
 spark:
   #  historyServerAddress: http://10.17.183.85:18080

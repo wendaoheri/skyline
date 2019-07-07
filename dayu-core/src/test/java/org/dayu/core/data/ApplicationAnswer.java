@@ -3,10 +3,12 @@ package org.dayu.core.data;
 import static org.dayu.core.utils.DayuUtils.DAY_MS;
 
 import com.alibaba.fastjson.JSON;
+import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.utils.URLEncodedUtils;
 import org.assertj.core.util.Lists;
@@ -22,14 +24,21 @@ import org.mockito.stubbing.Answer;
  * @author Sean Liu
  * @date 2019-07-07
  */
+@Slf4j
 public class ApplicationAnswer implements Answer<String> {
 
   private static final long clusterId = DayuUtils
       .randomTimestamp(System.currentTimeMillis() - 2 * DAY_MS,
           System.currentTimeMillis() - DAY_MS);
+  private int invokeTimes = 0;
 
   @Override
   public String answer(InvocationOnMock invocationOnMock) throws Throwable {
+    invokeTimes++;
+    log.info("invoke times : {}", invokeTimes);
+    if (invokeTimes % 2 == 1) {
+      throw new IOException();
+    }
     String url = invocationOnMock.getArgument(0);
     String queryStr = url.split("\\?")[1];
     List<NameValuePair> paramPair = URLEncodedUtils.parse(queryStr, Charset.forName("UTF-8"));
