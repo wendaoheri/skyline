@@ -13,6 +13,18 @@ public class YarnApplication implements Model {
   public static final String DATABASE_NAME = "yarn_application";
   public static final String TABLE_NAME = "yarn_application";
 
+  public enum State {
+    NEW, NEW_SAVING, SUBMITTED, ACCEPTED, RUNNING, FINISHED, FAILED, KILLED
+  }
+
+  public enum FinalStatus {
+    UNDEFINED, SUCCEEDED, FAILED, KILLED
+  }
+
+  public enum ApplicationType {
+    MR, TEZ, SPARK
+  }
+
   @JSONField(name = "_id")
   private String id;
 
