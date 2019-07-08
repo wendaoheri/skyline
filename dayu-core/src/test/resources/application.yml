@@ -3,6 +3,7 @@ spring:
     elasticsearch:
       cluster-nodes: localhost:9300
       cluster-name: docker-cluster
+      template-file: es_template.json
   cache:
     cache-names: job_application_log
     caffeine:

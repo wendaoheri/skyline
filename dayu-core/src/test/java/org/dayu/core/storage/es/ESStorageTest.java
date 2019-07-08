@@ -37,7 +37,7 @@ public class ESStorageTest {
 
     log.info(r.toString());
 
-    storage.upsert(RuntimeConfig.DATABASE_NAME, RuntimeConfig.TABLE_NAME, r);
+    storage.upsert(RuntimeConfig.INDEX_NAME, RuntimeConfig.TYPE_NAME, r);
 
   }
 

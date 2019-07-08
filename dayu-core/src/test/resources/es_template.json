@@ -1,0 +1,26 @@
+{
+  "dayu_config": {
+    "order": 0,
+    "index_patterns": [
+      "dayu_config"
+    ],
+    "settings": {
+      "index": {
+        "number_of_shards": "1",
+        "number_of_replicas": "0"
+      }
+    },
+    "mappings": {
+      "_doc": {
+        "_source": {
+          "enabled": true
+        },
+        "properties": {
+          "config": {
+            "type": "keyword"
+          }
+        }
+      }
+    }
+  }
+}

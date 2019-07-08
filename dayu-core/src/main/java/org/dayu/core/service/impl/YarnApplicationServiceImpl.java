@@ -34,7 +34,7 @@ public class YarnApplicationServiceImpl implements YarnApplicationService {
   @Override
   public long getLastFetchTime() {
 
-    RuntimeConfig rc = storage.findById(RuntimeConfig.DATABASE_NAME, RuntimeConfig.TABLE_NAME,
+    RuntimeConfig rc = storage.findById(RuntimeConfig.INDEX_NAME, RuntimeConfig.TYPE_NAME,
         TASK_FETCHER_LAST_FETCH_TIME_KEY, RuntimeConfig.class);
 
     if (null != rc) {
@@ -50,7 +50,7 @@ public class YarnApplicationServiceImpl implements YarnApplicationService {
     RuntimeConfig rc = new RuntimeConfig();
     rc.setId(TASK_FETCHER_LAST_FETCH_TIME_KEY);
     rc.setValue(lastFetchTimeStr);
-    storage.upsert(RuntimeConfig.DATABASE_NAME, RuntimeConfig.TABLE_NAME, Records.fromObject(rc));
+    storage.upsert(RuntimeConfig.INDEX_NAME, RuntimeConfig.TYPE_NAME, Records.fromObject(rc));
   }
 
   @Override
