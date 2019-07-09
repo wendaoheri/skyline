@@ -1,26 +1,55 @@
 {
-  "dayu_config": {
-    "order": 0,
+  "dayu": {
+    "order": 1,
     "index_patterns": [
-      "dayu_config"
+      "yarn_application*",
+      "dayu_config*",
+      "schedule_info*"
     ],
     "settings": {
       "index": {
-        "number_of_shards": "1",
-        "number_of_replicas": "0"
+        "number_of_shards": "5",
+        "number_of_replicas": "0",
+        "refresh_interval": "5s"
       }
     },
     "mappings": {
-      "_doc": {
+      "_default_": {
         "_source": {
           "enabled": true
         },
+        "dynamic_templates": [
+          {
+            "strings_as_keywords": {
+              "match_mapping_type": "string",
+              "mapping": {
+                "type": "keyword"
+              }
+            }
+          }
+        ],
+        "_all": {
+          "enabled": false
+        },
         "properties": {
-          "config": {
-            "type": "keyword"
+          "@timestamp": {
+            "format": "yyyy-MM-dd HH:mm:ss||yyyy-MM-dd||epoch_millis",
+            "type": "date",
+            "doc_values": true
+          },
+          "started_time": {
+            "format": "yyyy-MM-dd HH:mm:ss||yyyy-MM-dd||epoch_millis",
+            "type": "date",
+            "doc_values": true
+          },
+          "finished_time": {
+            "format": "yyyy-MM-dd HH:mm:ss||yyyy-MM-dd||epoch_millis",
+            "type": "date",
+            "doc_values": true
           }
         }
       }
-    }
+    },
+    "aliases": {}
   }
 }
