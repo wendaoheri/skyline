@@ -22,8 +22,8 @@ public class MessageQueueTest {
   private MessageQueue mq;
 
   @Test
-  public void test(){
-    mq.sendMessage();
+  public void test() {
+    mq.sendMessage(null, null);
   }
 
 }
