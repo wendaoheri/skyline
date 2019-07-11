@@ -8,11 +8,11 @@ import lombok.Data;
  * @date 2019-04-17
  */
 @Data
-public class RuntimeConfig implements Model{
+public class RuntimeConfig implements Model {
 
-  public static final String DATABASE_NAME = "runtime_config";
+  public static final String INDEX_NAME = "dayu_config";
 
-  public static final String TABLE_NAME = "runtime_config";
+  public static final String TYPE_NAME = "_doc";
 
   @JSONField(name = "_id")
   private String id;

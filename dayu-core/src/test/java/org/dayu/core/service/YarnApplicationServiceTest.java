@@ -96,7 +96,7 @@ public class YarnApplicationServiceTest {
   }
 
   @Test
-  public void testGetWithoutScheduleInfo(){
+  public void testGetWithoutScheduleInfo() {
     List<YarnApplication> apps = yarnApplicationService
         .getWithoutScheduleInfo(1555466987305L, 1555466987305L);
     log.info(apps.toString());

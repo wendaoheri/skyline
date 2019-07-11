@@ -21,7 +21,7 @@ public interface YarnApplicationService {
 
   void saveApplicationList(List<YarnApplication> apps);
 
-  void saveApplicationList(String databaseName,String tableName, List<YarnApplication> apps);
+  void saveApplicationList(String databaseName, String tableName, List<YarnApplication> apps);
 
   void saveApplicationListTrace(List<YarnApplication> apps);
 
@@ -35,11 +35,15 @@ public interface YarnApplicationService {
   Page<YarnApplication> search(SearchRequestDTO request);
 
   /**
-   *
    * @param appSchMap appId -> schedule_id
-   * @param newSchedules
-   * @return
    */
   int addScheduleInfo(Map<String, ScheduleTrigger> appSchMap,
       List<ScheduleInfo> newSchedules);
+
+  /**
+   * send application list to message queue
+   *
+   * @param apps
+   */
+  void sendApplicationListToMQ(List<YarnApplication> apps);
 }

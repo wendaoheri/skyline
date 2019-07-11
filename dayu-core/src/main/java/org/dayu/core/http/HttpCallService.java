@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Map;
+import org.apache.http.HttpStatus;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
@@ -47,7 +48,7 @@ public class HttpCallService {
     CloseableHttpResponse response = this.httpClient.execute(httpGet);
 
     // 判断状态码是否为200
-    if (response.getStatusLine().getStatusCode() == 200) {
+    if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
       // 返回响应体的内容
       return EntityUtils.toString(response.getEntity(), "UTF-8");
     }

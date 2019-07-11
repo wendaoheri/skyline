@@ -18,7 +18,7 @@ public class Records {
 
   public static List<Record> fromObject(Collection col) {
     List<Record> records = Lists.newArrayList();
-    if(col == null ){
+    if (col == null) {
       return records;
     }
     for (Object o : col) {
@@ -29,7 +29,7 @@ public class Records {
 
   public static Record fromObject(Object o) {
     Record r = new Record();
-    if(null == o){
+    if (null == o) {
       return r;
     }
     Field[] fields = o.getClass().getDeclaredFields();

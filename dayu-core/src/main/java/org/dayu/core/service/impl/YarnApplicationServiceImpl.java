@@ -1,6 +1,7 @@
 package org.dayu.core.service.impl;
 
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -14,9 +15,11 @@ import org.dayu.common.model.RuntimeConfig;
 import org.dayu.common.model.ScheduleInfo;
 import org.dayu.common.model.YarnApplication;
 import org.dayu.core.dto.SearchRequestDTO;
+import org.dayu.core.handler.MessageSerdes;
+import org.dayu.core.queue.MessageQueue;
 import org.dayu.core.service.YarnApplicationService;
+import org.dayu.core.storage.IStorage;
 import org.dayu.plugin.schedule.ScheduleTrigger;
-import org.dayu.storage.IStorage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
@@ -31,10 +34,16 @@ public class YarnApplicationServiceImpl implements YarnApplicationService {
   @Autowired
   private IStorage storage;
 
+  @Autowired
+  private MessageQueue messageQueue;
+
+  @Autowired
+  private MessageSerdes serdes;
+
   @Override
   public long getLastFetchTime() {
 
-    RuntimeConfig rc = storage.findById(RuntimeConfig.DATABASE_NAME, RuntimeConfig.TABLE_NAME,
+    RuntimeConfig rc = storage.findById(RuntimeConfig.INDEX_NAME, RuntimeConfig.TYPE_NAME,
         TASK_FETCHER_LAST_FETCH_TIME_KEY, RuntimeConfig.class);
 
     if (null != rc) {
@@ -50,7 +59,7 @@ public class YarnApplicationServiceImpl implements YarnApplicationService {
     RuntimeConfig rc = new RuntimeConfig();
     rc.setId(TASK_FETCHER_LAST_FETCH_TIME_KEY);
     rc.setValue(lastFetchTimeStr);
-    storage.upsert(RuntimeConfig.DATABASE_NAME, RuntimeConfig.TABLE_NAME, Records.fromObject(rc));
+    storage.upsert(RuntimeConfig.INDEX_NAME, RuntimeConfig.TYPE_NAME, Records.fromObject(rc));
   }
 
   @Override
@@ -158,5 +167,14 @@ public class YarnApplicationServiceImpl implements YarnApplicationService {
       log.error(e.getMessage());
     }
     return 0;
+  }
+
+  @Override
+  public void sendApplicationListToMQ(List<YarnApplication> apps) {
+    Map<String, String> messages = Maps.newHashMap();
+    for (YarnApplication app : apps) {
+      messages.put(app.getApplicationId(), serdes.serialize(app));
+    }
+    messageQueue.sendMessage(messages);
   }
 }

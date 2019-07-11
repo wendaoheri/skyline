@@ -1,25 +1,18 @@
 spring:
-  datasource:
-#    schedule:
-    url: jdbc:oracle:thin:@10.25.154.169:1524:hsdspdata
-    username: dspmt
-    password: paic1234
-    driver-class-name: oracle.jdbc.OracleDriver
-    configuration:
-      maximum-pool-size: 30
-  jpa:
-    hibernate:
-      ddl-auto: none
-    show-sql: true
   data:
     elasticsearch:
-      cluster-nodes: 10.25.164.23:9900,10.25.164.78:9900
-      cluster-name: paic-elasticsearch-v6
+      cluster-nodes: localhost:9300
+      cluster-name: docker-cluster
+      template-file: es_template.json
   cache:
     cache-names: job_application_log
     caffeine:
       spec:
         expireAfterWrite: 24h
+  activemq:
+#    broker-url: tcp://localhost:9876 # comments for starting an embedded broker
+    user: admin
+    password: admin
 
 http:
   maxTotal: 100 #最大连接数
@@ -31,7 +24,7 @@ http:
   redirectsEnabled: false # 是否允许重定向
 
 hadoop:
-  resourceManagerAddress: http://10.17.183.85:8088
+  resourceManagerAddress: http://localhost:8088,localhost:8089
 
 spark:
   #  historyServerAddress: http://10.17.183.85:18080
@@ -47,9 +40,7 @@ dayu:
     unfinished_interval_second: 1      #  unfinished application state fetch interval
   plugin:
     schedule:
-      class: org.dayu.plugin.schedule.dsp.DSPSchedulePlugin
+      class: org.dayu.plugin.schedule.MockSchedulePlugin
       interval_second: 60
       min_delay_second: 60              #  min time delay for fetch scheduleId after application finished
       max_delay_second: 2592000            #  max time delay for fetch scheduleId after application finished
-    storage:
-      class: org.dayu.plugin.storage.es.ESStorage

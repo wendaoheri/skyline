@@ -12,14 +12,13 @@ import lombok.Data;
 @AllArgsConstructor
 public class Filter {
 
+  private FilterType filterType;
+  private String name;
+  private String value;
   public enum FilterType {
     EQ,
     GT,
     LT
   }
-
-  private FilterType filterType;
-  private String name;
-  private String value;
 
 }

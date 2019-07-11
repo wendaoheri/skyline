@@ -8,7 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.dayu.common.model.Records;
 import org.dayu.common.model.ScheduleInfo;
 import org.dayu.core.service.ScheduleInfoService;
-import org.dayu.storage.IStorage;
+import org.dayu.core.storage.IStorage;
 import org.elasticsearch.index.IndexNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,7 +26,7 @@ public class ScheduleInfoServiceImpl implements ScheduleInfoService {
 
   @Override
   public List<ScheduleInfo> saveScheduleInfos(Set<String> scheduleIds) {
-    if(scheduleIds == null || scheduleIds.size() == 0){
+    if (scheduleIds == null || scheduleIds.size() == 0) {
       return null;
     }
     Set<String> existsIds = null;

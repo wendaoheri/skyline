@@ -12,8 +12,6 @@ public interface ScheduleInfoService {
 
   /**
    * return not existed schedules
-   * @param scheduleIds
-   * @return
    */
   List<ScheduleInfo> saveScheduleInfos(Set<String> scheduleIds);
 }

@@ -1,8 +1,9 @@
-package org.dayu.storage.es;
+package org.dayu.core.storage.es;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.google.common.collect.Lists;
+import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.Collection;
 import java.util.Date;
@@ -12,10 +13,11 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 import java.util.concurrent.ExecutionException;
+import javax.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.dayu.common.model.Record;
-import org.dayu.storage.IStorage;
+import org.dayu.core.storage.IStorage;
 import org.elasticsearch.action.ActionRequestBuilder;
 import org.elasticsearch.action.admin.indices.exists.indices.IndicesExistsRequestBuilder;
 import org.elasticsearch.action.admin.indices.exists.indices.IndicesExistsResponse;
@@ -34,17 +36,40 @@ import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.SearchHit;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 @Slf4j
 @Service
 public class ESStorage implements IStorage {
 
+  private static final String KEY_ID = "_id";
+  private static final String KEY_ROUTE = "_route";
+
   @Autowired
   private TransportClient client;
 
-  private static final String KEY_ID = "_id";
-  private static final String KEY_ROUTE = "_route";
+  @Value("${spring.data.elasticsearch.template-file}")
+  private String esTemplateFile;
+
+  @PostConstruct
+  private void init() throws IOException {
+    try {
+      JSONObject templates = JSON
+          .parseObject(this.getClass().getClassLoader().getResourceAsStream(esTemplateFile),
+              JSONObject.class);
+      log.info("Es template : {}", templates.toJSONString());
+      for (String templateName : templates.keySet()) {
+        JSONObject template = templates.getJSONObject(templateName);
+        client.admin().indices().preparePutTemplate(templateName).setSource(template).get();
+        log.info("put mapping for {} : {}", templateName, template);
+      }
+
+    } catch (IOException e) {
+      log.error("Load es template from {} failed", esTemplateFile);
+      throw e;
+    }
+  }
 
   @Override
   public void trace(List<Object> data) {
@@ -187,7 +212,7 @@ public class ESStorage implements IStorage {
   public <T> List<T> findByIds(String indexName, String typeName, Set<String> ids, Type clazz,
       String... fields) {
     IdsQueryBuilder query = QueryBuilders.idsQuery();
-    if(null != ids) {
+    if (null != ids) {
       ids.forEach(x -> query.addIds(x));
     }
     SearchRequestBuilder builder = fieldSearchBuilder(indexName, typeName, query,
