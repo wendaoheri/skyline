@@ -48,15 +48,17 @@ public class YarnApplicationFetcher {
     long end = System.currentTimeMillis();
     log.info("Fetch application window : {} to {}", begin, end);
 
-    List<YarnApplication> startedApps = this.fetchApplications(begin, end, 0);
-    log.info("fetch started app list size: {}", startedApps.size());
-    yarnApplicationService.saveApplicationList(startedApps);
+    List<YarnApplication> apps = Lists.newArrayList();
 
-    List<YarnApplication> finishedApps = this.fetchApplications(begin, end, 1);
-    log.info("fetch finished app list size: {}", finishedApps.size());
-    yarnApplicationService.saveApplicationList(finishedApps);
+    apps.addAll(this.fetchApplications(begin, end, 0));
+    apps.addAll(this.fetchApplications(begin, end, 1));
+
+    yarnApplicationService.saveApplicationList(apps);
+    yarnApplicationService.sendApplicationListToMQ(apps);
 
     yarnApplicationService.setLastFetchTime(end);
+
+    log.info("Fetch application list finished");
   }
 
 
@@ -69,16 +71,18 @@ public class YarnApplicationFetcher {
    */
   public List<YarnApplication> fetchApplications(long begin, long end, int startedOrFinished) {
     String fetchAppListUrl = this.getAppListUrl(begin, end, startedOrFinished);
-    log.info("Fetch started application url is : {}", fetchAppListUrl);
+    log.info("Fetch application url is : {}", fetchAppListUrl);
     List<YarnApplication> apps = null;
     String resp = null;
     try {
       resp = hadoopHACallService.doGet(resourceManagerAddress, fetchAppListUrl);
       apps = parseRespToYarnApplicationList(resp);
+      log.info("Fetched app size : {} startedOrFinished : {}", apps == null ? 0 : apps.size(),
+          startedOrFinished);
     } catch (IOException e) {
       log.error("Error occur while fetch yarn application list {}", e.getMessage());
     } catch (Throwable e) {
-      log.info("response is : {}", resp);
+      log.info("Response is : {}", resp);
       log.error("Unexpected error occur while fetch yarn application list {}", e);
     }
     return apps != null ? apps : Lists.newArrayList();

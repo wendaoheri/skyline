@@ -39,4 +39,11 @@ public interface YarnApplicationService {
    */
   int addScheduleInfo(Map<String, ScheduleTrigger> appSchMap,
       List<ScheduleInfo> newSchedules);
+
+  /**
+   * send application list to message queue
+   *
+   * @param apps
+   */
+  void sendApplicationListToMQ(List<YarnApplication> apps);
 }

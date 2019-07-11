@@ -93,7 +93,7 @@ public class ApplicationAnswer implements Answer<String> {
     return app;
   }
 
-  public YarnApplication getTemplate() {
+  public static YarnApplication getTemplate() {
     long curr = System.currentTimeMillis();
     long idNum = DayuUtils.randomRange(0, 1000000L);
     YarnApplication app = new YarnApplication();
