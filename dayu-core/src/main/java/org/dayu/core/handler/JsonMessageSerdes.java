@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @Slf4j
-public class JSONMessageSerdes implements MessageSerdes {
+public class JsonMessageSerdes implements MessageSerdes {
 
   private static final String MESSAGE_CLASS_KEY = "messageClass";
   private static final String MESSAGE_CONTENT_KEY = "messageContent";

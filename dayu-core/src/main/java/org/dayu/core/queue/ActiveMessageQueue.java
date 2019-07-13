@@ -2,7 +2,11 @@ package org.dayu.core.queue;
 
 import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
+import org.dayu.common.message.Message;
+import org.dayu.core.handler.MessageSerdes;
+import org.dayu.core.handler.dispatcher.MessageDispatcher;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jms.annotation.JmsListener;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Component;
@@ -17,6 +21,13 @@ public class ActiveMessageQueue implements MessageQueue {
 
   @Autowired
   private JmsTemplate jmsTemplate;
+
+  @Autowired
+  @Qualifier("dispatcherMaster")
+  private MessageDispatcher dispatcher;
+
+  @Autowired
+  private MessageSerdes messageSerdes;
 
   private static final String DEFAULT_DEST_NAME = "default";
 
@@ -37,13 +48,14 @@ public class ActiveMessageQueue implements MessageQueue {
 
   @Override
   public void handleMessage(String key, String content) {
-    // TODO handle message
+    Message message = messageSerdes.deserialize(content);
+    dispatcher.dispatch(key, message);
   }
 
 
   @JmsListener(destination = DEFAULT_DEST_NAME)
   public void processMessage(String content) {
     handleMessage(null, content);
-    log.info("got message : {}", content);
+    log.debug("got message : {}", content);
   }
 }

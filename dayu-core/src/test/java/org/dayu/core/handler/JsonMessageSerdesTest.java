@@ -19,7 +19,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest(classes = TestBeanEntry.class)
 @RunWith(SpringRunner.class)
 @Slf4j
-public class JSONMessageSerdesTest {
+public class JsonMessageSerdesTest {
 
   @Autowired
   private MessageSerdes messageSerdes;
