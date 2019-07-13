@@ -10,6 +10,8 @@ import java.util.concurrent.ExecutionException;
 import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.time.DateFormatUtils;
+import org.dayu.common.message.Message;
+import org.dayu.common.message.MessageType;
 import org.dayu.common.model.Records;
 import org.dayu.common.model.RuntimeConfig;
 import org.dayu.common.model.ScheduleInfo;
@@ -172,8 +174,12 @@ public class YarnApplicationServiceImpl implements YarnApplicationService {
   @Override
   public void sendApplicationListToMQ(List<YarnApplication> apps) {
     Map<String, String> messages = Maps.newHashMap();
+    Message m;
     for (YarnApplication app : apps) {
-      messages.put(app.getApplicationId(), serdes.serialize(app));
+      m = new Message();
+      m.setMessageContent(app);
+      m.setMessageType(MessageType.APPLICATION_FETCH);
+      messages.put(app.getApplicationId(), serdes.serialize(m));
     }
     messageQueue.sendMessage(messages);
   }

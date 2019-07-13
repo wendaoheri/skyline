@@ -2,6 +2,8 @@ package org.dayu.core.handler;
 
 import lombok.extern.slf4j.Slf4j;
 import org.dayu.TestBeanEntry;
+import org.dayu.common.message.Message;
+import org.dayu.common.message.MessageType;
 import org.dayu.common.model.YarnApplication;
 import org.dayu.core.data.ApplicationAnswer;
 import org.junit.Test;
@@ -25,11 +27,15 @@ public class JSONMessageSerdesTest {
   @Test
   public void test() {
     YarnApplication app = ApplicationAnswer.getTemplate();
-    String message = messageSerdes.serialize(app);
+    Message m = new Message();
+    m.setMessageType(MessageType.APPLICATION_FETCH);
+    m.setMessageContent(app);
+    String message = messageSerdes.serialize(m);
     log.info(message);
 
-    YarnApplication desApp = (YarnApplication) messageSerdes.deserialize(message);
-    log.info(desApp.toString());
+    Message desM = messageSerdes.deserialize(message);
+    log.info(desM.toString());
+    YarnApplication desApp = (YarnApplication) desM.getMessageContent();
     assert app.equals(desApp);
   }
 }
