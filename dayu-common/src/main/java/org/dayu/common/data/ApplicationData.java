@@ -16,4 +16,6 @@ public interface ApplicationData {
    */
   void setApplication(YarnApplication application);
 
+  String getApplicationId();
+
 }

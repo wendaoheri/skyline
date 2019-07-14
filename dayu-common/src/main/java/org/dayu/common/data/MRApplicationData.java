@@ -12,4 +12,8 @@ public class MRApplicationData implements ApplicationData {
 
   private YarnApplication application;
 
+  @Override
+  public String getApplicationId() {
+    return application.getId();
+  }
 }

@@ -42,4 +42,12 @@ public class DayuUtils {
   public static long randomRange(long start, long end) {
     return RandomUtils.nextLong(start, end);
   }
+
+  /**
+   * Ensure http url is start with "http://" only once
+   */
+  public static void checkHttpSchema(String httpUrl) {
+    httpUrl = httpUrl.replace("http://", "");
+    httpUrl = "http://" + httpUrl;
+  }
 }

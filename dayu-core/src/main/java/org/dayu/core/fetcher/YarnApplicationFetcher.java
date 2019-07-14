@@ -22,9 +22,9 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class YarnApplicationFetcher {
 
-  public static final String YARN_APPLICATION_LIST_STARTED_URL_PATTERN = "/ws/v1/cluster/apps?startedTimeBegin=%d&startedTimeEnd=%d";
-  public static final String YARN_APPLICATION_LIST_FINISHED_URL_PATTERN = "/ws/v1/cluster/apps?finishedTimeBegin=%d&finishedTimeEnd=%d";
-  public static final String YARN_RUNNING_APPLICATION_LIST_URL_PATTERN = "/ws/v1/cluster/apps?states=NEW,NEW_SAVING,SUBMITTED,ACCEPTED,RUNNING";
+  private static final String YARN_APPLICATION_LIST_STARTED_URL = "/ws/v1/cluster/apps?startedTimeBegin=%d&startedTimeEnd=%d";
+  private static final String YARN_APPLICATION_LIST_FINISHED_URL = "/ws/v1/cluster/apps?finishedTimeBegin=%d&finishedTimeEnd=%d";
+  private static final String YARN_RUNNING_APPLICATION_LIST_URL = "/ws/v1/cluster/apps?states=NEW,NEW_SAVING,SUBMITTED,ACCEPTED,RUNNING";
 
 
   @Autowired
@@ -139,15 +139,15 @@ public class YarnApplicationFetcher {
   protected String getAppListUrl(long begin, long end, int startedOrFinished) {
     if (startedOrFinished == 0) {
       return String
-          .format(YARN_APPLICATION_LIST_STARTED_URL_PATTERN, begin, end);
+          .format(YARN_APPLICATION_LIST_STARTED_URL, begin, end);
     } else {
       return String
-          .format(YARN_APPLICATION_LIST_FINISHED_URL_PATTERN, begin, end);
+          .format(YARN_APPLICATION_LIST_FINISHED_URL, begin, end);
     }
 
   }
 
   protected String getRunningAppListUrl() {
-    return YARN_RUNNING_APPLICATION_LIST_URL_PATTERN;
+    return YARN_RUNNING_APPLICATION_LIST_URL;
   }
 }
