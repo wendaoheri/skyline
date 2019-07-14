@@ -1,5 +1,6 @@
 package org.dayu.core.handler.fetcher;
 
+import org.dayu.common.data.ApplicationData;
 import org.dayu.core.handler.ApplicationInfoFetcher;
 import org.dayu.core.handler.DisplayMessage;
 import org.dayu.core.handler.HandlerStatus;
@@ -13,7 +14,7 @@ import org.springframework.stereotype.Component;
 public class TezFetcher implements ApplicationInfoFetcher {
 
   @Override
-  public HandlerStatus handle(String key, String content) {
+  public HandlerStatus handle(ApplicationData applicationData) {
     return null;
   }
 

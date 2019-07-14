@@ -22,7 +22,7 @@ public class YarnApplication implements Model {
   }
 
   public enum ApplicationType {
-    MR, TEZ, SPARK
+    MAPREDUCE, TEZ, SPARK
   }
 
   @JSONField(name = "_id")
