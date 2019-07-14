@@ -4,9 +4,8 @@ import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
 import org.dayu.common.message.Message;
 import org.dayu.core.handler.MessageSerdes;
-import org.dayu.core.handler.dispatcher.MessageDispatcher;
+import org.dayu.core.handler.dispatcher.DispatcherMaster;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jms.annotation.JmsListener;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Component;
@@ -23,8 +22,7 @@ public class ActiveMessageQueue implements MessageQueue {
   private JmsTemplate jmsTemplate;
 
   @Autowired
-  @Qualifier("dispatcherMaster")
-  private MessageDispatcher dispatcher;
+  private DispatcherMaster dispatcher;
 
   @Autowired
   private MessageSerdes messageSerdes;
