@@ -1,0 +1,4 @@
+# Canonical names in spring boot properties config is not supported yet
+# So change it to kebab-case format
+org.dayu.core.handler.fetcher.mr-fetcher:
+  ahsAddress: http://localhost:19800

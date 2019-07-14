@@ -1,10 +1,12 @@
 package org.dayu.core.handler.fetcher;
 
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.dayu.common.data.ApplicationData;
 import org.dayu.core.handler.ApplicationInfoFetcher;
 import org.dayu.core.handler.DisplayMessage;
 import org.dayu.core.handler.HandlerStatus;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 /**
@@ -13,10 +15,17 @@ import org.springframework.stereotype.Component;
  */
 @Component("mrFetcher")
 @Slf4j
+@ConfigurationProperties("org.dayu.core.handler.fetcher.mr-fetcher")
 public class MRFetcher implements ApplicationInfoFetcher {
+
+  @Setter
+  private String ahsAddress;
+
 
   @Override
   public HandlerStatus handle(ApplicationData applicationData) {
+
+    log.info("ahsAddress : {}", ahsAddress);
     log.info("got Application data : {}", applicationData);
     return null;
   }

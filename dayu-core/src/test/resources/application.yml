@@ -1,4 +1,6 @@
 spring:
+  profiles:
+    include: handler
   data:
     elasticsearch:
       cluster-nodes: localhost:9300
