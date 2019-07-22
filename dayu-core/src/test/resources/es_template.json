@@ -2,9 +2,10 @@
   "dayu": {
     "order": 1,
     "index_patterns": [
-      "yarn_application*",
+      "yarn_application",
       "dayu_config*",
-      "schedule_info*"
+      "schedule_info*",
+      "nodes"
     ],
     "settings": {
       "index": {

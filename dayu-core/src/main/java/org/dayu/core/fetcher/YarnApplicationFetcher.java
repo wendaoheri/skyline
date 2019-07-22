@@ -69,7 +69,7 @@ public class YarnApplicationFetcher {
    * @param end timeEnd
    * @param startedOrFinished 0: started, 1: finished
    */
-  public List<YarnApplication> fetchApplications(long begin, long end, int startedOrFinished) {
+  private List<YarnApplication> fetchApplications(long begin, long end, int startedOrFinished) {
     String fetchAppListUrl = this.getAppListUrl(begin, end, startedOrFinished);
     log.info("Fetch application url is : {}", fetchAppListUrl);
     List<YarnApplication> apps = null;
