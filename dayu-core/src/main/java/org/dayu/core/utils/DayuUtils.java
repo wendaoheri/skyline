@@ -50,4 +50,5 @@ public class DayuUtils {
     httpUrl = httpUrl.replace("http://", "");
     httpUrl = "http://" + httpUrl;
   }
+
 }

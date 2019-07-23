@@ -1,13 +1,12 @@
 package org.dayu.core.handler.dispatcher;
 
-import static org.dayu.common.model.YarnApplication.ApplicationType.MAPREDUCE;
-
 import lombok.extern.slf4j.Slf4j;
 import org.dayu.common.data.ApplicationData;
-import org.dayu.common.data.MRApplicationData;
+import org.dayu.common.data.mr.MRApplicationData;
 import org.dayu.common.message.Message;
 import org.dayu.common.model.YarnApplication;
 import org.dayu.common.model.YarnApplication.ApplicationType;
+import org.dayu.core.handler.HandlerStatus;
 import org.dayu.core.handler.fetcher.MRFetcher;
 import org.dayu.core.handler.fetcher.SparkFetcher;
 import org.dayu.core.handler.fetcher.TezFetcher;
@@ -40,14 +39,16 @@ public class FetcherDispatcher implements MessageDispatcher {
 
       ApplicationData data = new MRApplicationData();
       data.setApplication(application);
-
+      HandlerStatus status = null;
       switch (ApplicationType.valueOf(application.getApplicationType())) {
         case MAPREDUCE:
-          mrFetcher.handle(data);
+          status = mrFetcher.handle(data);
           break;
         default:
           break;
       }
+
+
     }
   }
 }

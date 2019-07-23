@@ -32,6 +32,31 @@ public class ApplicationAnswer implements Answer<String> {
           System.currentTimeMillis() - DAY_MS);
   private int invokeTimes = 0;
 
+  public static YarnApplication getTemplate() {
+    long curr = System.currentTimeMillis();
+    long idNum = DayuUtils.randomRange(0, 1000000L);
+    YarnApplication app = new YarnApplication();
+    app.setState(DayuUtils.randomChoice(State.class).name());
+    app.setUser(DayuUtils.randomStr("user", 10));
+    app.setApplicationType(DayuUtils.randomChoice(ApplicationType.class).name());
+    app.setClusterId(clusterId);
+    app.setApplicationId(String.format("application_%s_%s", clusterId, idNum));
+    app.setId(app.getApplicationId());
+    app.setFinalStatus(DayuUtils.randomChoice(FinalStatus.class).name());
+    app.setProgress((int) DayuUtils.randomRange(0, 100));
+    app.setName(DayuUtils.randomStr("name", 1000));
+    app.setQueue(DayuUtils.randomStr("queue", 10));
+    app.setAllocatedMB(DayuUtils.randomRange(0, 1000000));
+    app.setAllocatedVCores(DayuUtils.randomRange(0, 1000));
+    app.setRunningContainers((int) DayuUtils.randomRange(0, 1000));
+    app.setMemorySeconds(DayuUtils.randomRange(0, 100000000L));
+    app.setVcoreSeconds(DayuUtils.randomRange(0, 100000000L));
+    app.setStartedTime(DayuUtils.randomTimestamp(clusterId, curr - 60 * 3600));
+    app.setFinishedTime(DayuUtils.randomTimestamp(app.getStartedTime(), curr));
+    app.setElapsedTime((int) (app.getFinishedTime() - app.getStartedTime()));
+    return app;
+  }
+
   @Override
   public String answer(InvocationOnMock invocationOnMock) throws Throwable {
     invokeTimes++;
@@ -90,31 +115,6 @@ public class ApplicationAnswer implements Answer<String> {
               Long.valueOf(params.getOrDefault("finishedTimeEnd", "0"))));
     }
 
-    return app;
-  }
-
-  public static YarnApplication getTemplate() {
-    long curr = System.currentTimeMillis();
-    long idNum = DayuUtils.randomRange(0, 1000000L);
-    YarnApplication app = new YarnApplication();
-    app.setState(DayuUtils.randomChoice(State.class).name());
-    app.setUser(DayuUtils.randomStr("user", 10));
-    app.setApplicationType(DayuUtils.randomChoice(ApplicationType.class).name());
-    app.setClusterId(clusterId);
-    app.setApplicationId(String.format("application_%s_%s", clusterId, idNum));
-    app.setId(app.getApplicationId());
-    app.setFinalStatus(DayuUtils.randomChoice(FinalStatus.class).name());
-    app.setProgress((int) DayuUtils.randomRange(0, 100));
-    app.setName(DayuUtils.randomStr("name", 1000));
-    app.setQueue(DayuUtils.randomStr("queue", 10));
-    app.setAllocatedMB(DayuUtils.randomRange(0, 1000000));
-    app.setAllocatedVCores(DayuUtils.randomRange(0, 1000));
-    app.setRunningContainers((int) DayuUtils.randomRange(0, 1000));
-    app.setMemorySeconds(DayuUtils.randomRange(0, 100000000L));
-    app.setVcoreSeconds(DayuUtils.randomRange(0, 100000000L));
-    app.setStartedTime(DayuUtils.randomTimestamp(clusterId, curr - 60 * 3600));
-    app.setFinishedTime(DayuUtils.randomTimestamp(app.getStartedTime(), curr));
-    app.setElapsedTime((int) (app.getFinishedTime() - app.getStartedTime()));
     return app;
   }
 

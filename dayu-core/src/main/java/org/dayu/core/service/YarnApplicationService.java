@@ -42,8 +42,6 @@ public interface YarnApplicationService {
 
   /**
    * send application list to message queue
-   *
-   * @param apps
    */
   void sendApplicationListToMQ(List<YarnApplication> apps);
 }

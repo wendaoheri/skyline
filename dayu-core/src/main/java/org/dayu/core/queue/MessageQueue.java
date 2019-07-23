@@ -31,7 +31,7 @@ public interface MessageQueue {
    *
    * @param contentWithKey map key is key, map value is content
    */
-  void sendMessage(Map<String,String> contentWithKey);
+  void sendMessage(Map<String, String> contentWithKey);
 
   /**
    * this method should be invoked when a message consumed

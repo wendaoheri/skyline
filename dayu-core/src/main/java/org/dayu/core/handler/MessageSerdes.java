@@ -10,14 +10,11 @@ public interface MessageSerdes {
 
   /**
    * Serialize a message
-   * @param message
-   * @return
    */
   String serialize(Message message);
 
-  /** Deserialize a object from a bytes
-   * @param message
-   * @return
+  /**
+   * Deserialize a object from a bytes
    */
   Message deserialize(String message);
 

@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.dayu.TestBeanEntry;
 import org.dayu.core.data.ApplicationAnswer;
 import org.dayu.core.http.HttpCallService;
+import org.dayu.core.queue.MessageQueue;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -26,6 +27,9 @@ public class YarnApplicationFetcherTest {
 
   @Autowired
   private YarnApplicationFetcher yarnApplicationFetcher;
+
+  @MockBean
+  private MessageQueue messageQueue;
 
   @Before
   public void before() throws IOException {

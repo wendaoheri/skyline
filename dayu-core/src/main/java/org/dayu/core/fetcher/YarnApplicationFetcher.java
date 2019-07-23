@@ -81,7 +81,7 @@ public class YarnApplicationFetcher {
           startedOrFinished);
     } catch (IOException e) {
       log.error("Error occur while fetch yarn application list {}", e.getMessage());
-    } catch (Throwable e) {
+    } catch (Exception e) {
       log.info("Response is : {}", resp);
       log.error("Unexpected error occur while fetch yarn application list {}", e);
     }

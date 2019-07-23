@@ -18,16 +18,13 @@ import org.springframework.stereotype.Component;
 @Slf4j
 public class ActiveMessageQueue implements MessageQueue {
 
+  private static final String DEFAULT_DEST_NAME = "default";
   @Autowired
   private JmsTemplate jmsTemplate;
-
   @Autowired
   private DispatcherMaster dispatcher;
-
   @Autowired
   private MessageSerdes messageSerdes;
-
-  private static final String DEFAULT_DEST_NAME = "default";
 
   @Override
   public void sendMessage(String key, String content) {
