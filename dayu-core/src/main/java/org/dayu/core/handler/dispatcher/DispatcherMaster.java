@@ -11,22 +11,37 @@ import org.springframework.stereotype.Component;
  */
 @Component("dispatcherMaster")
 @Slf4j
-public class DispatcherMaster implements MessageDispatcher {
+public class DispatcherMaster {
 
   @Autowired
   private FetcherDispatcher fetcherDispatcher;
 
-  @Override
-  public void dispatch(String key, Message message) {
+  @Autowired
+  private AdvisorDispatcher advisorDispatcher;
+
+  @Autowired
+  private ScorerDispatcher scorerDispatcher;
+
+  public Message dispatch(String key, Message message) {
     log.debug("dispatch message {}", message);
 
+    Message returnMessage;
     switch (message.getMessageType()) {
       case APPLICATION_FETCH: {
         log.info("Send message to FetcherDispatcher");
-        fetcherDispatcher.dispatch(key, message);
+        returnMessage = fetcherDispatcher.dispatch(key, message);
+        this.dispatch(key, returnMessage);
+        break;
+      }
+      case APPLICATION_FETCH_DONE: {
+        log.info("Send message to AdvisorDispatcher");
+        returnMessage = advisorDispatcher.dispatch(key, message);
+        this.dispatch(key, returnMessage);
+        break;
       }
       default:
         break;
     }
+    return null;
   }
 }

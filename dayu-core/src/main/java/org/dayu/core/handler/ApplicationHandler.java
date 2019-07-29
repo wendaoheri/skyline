@@ -1,6 +1,7 @@
 package org.dayu.core.handler;
 
 import org.dayu.common.data.ApplicationData;
+import org.dayu.common.data.HandlerResult;
 
 /**
  * @author Sean Liu
@@ -8,8 +9,10 @@ import org.dayu.common.data.ApplicationData;
  */
 public interface ApplicationHandler {
 
-  HandlerStatus handle(ApplicationData applicationData);
+  /**
+   * handle application data
+   */
+  HandlerResult handle(ApplicationData applicationData);
 
-  DisplayMessage display();
 
 }

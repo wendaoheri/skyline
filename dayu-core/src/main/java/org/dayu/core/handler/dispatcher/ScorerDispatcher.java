@@ -1,15 +1,19 @@
 package org.dayu.core.handler.dispatcher;
 
+import org.dayu.common.data.HandlerResult;
 import org.dayu.common.message.Message;
+import org.springframework.stereotype.Component;
 
 /**
  * @author Sean Liu
  * @date 2019-07-13
  */
-public class ScorerDispatcher implements MessageDispatcher {
+@Component
+public class ScorerDispatcher implements MessageDispatcher<HandlerResult, HandlerResult> {
+
 
   @Override
-  public void dispatch(String key, Message message) {
-
+  public Message<HandlerResult> dispatch(String key, Message<HandlerResult> message) {
+    return null;
   }
 }

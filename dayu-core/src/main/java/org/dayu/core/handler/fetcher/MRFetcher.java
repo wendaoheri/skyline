@@ -9,6 +9,9 @@ import java.util.Properties;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.dayu.common.data.ApplicationData;
+import org.dayu.common.data.HandlerResult;
+import org.dayu.common.data.HandlerResultSummary;
+import org.dayu.common.data.HandlerStatus;
 import org.dayu.common.data.mr.JobAttemptData;
 import org.dayu.common.data.mr.JobData;
 import org.dayu.common.data.mr.MRApplicationData;
@@ -16,8 +19,6 @@ import org.dayu.common.data.mr.MRCounterData;
 import org.dayu.common.data.mr.MRTaskData;
 import org.dayu.common.data.mr.TaskAttemptData;
 import org.dayu.core.handler.ApplicationInfoFetcher;
-import org.dayu.core.handler.DisplayMessage;
-import org.dayu.core.handler.HandlerStatus;
 import org.dayu.core.http.HadoopHACallService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -46,7 +47,9 @@ public class MRFetcher implements ApplicationInfoFetcher {
   private HadoopHACallService callService;
 
   @Override
-  public HandlerStatus handle(ApplicationData applicationData) {
+  public HandlerResult handle(ApplicationData applicationData) {
+    HandlerResultSummary result = new HandlerResultSummary();
+
     MRApplicationData mrData = (MRApplicationData) applicationData;
     String applicationId = applicationData.getApplicationId();
     String jobId = this.getJobIdFromApplicationId(applicationId);
@@ -93,12 +96,13 @@ public class MRFetcher implements ApplicationInfoFetcher {
             .getJSONArray("taskAttempt").toJavaList(TaskAttemptData.class);
         taskData.setTaskAttemptDataList(taskAttemptDataList);
       }
-
+      result.setApplicationData(applicationData);
+      result.setStatus(HandlerStatus.SUCCESSED);
     } catch (IOException e) {
       log.error("MapReduce job info fetch failed : {}", e);
-      return HandlerStatus.FAILED;
+      result.setStatus(HandlerStatus.FAILED);
     }
-    return HandlerStatus.SUCCESSED;
+    return result;
   }
 
   private JSONObject getDataFromAHS(String url) throws IOException {
@@ -176,9 +180,4 @@ public class MRFetcher implements ApplicationInfoFetcher {
     }
   }
 
-
-  @Override
-  public DisplayMessage display() {
-    return null;
-  }
 }

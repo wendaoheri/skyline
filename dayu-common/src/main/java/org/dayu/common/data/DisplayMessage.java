@@ -1,4 +1,4 @@
-package org.dayu.core.handler;
+package org.dayu.common.data;
 
 import lombok.Data;
 

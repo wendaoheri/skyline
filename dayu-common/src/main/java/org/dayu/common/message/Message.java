@@ -8,10 +8,10 @@ import lombok.Data;
  * @date 2019-07-13
  */
 @Data
-public class Message implements Serializable {
+public class Message<T> implements Serializable {
 
   private MessageType messageType;
 
-  private Object messageContent;
+  private T messageContent;
 
 }

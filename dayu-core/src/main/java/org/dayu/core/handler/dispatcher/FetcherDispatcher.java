@@ -2,11 +2,12 @@ package org.dayu.core.handler.dispatcher;
 
 import lombok.extern.slf4j.Slf4j;
 import org.dayu.common.data.ApplicationData;
+import org.dayu.common.data.HandlerResult;
 import org.dayu.common.data.mr.MRApplicationData;
 import org.dayu.common.message.Message;
+import org.dayu.common.message.MessageType;
 import org.dayu.common.model.YarnApplication;
 import org.dayu.common.model.YarnApplication.ApplicationType;
-import org.dayu.core.handler.HandlerStatus;
 import org.dayu.core.handler.fetcher.MRFetcher;
 import org.dayu.core.handler.fetcher.SparkFetcher;
 import org.dayu.core.handler.fetcher.TezFetcher;
@@ -19,7 +20,7 @@ import org.springframework.stereotype.Component;
  */
 @Component("fetcherDispatcher")
 @Slf4j
-public class FetcherDispatcher implements MessageDispatcher {
+public class FetcherDispatcher implements MessageDispatcher<YarnApplication, HandlerResult> {
 
   @Autowired
   private MRFetcher mrFetcher;
@@ -31,24 +32,32 @@ public class FetcherDispatcher implements MessageDispatcher {
   private TezFetcher tezFetcher;
 
   @Override
-  public void dispatch(String key, Message message) {
-    Object messageContent = message.getMessageContent();
-    if (messageContent instanceof YarnApplication) {
-      YarnApplication application = (YarnApplication) messageContent;
-      log.debug("dispatch application : {}", application);
+  public Message<HandlerResult> dispatch(String key, Message<YarnApplication> message) {
 
-      ApplicationData data = new MRApplicationData();
-      data.setApplication(application);
-      HandlerStatus status = null;
-      switch (ApplicationType.valueOf(application.getApplicationType())) {
-        case MAPREDUCE:
-          status = mrFetcher.handle(data);
-          break;
-        default:
-          break;
-      }
+    YarnApplication application = message.getMessageContent();
+    log.debug("dispatch application : {}", application);
 
-
+    ApplicationData data = new MRApplicationData();
+    data.setApplication(application);
+    HandlerResult result = null;
+    switch (ApplicationType.valueOf(application.getApplicationType())) {
+      case MAPREDUCE:
+        result = mrFetcher.handle(data);
+        break;
+      case TEZ:
+        result = tezFetcher.handle(data);
+        break;
+      case SPARK:
+        result = sparkFetcher.handle(data);
+        break;
+      default:
+        break;
     }
+
+    Message<HandlerResult> returnMessage = new Message<>();
+    returnMessage.setMessageContent(result);
+    returnMessage.setMessageType(MessageType.APPLICATION_FETCH_DONE);
+    return returnMessage;
   }
+
 }

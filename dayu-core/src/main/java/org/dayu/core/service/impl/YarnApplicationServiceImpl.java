@@ -174,7 +174,7 @@ public class YarnApplicationServiceImpl implements YarnApplicationService {
   @Override
   public void sendApplicationListToMQ(List<YarnApplication> apps) {
     Map<String, String> messages = Maps.newHashMap();
-    Message m;
+    Message<YarnApplication> m;
     for (YarnApplication app : apps) {
       m = new Message();
       m.setMessageContent(app);
