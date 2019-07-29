@@ -11,6 +11,8 @@ public class HandlerResultDetail implements HandlerResult {
 
   private DisplayMessage displayMessage;
 
+  private ResultPriority priority;
+
   @Override
   public DisplayMessage display() {
     return null;
@@ -20,4 +22,5 @@ public class HandlerResultDetail implements HandlerResult {
   public HandlerStatus getHandlerStatus() {
     return null;
   }
+
 }
