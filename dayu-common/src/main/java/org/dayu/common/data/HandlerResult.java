@@ -10,4 +10,5 @@ public interface HandlerResult extends Serializable {
 
   DisplayMessage display();
 
+  HandlerStatus getHandlerStatus();
 }

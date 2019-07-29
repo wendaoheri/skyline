@@ -15,4 +15,9 @@ public class HandlerResultDetail implements HandlerResult {
   public DisplayMessage display() {
     return null;
   }
+
+  @Override
+  public HandlerStatus getHandlerStatus() {
+    return null;
+  }
 }

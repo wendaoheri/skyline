@@ -14,7 +14,7 @@ public class HandlerResultSummary implements HandlerResult {
 
   private List<HandlerResultDetail> resultDetail;
 
-  private HandlerStatus status;
+  private HandlerStatus handlerStatus;
 
   @Override
   public DisplayMessage display() {

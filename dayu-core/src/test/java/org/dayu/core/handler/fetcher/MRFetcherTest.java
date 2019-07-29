@@ -8,6 +8,7 @@ import java.io.IOException;
 import lombok.extern.slf4j.Slf4j;
 import org.dayu.TestBeanEntry;
 import org.dayu.common.data.ApplicationData;
+import org.dayu.common.data.HandlerResult;
 import org.dayu.common.data.HandlerStatus;
 import org.dayu.common.data.mr.MRApplicationData;
 import org.dayu.common.model.YarnApplication;
@@ -56,10 +57,10 @@ public class MRFetcherTest {
     YarnApplication application = new YarnApplication();
     application.setId("application_1326381300833");
     applicationData.setApplication(application);
-    HandlerStatus status = mrFetcher.handle(applicationData);
-    log.info("handle status : {}", status);
+    HandlerResult result = mrFetcher.handle(applicationData);
+    log.info("handle handlerStatus : {}", result);
     log.debug(JSON.toJSONString(applicationData, true));
-    assert HandlerStatus.SUCCESSED.equals(status);
+    assert HandlerStatus.SUCCESSED.equals(result.getHandlerStatus());
   }
 
 }

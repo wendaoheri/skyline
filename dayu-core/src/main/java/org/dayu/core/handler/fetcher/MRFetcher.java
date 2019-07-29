@@ -97,10 +97,10 @@ public class MRFetcher implements ApplicationInfoFetcher {
         taskData.setTaskAttemptDataList(taskAttemptDataList);
       }
       result.setApplicationData(applicationData);
-      result.setStatus(HandlerStatus.SUCCESSED);
+      result.setHandlerStatus(HandlerStatus.SUCCESSED);
     } catch (IOException e) {
       log.error("MapReduce job info fetch failed : {}", e);
-      result.setStatus(HandlerStatus.FAILED);
+      result.setHandlerStatus(HandlerStatus.FAILED);
     }
     return result;
   }

@@ -89,7 +89,7 @@ public class YarnApplicationFetcher {
   }
 
   /**
-   * fetch application list current in following status
+   * fetch application list current in following handlerStatus
    *
    * NEW, NEW_SAVING, SUBMITTED, ACCEPTED, RUNNING
    */

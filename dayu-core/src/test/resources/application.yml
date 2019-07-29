@@ -15,6 +15,10 @@ spring:
     #    broker-url: tcp://localhost:9876 # comments for starting an embedded broker
     user: admin
     password: admin
+  messages:
+    encoding: UTF-8
+    default-lang: zh_CN
+
 
 http:
   maxTotal: 100 #最大连接数
