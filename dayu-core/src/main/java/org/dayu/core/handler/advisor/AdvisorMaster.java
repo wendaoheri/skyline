@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import org.dayu.common.data.ApplicationData;
-import org.dayu.common.data.HandlerResultDetail;
+import org.dayu.common.data.HandlerResult;
 import org.dayu.common.data.HandlerResultSummary;
 import org.dayu.common.model.YarnApplication.ApplicationType;
 import org.dayu.core.handler.ApplicationTuningAdvisor;
@@ -31,11 +31,11 @@ public abstract class AdvisorMaster implements ApplicationContextAware {
   public HandlerResultSummary advise(ApplicationData applicationData) {
     HandlerResultSummary result = new HandlerResultSummary();
     ApplicationType applicationType = this.getApplicationType();
-    List<AbstractAdvisor> advisors = this.getAdvisors(applicationType);
+    List<ApplicationTuningAdvisor> advisors = this.getAdvisors(applicationType);
 
-    for (AbstractAdvisor advisor : advisors) {
-      HandlerResultDetail detail = advisor.advise(applicationData);
-      result.addDetail(detail);
+    for (ApplicationTuningAdvisor advisor : advisors) {
+      HandlerResult advise = advisor.handle(applicationData);
+      result.merge(advise);
     }
 
     return result;
@@ -46,8 +46,9 @@ public abstract class AdvisorMaster implements ApplicationContextAware {
     this.context = applicationContext;
   }
 
-  private List<AbstractAdvisor> getAdvisors(ApplicationType applicationType) {
-    Map<String, AbstractAdvisor> beans = context.getBeansOfType(AbstractAdvisor.class);
+  private List<ApplicationTuningAdvisor> getAdvisors(ApplicationType applicationType) {
+    Map<String, ApplicationTuningAdvisor> beans = context
+        .getBeansOfType(ApplicationTuningAdvisor.class);
     return beans.values().parallelStream()
         .filter(x -> applicationType.equals(x.getApplicationType())).sorted(
             Comparator.comparingInt(ApplicationTuningAdvisor::getOrder))

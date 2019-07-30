@@ -29,9 +29,26 @@ public class HandlerResultSummary implements HandlerResult {
     this.resultDetail.add(detail);
   }
 
-  public void merge(HandlerResultSummary summary) {
-    if (summary != null && summary.resultDetail != null) {
-      this.resultDetail.addAll(summary.getResultDetail());
+  public void addDetail(List<HandlerResultDetail> details) {
+    for (HandlerResultDetail detail : details) {
+      this.addDetail(detail);
+    }
+  }
+
+  /**
+   * merge a summary or detail
+   *
+   * if result is summary, then add summary's details to summary, else invoke addDetail method
+   */
+  public void merge(HandlerResult result) {
+    if (result instanceof HandlerResultSummary) {
+      HandlerResultSummary summary = (HandlerResultSummary) result;
+      if (summary != null && summary.resultDetail != null) {
+        this.addDetail(summary.resultDetail);
+      }
+    } else {
+      HandlerResultDetail detail = (HandlerResultDetail) result;
+      this.addDetail(detail);
     }
   }
 }

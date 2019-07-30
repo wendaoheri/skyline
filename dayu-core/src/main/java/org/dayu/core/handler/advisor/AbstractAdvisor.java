@@ -1,7 +1,9 @@
 package org.dayu.core.handler.advisor;
 
+import java.util.List;
 import org.dayu.common.data.ApplicationData;
 import org.dayu.common.data.HandlerResult;
+import org.dayu.common.data.HandlerResultDetail;
 import org.dayu.common.model.YarnApplication.ApplicationType;
 import org.dayu.core.exception.HandlerTypeMismatchException;
 import org.dayu.core.handler.ApplicationTuningAdvisor;
@@ -13,7 +15,7 @@ import org.dayu.core.handler.ApplicationTuningAdvisor;
 public abstract class AbstractAdvisor implements ApplicationTuningAdvisor {
 
   @Override
-  public final HandlerResult handle(ApplicationData applicationData) {
+  public HandlerResult handle(ApplicationData applicationData) {
     checkApplicationType(applicationData);
     return this.advise(applicationData);
   }
@@ -26,4 +28,8 @@ public abstract class AbstractAdvisor implements ApplicationTuningAdvisor {
     }
   }
 
+  @Override
+  public List<HandlerResultDetail> multiAdvise(ApplicationData applicationData) {
+    throw new UnsupportedOperationException();
+  }
 }

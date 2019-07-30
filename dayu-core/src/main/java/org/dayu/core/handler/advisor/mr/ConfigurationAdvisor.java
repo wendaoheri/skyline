@@ -1,5 +1,6 @@
 package org.dayu.core.handler.advisor.mr;
 
+import lombok.Setter;
 import org.dayu.common.data.ApplicationData;
 import org.dayu.common.data.HandlerResultDetail;
 import org.dayu.common.model.YarnApplication.ApplicationType;
@@ -13,6 +14,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class ConfigurationAdvisor extends AbstractAdvisor {
 
+  @Setter
+  private int order;
+
   @Override
   public HandlerResultDetail advise(ApplicationData applicationData) {
     return null;
@@ -20,7 +24,7 @@ public class ConfigurationAdvisor extends AbstractAdvisor {
 
   @Override
   public int getOrder() {
-    return 0;
+    return order;
   }
 
   @Override

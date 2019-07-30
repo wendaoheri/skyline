@@ -2,6 +2,7 @@ package org.dayu.common.data.mr;
 
 import com.alibaba.fastjson.annotation.JSONField;
 import lombok.Data;
+import org.dayu.common.data.mr.MRTaskData.MRTaskType;
 
 /**
  * @author Sean Liu
@@ -32,7 +33,7 @@ public class TaskAttemptData {
 
   private String id;
 
-  private String type;
+  private MRTaskType type;
 
   @JSONField(name = "finish_time")
   private String finishTime;

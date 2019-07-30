@@ -7,3 +7,7 @@ org.dayu.core.handler:
   fetcher:
     mr-fetcher:
       ahsAddress: http://localhost:19800
+  advisor:
+    mr:
+      configuration-advisor:
+        order: 1
