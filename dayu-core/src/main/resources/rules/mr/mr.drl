@@ -1,0 +1,11 @@
+package mr
+
+import org.dayu.common.data.mr.MRApplicationData
+import java.util.stream.Collectors
+
+rule "mr skew"
+  when
+    $data: MRApplicationData()
+  then
+    System.out.println($data.getTaskDataList().parallelStream().map(x -> x.getElapsedTime()).collect(Collectors.toList()));
+end
