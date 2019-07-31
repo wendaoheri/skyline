@@ -3,6 +3,7 @@ package org.dayu.common.data.mr;
 import com.google.common.collect.Maps;
 import java.util.Map;
 import lombok.Data;
+import lombok.Getter;
 
 /**
  * @author Sean Liu
@@ -22,4 +23,50 @@ public class MRCounterData {
     counterGroup.put(counterName, value);
   }
 
+  public long getCounterValue(CounterName counterName) {
+    String groupName = counterName.getCounterGroup().getGroupName();
+    String name = counterName.getCounterName();
+    try {
+      return counterData.get(groupName).get(name);
+    } catch (NullPointerException e) {
+      return 0L;
+    }
+  }
+
+  public enum CounterGroup {
+    /**
+     * org.apache.hadoop.mapreduce.FileSystemCounter
+     */
+    FILE_SYSTEM_COUNTER("org.apache.hadoop.mapreduce.FileSystemCounter"),
+    /**
+     * org.apache.hadoop.mapreduce.TaskCounter
+     */
+    TASK_COUNTER("org.apache.hadoop.mapreduce.TaskCounter");
+
+    @Getter
+    private String groupName;
+
+    CounterGroup(String groupName) {
+      this.groupName = groupName;
+    }
+  }
+
+  public enum CounterName {
+    /**
+     * HDFS_BYTES_READ
+     */
+    HDFS_BYTES_READ(CounterGroup.FILE_SYSTEM_COUNTER, "HDFS_BYTES_READ");
+
+
+    @Getter
+    private CounterGroup counterGroup;
+
+    @Getter
+    private String counterName;
+
+    CounterName(CounterGroup counterGroup, String counterName) {
+      this.counterGroup = counterGroup;
+      this.counterName = counterName;
+    }
+  }
 }
