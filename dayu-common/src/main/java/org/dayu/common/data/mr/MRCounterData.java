@@ -33,6 +33,11 @@ public class MRCounterData {
     }
   }
 
+  public long getCounterValue(String counterName) {
+    CounterName cn = CounterName.valueOf(counterName);
+    return getCounterValue(cn);
+  }
+
   public enum CounterGroup {
     /**
      * org.apache.hadoop.mapreduce.FileSystemCounter

@@ -44,4 +44,9 @@ public class MRApplicationData implements ApplicationData {
         .collect(Collectors.toList());
   }
 
+  public List<MRTaskData> getTaskByType(String typeName) {
+    MRTaskType type = MRTaskType.valueOf(typeName);
+    return getTaskByType(type);
+  }
+
 }
