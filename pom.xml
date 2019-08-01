@@ -30,6 +30,7 @@
     <beanutils.version>1.9.3</beanutils.version>
     <es.version>6.4.0</es.version>
     <commons-math3.version>3.6.1</commons-math3.version>
+    <commons-io.version>2.6</commons-io.version>
   </properties>
 
   <dependencyManagement>
@@ -73,6 +74,11 @@
         <groupId>org.apache.commons</groupId>
         <artifactId>commons-math3</artifactId>
         <version>${commons-math3.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>commons-io</groupId>
+        <artifactId>commons-io</artifactId>
+        <version>${commons-io.version}</version>
       </dependency>
       <dependency>
         <groupId>commons-beanutils</groupId>

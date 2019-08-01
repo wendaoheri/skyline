@@ -1,6 +1,5 @@
 package org.dayu.core.utils;
 
-import java.util.Locale;
 import lombok.extern.slf4j.Slf4j;
 import org.dayu.TestBeanEntry;
 import org.dayu.core.MockBeanTest;
@@ -24,7 +23,8 @@ public class MessageUtilsTest extends MockBeanTest {
 
   @Test
   public void testGetMessage() {
-    String message = messageUtils.getMessage("test", Locale.US, null);
+    String message = messageUtils
+        .getMessage("describe.org.dayu.core.handler.advisor.mr.MapperElapsedSkewAdvisor");
     System.out.println(message);
   }
 

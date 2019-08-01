@@ -55,7 +55,12 @@ public class MRCounterData {
     /**
      * HDFS_BYTES_READ
      */
-    HDFS_BYTES_READ(CounterGroup.FILE_SYSTEM_COUNTER, "HDFS_BYTES_READ");
+    HDFS_BYTES_READ(CounterGroup.FILE_SYSTEM_COUNTER, "HDFS_BYTES_READ"),
+
+    /**
+     * REDUCE_SHUFFLE_BYTES
+     */
+    REDUCE_SHUFFLE_BYTES(CounterGroup.TASK_COUNTER, "REDUCE_SHUFFLE_BYTES");
 
 
     @Getter

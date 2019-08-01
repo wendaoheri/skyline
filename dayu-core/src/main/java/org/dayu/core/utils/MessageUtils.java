@@ -1,9 +1,11 @@
 package org.dayu.core.utils;
 
 import java.util.Locale;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.MessageSource;
+import org.springframework.context.NoSuchMessageException;
 import org.springframework.stereotype.Component;
 
 /**
@@ -11,6 +13,7 @@ import org.springframework.stereotype.Component;
  * @date 2019-07-29
  */
 @Component
+@Slf4j
 public class MessageUtils {
 
   @Autowired
@@ -27,7 +30,12 @@ public class MessageUtils {
     if (locale == null) {
       locale = getDefaultLocale();
     }
-    return messageSource.getMessage(code, args, locale);
+    try {
+      return messageSource.getMessage(code, args, locale);
+    } catch (NoSuchMessageException e) {
+      log.warn("Get message error : {}", e.getMessage());
+    }
+    return "";
   }
 
   private Locale getDefaultLocale() {

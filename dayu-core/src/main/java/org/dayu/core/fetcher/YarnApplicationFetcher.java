@@ -83,7 +83,7 @@ public class YarnApplicationFetcher {
       log.error("Error occur while fetch yarn application list {}", e.getMessage());
     } catch (Exception e) {
       log.info("Response is : {}", resp);
-      log.error("Unexpected error occur while fetch yarn application list {}", e);
+      log.error("Unexpected error occur while fetch yarn application list.", e);
     }
     return apps != null ? apps : Lists.newArrayList();
   }

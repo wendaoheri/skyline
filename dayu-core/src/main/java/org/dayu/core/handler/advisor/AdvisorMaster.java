@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import org.dayu.common.data.ApplicationData;
 import org.dayu.common.data.HandlerResult;
-import org.dayu.common.data.HandlerResultSummary;
+import org.dayu.common.data.ResultSummary;
 import org.dayu.common.model.YarnApplication.ApplicationType;
 import org.dayu.core.handler.ApplicationTuningAdvisor;
 import org.springframework.beans.BeansException;
@@ -28,8 +28,8 @@ public abstract class AdvisorMaster implements ApplicationContextAware {
    */
   protected abstract ApplicationType getApplicationType();
 
-  public HandlerResultSummary advise(ApplicationData applicationData) {
-    HandlerResultSummary result = new HandlerResultSummary();
+  public ResultSummary advise(ApplicationData applicationData) {
+    ResultSummary result = new ResultSummary();
     ApplicationType applicationType = this.getApplicationType();
     List<ApplicationTuningAdvisor> advisors = this.getAdvisors(applicationType);
 

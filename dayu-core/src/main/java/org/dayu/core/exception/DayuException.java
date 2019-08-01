@@ -6,4 +6,11 @@ package org.dayu.core.exception;
  */
 public class DayuException extends RuntimeException {
 
+  public DayuException() {
+    super();
+  }
+
+  public DayuException(String message) {
+    super(message);
+  }
 }

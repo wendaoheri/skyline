@@ -1,0 +1,200 @@
+{
+  "application": {
+    "_id": "application_1326381300833"
+  },
+  "applicationId": "application_1326381300833",
+  "applicationType": "MAPREDUCE",
+  "conf": {
+    "dfs.datanode.data.dir": "/home/hadoop/hdfs/data",
+    "hadoop.http.filter.initializers": "org.apache.hadoop.yarn.server.webproxy.amfilter.AmFilterInitializer",
+    "mapreduce.cluster.temp.dir": "/home/hadoop/tmp"
+  },
+  "jobAttemptDataList": [
+    {
+      "container_id": "container_1326381300833_0002_01_000001",
+      "id": 1,
+      "logs_link": "http://host.domain.com:19888/jobhistory/logs/host.domain.com:8041/container_1326381300833_0002_01_000001/job_1326381300833_2_2/user1",
+      "node_http_address": "host.domain.com:8042",
+      "node_id": "host.domain.com:8041",
+      "start_time": 1326381444693
+    }
+  ],
+  "jobCounterData": {
+    "counterData": {
+      "org.apache.hadoop.mapreduce.FileSystemCounter": {
+        "FILE_BYTES_WRITTEN": 108525,
+        "FILE_BYTES_READ": 2483
+      },
+      "org.apache.hadoop.mapreduce.lib.output.FileOutputFormatCounter": {
+        "BYTES_WRITTEN": 0
+      },
+      "org.apache.hadoop.mapreduce.lib.input.FileInputFormatCounter": {
+        "BYTES_READ": 0
+      },
+      "Shuffle Errors": {
+        "CONNECTION": 0,
+        "BAD_ID": 0
+      },
+      "org.apache.hadoop.mapreduce.TaskCounter": {
+        "MAP_INPUT_RECORDS": 1,
+        "MAP_OUTPUT_RECORDS": 1200
+      }
+    }
+  },
+  "jobData": {
+    "avg_merge_time": 2589,
+    "avg_reduce_time": 124961,
+    "avg_shuffle_time": 2540,
+    "diagnostics": "",
+    "failed_map_attempts": 0,
+    "failed_reduce_attempts": 0,
+    "finish_time": 1326381582106,
+    "id": "job_1326381300833_2_2",
+    "killed_map_attempts": 0,
+    "killed_reduce_attempts": 0,
+    "maps_completed": 1,
+    "maps_total": 1,
+    "name": "Sleep job",
+    "queue": "default",
+    "reduces_completed": 1,
+    "reduces_total": 1,
+    "start_time": -763447935,
+    "state": "SUCCEEDED",
+    "submit_time": 1326381446500,
+    "successful_map_attempts": 1,
+    "successful_reduce_attempts": 1,
+    "uberized": false,
+    "user": "user1"
+  },
+  "taskDataList": [
+    {
+      "elapsed_time": 6777,
+      "finish_time": 1326381453318,
+      "id": "task_1326381300833_2_2_m_0",
+      "progress": 100,
+      "start_time": 1326381446541,
+      "successful_attempt": "attempt_1326381300833_2_2_m_0_0",
+      "taskAttemptDataList": [
+        {
+          "assigned_container_id": "container_1326381300833_0002_01_000002",
+          "diagnostics": "",
+          "elapsed_time": "2638",
+          "finish_time": "1326381453318",
+          "id": "attempt_1326381300833_2_2_m_0_0",
+          "node_http_address": "host.domain.com:8042",
+          "progress": "100",
+          "rack": "/98.139.92.0",
+          "start_time": "1326381450680",
+          "state": "SUCCEEDED",
+          "type": "MAP"
+        }
+      ],
+      "taskCounterData": {
+        "counterData": {
+          "org.apache.hadoop.mapreduce.FileSystemCounter": {
+            "FILE_BYTES_WRITTEN": 54372,
+            "FILE_BYTES_READ": 2363
+          },
+          "org.apache.hadoop.mapreduce.lib.output.FileOutputFormatCounter": {
+            "BYTES_WRITTEN": 0
+          },
+          "org.apache.hadoop.mapreduce.TaskCounter": {
+            "COMBINE_OUTPUT_RECORDS": 0,
+            "COMBINE_INPUT_RECORDS": 0
+          },
+          "Shuffle Errors": {
+            "CONNECTION": 0,
+            "BAD_ID": 0
+          }
+        }
+      },
+      "type": "MAP"
+    },
+    {
+      "elapsed_time": 3777,
+      "finish_time": 1326381453318,
+      "id": "task_1326381300833_2_2_m_0",
+      "progress": 100,
+      "start_time": 1326381446541,
+      "successful_attempt": "attempt_1326381300833_2_2_m_0_0",
+      "taskAttemptDataList": [
+        {
+          "assigned_container_id": "container_1326381300833_0002_01_000002",
+          "diagnostics": "",
+          "elapsed_time": "2638",
+          "finish_time": "1326381453318",
+          "id": "attempt_1326381300833_2_2_m_0_0",
+          "node_http_address": "host.domain.com:8042",
+          "progress": "100",
+          "rack": "/98.139.92.0",
+          "start_time": "1326381450680",
+          "state": "SUCCEEDED",
+          "type": "MAP"
+        }
+      ],
+      "taskCounterData": {
+        "counterData": {
+          "org.apache.hadoop.mapreduce.FileSystemCounter": {
+            "FILE_BYTES_WRITTEN": 54372,
+            "FILE_BYTES_READ": 2363
+          },
+          "org.apache.hadoop.mapreduce.lib.output.FileOutputFormatCounter": {
+            "BYTES_WRITTEN": 0
+          },
+          "org.apache.hadoop.mapreduce.TaskCounter": {
+            "COMBINE_OUTPUT_RECORDS": 0,
+            "COMBINE_INPUT_RECORDS": 0
+          },
+          "Shuffle Errors": {
+            "CONNECTION": 0,
+            "BAD_ID": 0
+          }
+        }
+      },
+      "type": "MAP"
+    },
+    {
+      "elapsed_time": 135559,
+      "finish_time": 1326381582103,
+      "id": "task_1326381300833_2_2_r_0",
+      "progress": 100,
+      "start_time": 1326381446544,
+      "successful_attempt": "attempt_1326381300833_2_2_r_0_0",
+      "taskAttemptDataList": [
+        {
+          "assigned_container_id": "container_1326381300833_0002_01_000002",
+          "diagnostics": "",
+          "elapsed_time": "2638",
+          "finish_time": "1326381453318",
+          "id": "attempt_1326381300833_2_2_m_0_0",
+          "node_http_address": "host.domain.com:8042",
+          "progress": "100",
+          "rack": "/98.139.92.0",
+          "start_time": "1326381450680",
+          "state": "SUCCEEDED",
+          "type": "MAP"
+        }
+      ],
+      "taskCounterData": {
+        "counterData": {
+          "org.apache.hadoop.mapreduce.FileSystemCounter": {
+            "FILE_BYTES_WRITTEN": 54372,
+            "FILE_BYTES_READ": 2363
+          },
+          "org.apache.hadoop.mapreduce.lib.output.FileOutputFormatCounter": {
+            "BYTES_WRITTEN": 0
+          },
+          "org.apache.hadoop.mapreduce.TaskCounter": {
+            "COMBINE_OUTPUT_RECORDS": 0,
+            "COMBINE_INPUT_RECORDS": 0
+          },
+          "Shuffle Errors": {
+            "CONNECTION": 0,
+            "BAD_ID": 0
+          }
+        }
+      },
+      "type": "REDUCE"
+    }
+  ]
+}

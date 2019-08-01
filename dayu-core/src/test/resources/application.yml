@@ -18,6 +18,7 @@ spring:
   messages:
     encoding: UTF-8
     default-lang: zh_CN
+    basename: messages/messages, messages/handler_describe
 
 
 http:

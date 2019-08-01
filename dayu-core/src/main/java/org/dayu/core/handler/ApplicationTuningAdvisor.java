@@ -2,7 +2,8 @@ package org.dayu.core.handler;
 
 import java.util.List;
 import org.dayu.common.data.ApplicationData;
-import org.dayu.common.data.HandlerResultDetail;
+import org.dayu.common.data.DisplayMessage;
+import org.dayu.common.data.ResultDetail;
 import org.dayu.common.model.YarnApplication.ApplicationType;
 
 /**
@@ -16,14 +17,14 @@ public interface ApplicationTuningAdvisor extends ApplicationHandler {
    *
    * @param applicationData application Data
    */
-  HandlerResultDetail advise(ApplicationData applicationData);
+  ResultDetail advise(ApplicationData applicationData);
 
   /**
    * give multi tuning advisement by analysis application
    *
    * @param applicationData application
    */
-  List<HandlerResultDetail> multiAdvise(ApplicationData applicationData);
+  List<ResultDetail> multiAdvise(ApplicationData applicationData);
 
   /**
    * Get order of advisor list, invoke from small to large
@@ -40,4 +41,19 @@ public interface ApplicationTuningAdvisor extends ApplicationHandler {
    * @return application type
    */
   ApplicationType getApplicationType();
+
+  /**
+   * Describe message of this Advisor
+   *
+   * @return describe content
+   */
+  String describe();
+
+  /**
+   * Display a handler result detail
+   *
+   * @param detail a handler result detail
+   * @return display message
+   */
+  DisplayMessage display(ResultDetail detail);
 }

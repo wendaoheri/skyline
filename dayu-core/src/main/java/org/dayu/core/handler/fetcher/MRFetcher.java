@@ -10,8 +10,8 @@ import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.dayu.common.data.ApplicationData;
 import org.dayu.common.data.HandlerResult;
-import org.dayu.common.data.HandlerResultSummary;
 import org.dayu.common.data.HandlerStatus;
+import org.dayu.common.data.ResultSummary;
 import org.dayu.common.data.mr.JobAttemptData;
 import org.dayu.common.data.mr.JobData;
 import org.dayu.common.data.mr.MRApplicationData;
@@ -43,12 +43,13 @@ public class MRFetcher implements ApplicationInfoFetcher {
 
   @Setter
   private String ahsAddress;
+
   @Autowired
   private HadoopHACallService callService;
 
   @Override
   public HandlerResult handle(ApplicationData applicationData) {
-    HandlerResultSummary result = new HandlerResultSummary();
+    ResultSummary result = new ResultSummary();
 
     MRApplicationData mrData = (MRApplicationData) applicationData;
     String applicationId = applicationData.getApplicationId();
@@ -99,7 +100,7 @@ public class MRFetcher implements ApplicationInfoFetcher {
       result.setApplicationData(applicationData);
       result.setHandlerStatus(HandlerStatus.SUCCESSED);
     } catch (IOException e) {
-      log.error("MapReduce job info fetch failed : {}", e);
+      log.error("MapReduce job info fetch failed", e);
       result.setHandlerStatus(HandlerStatus.FAILED);
     }
     return result;

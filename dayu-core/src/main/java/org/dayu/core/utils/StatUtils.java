@@ -25,6 +25,14 @@ public class StatUtils {
     private double cv;
   }
 
+  public static StatSummary summary(long[] values) {
+    double[] dValues = new double[values.length];
+    for (int i = 0; i < values.length; i++) {
+      dValues[i] = values[i];
+    }
+    return summary(dValues);
+  }
+
   public static StatSummary summary(Collection<Double> values) {
     double[] valueArray = ArrayUtils.toPrimitive(values.toArray(new Double[values.size()]), 0.);
     return summary(valueArray);
