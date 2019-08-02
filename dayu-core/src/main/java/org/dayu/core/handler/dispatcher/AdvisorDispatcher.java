@@ -1,7 +1,7 @@
 package org.dayu.core.handler.dispatcher;
 
 import org.dayu.common.data.ApplicationData;
-import org.dayu.common.data.ResultSummary;
+import org.dayu.common.data.HandlerResult;
 import org.dayu.common.message.Message;
 import org.dayu.common.message.MessageType;
 import org.dayu.core.handler.advisor.mr.MRAdvisor;
@@ -14,30 +14,30 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class AdvisorDispatcher implements
-    MessageDispatcher<ResultSummary, ResultSummary> {
+    MessageDispatcher<HandlerResult, HandlerResult> {
 
   @Autowired
   private MRAdvisor mrAdvisor;
 
   @Override
-  public Message<ResultSummary> dispatch(String key, Message<ResultSummary> message) {
+  public Message<HandlerResult> dispatch(String key, Message<HandlerResult> message) {
 
-    ResultSummary resultSummary = message.getMessageContent();
-    ApplicationData applicationData = resultSummary.getApplicationData();
+    HandlerResult handlerResult = message.getMessageContent();
+    ApplicationData applicationData = handlerResult.getApplicationData();
 
-    ResultSummary advisorSummary = null;
+    HandlerResult advisorResult = null;
 
     switch (applicationData.getApplicationType()) {
       case MAPREDUCE:
-        advisorSummary = mrAdvisor.advise(applicationData);
+        advisorResult = mrAdvisor.handle(applicationData);
         break;
       default:
         break;
     }
-    resultSummary.merge(advisorSummary);
+    handlerResult.merge(advisorResult);
 
-    Message<ResultSummary> returnMessage = new Message<>();
-    returnMessage.setMessageContent(resultSummary);
+    Message<HandlerResult> returnMessage = new Message<>();
+    returnMessage.setMessageContent(handlerResult);
     returnMessage.setMessageType(MessageType.APPLICATION_ADVISE_DONE);
 
     return returnMessage;

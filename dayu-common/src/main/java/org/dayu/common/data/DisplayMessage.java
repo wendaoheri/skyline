@@ -13,4 +13,8 @@ public class DisplayMessage {
 
   public static final DisplayMessage EMPTY_MESSAGE = new DisplayMessage();
 
+  private String content;
+
+  private String detail;
+
 }

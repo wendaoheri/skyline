@@ -3,7 +3,6 @@ package org.dayu.core.handler.advisor.mr;
 import com.alibaba.fastjson.JSON;
 import java.io.IOException;
 import java.io.InputStream;
-import org.apache.commons.io.IOUtils;
 import org.dayu.common.data.mr.MRApplicationData;
 import org.dayu.core.MockBeanTest;
 
@@ -17,8 +16,7 @@ public class BaseAdvisorTest extends MockBeanTest {
     InputStream in = this.getClass().getClassLoader()
         .getResourceAsStream("data/applicationData.json");
     try {
-      String json = IOUtils.toString(in, "UTF-8");
-      return JSON.parseObject(json, MRApplicationData.class);
+      return JSON.parseObject(in, MRApplicationData.class);
     } catch (IOException e) {
       e.printStackTrace();
     }

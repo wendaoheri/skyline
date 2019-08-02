@@ -137,7 +137,8 @@
         "counterData": {
           "org.apache.hadoop.mapreduce.FileSystemCounter": {
             "FILE_BYTES_WRITTEN": 54372,
-            "FILE_BYTES_READ": 2363
+            "FILE_BYTES_READ": 2363,
+            "HDFS_BYTES_READ": 1233
           },
           "org.apache.hadoop.mapreduce.lib.output.FileOutputFormatCounter": {
             "BYTES_WRITTEN": 0

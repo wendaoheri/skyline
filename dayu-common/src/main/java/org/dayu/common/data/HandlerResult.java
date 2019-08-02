@@ -1,28 +1,44 @@
 package org.dayu.common.data;
 
-import java.io.Serializable;
+import com.google.common.collect.Lists;
+import java.util.List;
+import lombok.Data;
 
 /**
- *
- * Result of ApplicationHandler
- *
  * @author Sean Liu
  * @date 2019-07-29
  */
-public interface HandlerResult extends Serializable {
+@Data
+public class HandlerResult {
+
+  private ApplicationData applicationData;
+
+  private List<AdviseDetail> adviseDetails;
+
+  private HandlerStatus handlerStatus;
+
+  public void addDetail(AdviseDetail detail) {
+    if (this.adviseDetails == null) {
+      this.adviseDetails = Lists.newArrayList();
+    }
+    this.adviseDetails.add(detail);
+  }
+
+  public void addDetail(List<AdviseDetail> details) {
+    for (AdviseDetail detail : details) {
+      this.addDetail(detail);
+    }
+  }
 
   /**
-   * Get the result status of handler This status can be used to recover handler
+   * merge a summary or detail
    *
-   * @return Handler status
+   * if result is summary, then add summary's details to summary, else invoke addDetail method
    */
-  HandlerStatus getHandlerStatus();
+  public void merge(HandlerResult result) {
+    if (result != null && result.adviseDetails != null) {
+      this.addDetail(result.adviseDetails);
+    }
+  }
 
-
-  /**
-   * The value range : [0-100], higher is better,
-   *
-   * @return score of handler result
-   */
-  double score();
 }

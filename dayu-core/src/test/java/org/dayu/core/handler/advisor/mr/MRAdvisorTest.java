@@ -1,9 +1,11 @@
 package org.dayu.core.handler.advisor.mr;
 
+import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
 import org.dayu.TestBeanEntry;
 import org.dayu.common.data.ApplicationData;
-import org.dayu.common.data.ResultSummary;
+import org.dayu.common.data.DisplayMessage;
+import org.dayu.common.data.HandlerResult;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,8 +27,12 @@ public class MRAdvisorTest extends BaseAdvisorTest {
   @Test
   public void testAdvisor() {
     ApplicationData applicationData = generateApplicationData();
-    ResultSummary resultSummary = mrAdvisor.advise(applicationData);
-    log.info("Result summary : {}", resultSummary);
+    HandlerResult handlerResult = mrAdvisor.handle(applicationData);
+    handlerResult.setApplicationData(applicationData);
+    log.info("Result summary : {}", JSON.toJSONString(handlerResult.getAdviseDetails(), true));
+
+    DisplayMessage ds = mrAdvisor.display(handlerResult);
+    log.info("Display Message : {}", JSON.toJSONString(ds, true));
   }
 
 }

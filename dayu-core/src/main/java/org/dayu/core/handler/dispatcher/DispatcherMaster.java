@@ -19,9 +19,6 @@ public class DispatcherMaster {
   @Autowired
   private AdvisorDispatcher advisorDispatcher;
 
-  @Autowired
-  private ScorerDispatcher scorerDispatcher;
-
   public Message dispatch(String key, Message message) {
     log.debug("dispatch message {}", message);
 

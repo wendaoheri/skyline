@@ -1,6 +1,4 @@
 spring:
-  profiles:
-    include: handler
   data:
     elasticsearch:
       cluster-nodes: localhost:9300
@@ -18,7 +16,7 @@ spring:
   messages:
     encoding: UTF-8
     default-lang: zh_CN
-    basename: messages/messages, messages/handler_describe
+    basename: messages/messages, messages/advisors
 
 
 http:
@@ -32,6 +30,7 @@ http:
 
 hadoop:
   resourceManagerAddress: http://localhost:8088,localhost:8089
+  historyServerAddress: http://localhost:19800
 
 spark:
   #  historyServerAddress: http://10.17.183.85:18080

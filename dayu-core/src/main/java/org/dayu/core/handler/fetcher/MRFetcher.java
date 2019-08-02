@@ -6,12 +6,10 @@ import com.alibaba.fastjson.JSONObject;
 import java.io.IOException;
 import java.util.List;
 import java.util.Properties;
-import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.dayu.common.data.ApplicationData;
 import org.dayu.common.data.HandlerResult;
 import org.dayu.common.data.HandlerStatus;
-import org.dayu.common.data.ResultSummary;
 import org.dayu.common.data.mr.JobAttemptData;
 import org.dayu.common.data.mr.JobData;
 import org.dayu.common.data.mr.MRApplicationData;
@@ -21,16 +19,16 @@ import org.dayu.common.data.mr.TaskAttemptData;
 import org.dayu.core.handler.ApplicationInfoFetcher;
 import org.dayu.core.http.HadoopHACallService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 /**
  * @author Sean Liu
  * @date 2019-07-13
  */
+@SuppressWarnings("ALL")
 @Component("mrFetcher")
 @Slf4j
-@ConfigurationProperties("org.dayu.core.handler.fetcher.mr-fetcher")
 public class MRFetcher implements ApplicationInfoFetcher {
 
   private static final String JOB_INFO_URL = "/ws/v1/history/mapreduce/jobs/%s";
@@ -41,7 +39,7 @@ public class MRFetcher implements ApplicationInfoFetcher {
   private static final String TASK_COUNTER_URL = "/ws/v1/history/mapreduce/jobs/%s/tasks/%s/counters";
   private static final String TASK_ATTEMPT_LIST_INFO_URL = "/ws/v1/history/mapreduce/jobs/%s/tasks/%s/attempts";
 
-  @Setter
+  @Value("${hadoop.historyServerAddress}")
   private String ahsAddress;
 
   @Autowired
@@ -49,7 +47,7 @@ public class MRFetcher implements ApplicationInfoFetcher {
 
   @Override
   public HandlerResult handle(ApplicationData applicationData) {
-    ResultSummary result = new ResultSummary();
+    HandlerResult result = new HandlerResult();
 
     MRApplicationData mrData = (MRApplicationData) applicationData;
     String applicationId = applicationData.getApplicationId();

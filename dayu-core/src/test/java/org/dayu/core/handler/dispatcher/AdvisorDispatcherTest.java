@@ -3,7 +3,7 @@ package org.dayu.core.handler.dispatcher;
 import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
 import org.dayu.TestBeanEntry;
-import org.dayu.common.data.ResultSummary;
+import org.dayu.common.data.HandlerResult;
 import org.dayu.common.message.Message;
 import org.dayu.common.message.MessageType;
 import org.dayu.core.handler.advisor.mr.BaseAdvisorTest;
@@ -27,13 +27,13 @@ public class AdvisorDispatcherTest extends BaseAdvisorTest {
 
   @Test
   public void testDispatchMR() {
-    Message<ResultSummary> message = new Message<>();
-    ResultSummary resultSummary = new ResultSummary();
-    resultSummary.setApplicationData(super.generateApplicationData());
-    message.setMessageContent(resultSummary);
+    Message<HandlerResult> message = new Message<>();
+    HandlerResult handlerResult = new HandlerResult();
+    handlerResult.setApplicationData(super.generateApplicationData());
+    message.setMessageContent(handlerResult);
     message.setMessageType(MessageType.APPLICATION_FETCH_DONE);
 
-    Message<ResultSummary> result = dispatcher.dispatch(null, message);
+    Message<HandlerResult> result = dispatcher.dispatch(null, message);
 
     log.info("Dispatch result : {}", JSON.toJSONString(result, true));
   }
