@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://maven.apache.org/POM/4.0.0"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <parent>
+    <artifactId>skyline</artifactId>
+    <groupId>org.skyline</groupId>
+    <version>1.0.1-SNAPSHOT</version>
+  </parent>
+  <modelVersion>4.0.0</modelVersion>
+
+  <artifactId>skyline-plugin</artifactId>
+  <packaging>pom</packaging>
+  <modules>
+    <module>skyline-schedule-plugin</module>
+  </modules>
+
+  <dependencyManagement>
+
+    <dependencies>
+      <dependency>
+        <groupId>org.skyline</groupId>
+        <artifactId>skyline-schedule-plugin</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.skyline</groupId>
+        <artifactId>skyline-storage-plugin</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+
+</project>

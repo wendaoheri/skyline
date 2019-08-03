@@ -4,10 +4,10 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <modules>
-    <module>dayu-core</module>
-    <module>dayu-web</module>
-    <module>dayu-common</module>
-    <module>dayu-plugin</module>
+    <module>skyline-core</module>
+    <module>skyline-web</module>
+    <module>skyline-common</module>
+    <module>skyline-plugin</module>
   </modules>
 
   <parent>
@@ -16,8 +16,8 @@
     <version>2.1.3.RELEASE</version>
   </parent>
 
-  <groupId>org.dayu</groupId>
-  <artifactId>dayu</artifactId>
+  <groupId>org.skyline</groupId>
+  <artifactId>skyline</artifactId>
   <version>1.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
 
@@ -36,18 +36,18 @@
   <dependencyManagement>
     <dependencies>
       <dependency>
-        <groupId>org.dayu</groupId>
-        <artifactId>dayu-core</artifactId>
+        <groupId>org.skyline</groupId>
+        <artifactId>skyline-core</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>
-        <groupId>org.dayu</groupId>
-        <artifactId>dayu-common</artifactId>
+        <groupId>org.skyline</groupId>
+        <artifactId>skyline-common</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>
-        <groupId>org.dayu</groupId>
-        <artifactId>dayu-schedule-plugin</artifactId>
+        <groupId>org.skyline</groupId>
+        <artifactId>skyline-schedule-plugin</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>

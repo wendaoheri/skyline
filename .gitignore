@@ -32,4 +32,4 @@ dependency-reduced-pom.xml
 
 metastore_db/
 
-dayu-plugin/dayu-dsp-schedule-plugin
+skyline-plugin/skyline-dsp-schedule-plugin
