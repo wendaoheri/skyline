@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author sean
  */
 @RestController
-@RequestMapping(value = "/applications")
+@RequestMapping(value = "/ws/v1/applications")
 @Slf4j
 public class YarnApplicationController {
 
