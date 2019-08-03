@@ -1,9 +1,9 @@
 package org.dayu.core.storage.es;
 
+import com.alibaba.fastjson.JSONObject;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.dayu.TestBeanEntry;
-import org.dayu.common.model.Record;
 import org.dayu.common.model.Records;
 import org.dayu.common.model.RuntimeConfig;
 import org.dayu.common.model.YarnApplication;
@@ -33,7 +33,7 @@ public class ESStorageTest {
     RuntimeConfig rc = new RuntimeConfig();
     rc.setId("runtime_key");
     rc.setValue("test_values");
-    Record r = Records.fromObject(rc);
+    JSONObject r = Records.fromObject(rc);
 
     log.info(r.toString());
 

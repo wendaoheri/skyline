@@ -6,7 +6,8 @@
       "dayu_config*",
       "schedule_info*",
       "nodes",
-      "yarn_metrics"
+      "yarn_metrics",
+      "application_data"
     ],
     "settings": {
       "index": {

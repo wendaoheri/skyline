@@ -19,7 +19,10 @@ public class MRTaskData {
 
   }
 
+  @JSONField(name = "task_attempt_data_list")
   private List<TaskAttemptData> taskAttemptDataList;
+
+  @JSONField(name = "task_counter_data")
   private MRCounterData taskCounterData;
 
   private Integer progress;

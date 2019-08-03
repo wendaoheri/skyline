@@ -11,7 +11,7 @@ import lombok.Data;
 public class YarnApplication implements Model {
 
   public static final String DATABASE_NAME = "yarn_application";
-  public static final String TABLE_NAME = "yarn_application";
+  public static final String TABLE_NAME = "_doc";
 
   public enum State {
     NEW, NEW_SAVING, SUBMITTED, ACCEPTED, RUNNING, FINISHED, FAILED, KILLED

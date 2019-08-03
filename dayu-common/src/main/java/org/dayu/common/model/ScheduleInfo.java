@@ -12,7 +12,7 @@ public class ScheduleInfo {
 
   public static final String DATABASE_NAME = "schedule_info";
 
-  public static final String TABLE_NAME = "schedule_info";
+  public static final String TABLE_NAME = "_doc";
 
   @JSONField(name = "_id")
   private String scheduleId;

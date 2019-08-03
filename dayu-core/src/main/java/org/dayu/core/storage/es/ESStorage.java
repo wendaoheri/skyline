@@ -1,11 +1,11 @@
 package org.dayu.core.storage.es;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.google.common.collect.Lists;
 import java.io.IOException;
 import java.lang.reflect.Type;
-import java.util.Collection;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -16,7 +16,6 @@ import java.util.concurrent.ExecutionException;
 import javax.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.time.DateFormatUtils;
-import org.dayu.common.model.Record;
 import org.dayu.core.storage.IStorage;
 import org.elasticsearch.action.ActionRequestBuilder;
 import org.elasticsearch.action.admin.indices.exists.indices.IndicesExistsRequestBuilder;
@@ -43,8 +42,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class ESStorage implements IStorage {
 
-  private static final String KEY_ID = "_id";
-  private static final String KEY_ROUTE = "_route";
+  public static final String KEY_ID = "_id";
+  public static final String KEY_ROUTE = "_route";
 
   @Autowired
   private TransportClient client;
@@ -92,7 +91,7 @@ public class ESStorage implements IStorage {
   }
 
   @Override
-  public void bulkUpsert(String indexName, String typeName, Collection<Record> records)
+  public void bulkUpsert(String indexName, String typeName, JSONArray records)
       throws ExecutionException, InterruptedException {
     if (records == null || records.size() == 0) {
       return;
@@ -100,8 +99,9 @@ public class ESStorage implements IStorage {
     indexName = indexName.toLowerCase();
     typeName = typeName.toLowerCase();
 
-    Iterator<Record> iter = records.iterator();
-    Record item;
+//    Iterator<Record> iter = records.iterator();
+    Iterator<Object> iter = records.iterator();
+    JSONObject item;
     BulkRequestBuilder bulkRequestBuilder = null;
 
     int batchSize = 1000;
@@ -110,7 +110,7 @@ public class ESStorage implements IStorage {
       if (index % batchSize == 0) {
         bulkRequestBuilder = client.prepareBulk();
       }
-      item = iter.next();
+      item = (JSONObject) iter.next();
 
       ActionRequestBuilder builder = this.getActionBuilder(indexName, typeName, item);
 
@@ -141,12 +141,13 @@ public class ESStorage implements IStorage {
   }
 
   @Override
-  public void upsert(String indexName, String typeName, Record record) {
+  public void upsert(String indexName, String typeName, JSONObject record) {
     ActionRequestBuilder builder = this.getActionBuilder(indexName, typeName, record);
     builder.get();
   }
 
-  private ActionRequestBuilder getActionBuilder(String indexName, String typeName, Record record) {
+  private ActionRequestBuilder getActionBuilder(String indexName, String typeName,
+      JSONObject record) {
     record.put("@timestamp", System.currentTimeMillis());
     if (record.containsKey(KEY_ID) && record.get(KEY_ID) != null) {
       UpdateRequestBuilder builder = client

@@ -1,11 +1,11 @@
 package org.dayu.core.storage;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import java.lang.reflect.Type;
-import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.ExecutionException;
-import org.dayu.common.model.Record;
 import org.elasticsearch.index.IndexNotFoundException;
 
 /**
@@ -16,10 +16,10 @@ public interface IStorage {
 
   void trace(List<Object> data);
 
-  void bulkUpsert(String indexName, String typeName, Collection<Record> records)
+  void bulkUpsert(String indexName, String typeName, JSONArray records)
       throws ExecutionException, InterruptedException;
 
-  void upsert(String indexName, String typeName, Record record);
+  void upsert(String indexName, String typeName, JSONObject record);
 
   <T> T findById(String indexName, String typeName, String id, Type clazz)
       throws IndexNotFoundException;

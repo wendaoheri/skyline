@@ -1,5 +1,6 @@
 package org.dayu.common.data.mr;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import java.util.List;
 import java.util.Properties;
 import java.util.stream.Collectors;
@@ -16,16 +17,24 @@ import org.dayu.common.model.YarnApplication.ApplicationType;
 @Data
 public class MRApplicationData implements ApplicationData {
 
-  private YarnApplication application;
+  @JSONField(name = "_id")
+  private String id;
 
+  @JSONField(serialize = false)
+  private transient YarnApplication application;
+
+  @JSONField(name = "job_data")
   private JobData jobData;
 
   private Properties conf;
 
+  @JSONField(name = "job_counter_data")
   private MRCounterData jobCounterData;
 
+  @JSONField(name = "task_data_list")
   private List<MRTaskData> taskDataList;
 
+  @JSONField(name = "job_attempt_data_list")
   private List<JobAttemptData> jobAttemptDataList;
 
 

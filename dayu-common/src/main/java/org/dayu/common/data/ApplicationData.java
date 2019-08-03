@@ -12,6 +12,9 @@ import org.dayu.common.model.YarnApplication.ApplicationType;
  */
 public interface ApplicationData {
 
+  String DATABASE_NAME = "application_data";
+  String TABLE_NAME = "_doc";
+
   /**
    * set YarnApplication of handlable data
    * @param application yarn application

@@ -16,8 +16,10 @@ import org.dayu.common.data.mr.MRApplicationData;
 import org.dayu.common.data.mr.MRCounterData;
 import org.dayu.common.data.mr.MRTaskData;
 import org.dayu.common.data.mr.TaskAttemptData;
+import org.dayu.common.model.Records;
 import org.dayu.core.handler.ApplicationInfoFetcher;
 import org.dayu.core.http.HadoopHACallService;
+import org.dayu.core.storage.IStorage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -44,6 +46,9 @@ public class MRFetcher implements ApplicationInfoFetcher {
 
   @Autowired
   private HadoopHACallService callService;
+
+  @Autowired
+  private IStorage storage;
 
   @Override
   public HandlerResult handle(ApplicationData applicationData) {
@@ -95,7 +100,12 @@ public class MRFetcher implements ApplicationInfoFetcher {
             .getJSONArray("taskAttempt").toJavaList(TaskAttemptData.class);
         taskData.setTaskAttemptDataList(taskAttemptDataList);
       }
-      result.setApplicationData(applicationData);
+      // set id & save to es
+      mrData.setId(applicationId);
+      storage.upsert(ApplicationData.DATABASE_NAME, ApplicationData.TABLE_NAME,
+          Records.fromObject(mrData));
+
+      result.setApplicationData(mrData);
       result.setHandlerStatus(HandlerStatus.SUCCESSED);
     } catch (IOException e) {
       log.error("MapReduce job info fetch failed", e);

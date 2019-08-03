@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.dayu.TestBeanEntry;
 import org.dayu.core.data.NodesAnswer;
 import org.dayu.core.http.HttpCallService;
+import org.dayu.core.queue.MessageQueue;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -27,6 +28,9 @@ public class NodesFetcherTest {
 
   @MockBean
   private HttpCallService httpCallService;
+
+  @MockBean
+  private MessageQueue messageQueue;
 
   @Autowired
   private NodesFetcher fetcher;

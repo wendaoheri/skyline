@@ -15,7 +15,6 @@ import org.dayu.common.model.YarnApplication;
 import org.dayu.core.data.MRDataAnswer;
 import org.dayu.core.http.HttpCallService;
 import org.dayu.core.queue.MessageQueue;
-import org.dayu.core.storage.IStorage;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -39,9 +38,6 @@ public class MRFetcherTest {
 
   @MockBean
   private HttpCallService httpCallService;
-
-  @MockBean
-  private IStorage storage;
 
   @MockBean
   private MessageQueue messageQueue;

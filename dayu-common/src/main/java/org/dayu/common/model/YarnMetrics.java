@@ -11,7 +11,7 @@ import lombok.Data;
 public class YarnMetrics implements Model {
 
   public static final String DATABASE_NAME = "yarn_metrics";
-  public static final String TABLE_NAME = "yarn_metrics";
+  public static final String TABLE_NAME = "_doc";
 
   @JSONField(name="apps_submitted")
   private Integer appsSubmitted;
