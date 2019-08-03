@@ -14,7 +14,7 @@ import org.dayu.common.data.ApplicationData;
 import org.dayu.common.data.DisplayMessage;
 import org.dayu.common.data.HandlerResult;
 import org.dayu.common.data.Severity;
-import org.dayu.common.model.YarnApplication.ApplicationType;
+import org.dayu.common.data.YarnApplication.ApplicationType;
 import org.dayu.core.handler.ApplicationTuningAdvisor;
 import org.dayu.core.utils.SeverityUtils;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -2,9 +2,9 @@ package org.dayu.core.handler;
 
 import lombok.extern.slf4j.Slf4j;
 import org.dayu.TestBeanEntry;
+import org.dayu.common.data.YarnApplication;
 import org.dayu.common.message.Message;
 import org.dayu.common.message.MessageType;
-import org.dayu.common.model.YarnApplication;
 import org.dayu.core.data.ApplicationAnswer;
 import org.junit.Test;
 import org.junit.runner.RunWith;

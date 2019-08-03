@@ -1,4 +1,4 @@
-package org.dayu.common.model;
+package org.dayu.common.data;
 
 import com.alibaba.fastjson.annotation.JSONField;
 import lombok.Data;

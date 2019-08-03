@@ -1,8 +1,7 @@
 package org.dayu.common.data;
 
 import java.util.Properties;
-import org.dayu.common.model.YarnApplication;
-import org.dayu.common.model.YarnApplication.ApplicationType;
+import org.dayu.common.data.YarnApplication.ApplicationType;
 
 /**
  * interface produced by ApplicationHandler

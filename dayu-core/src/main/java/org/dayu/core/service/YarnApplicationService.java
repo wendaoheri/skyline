@@ -2,8 +2,8 @@ package org.dayu.core.service;
 
 import java.util.List;
 import java.util.Map;
-import org.dayu.common.model.ScheduleInfo;
-import org.dayu.common.model.YarnApplication;
+import org.dayu.common.data.ScheduleInfo;
+import org.dayu.common.data.YarnApplication;
 import org.dayu.core.dto.SearchRequestDTO;
 import org.dayu.plugin.schedule.ScheduleTrigger;
 import org.springframework.data.domain.Page;

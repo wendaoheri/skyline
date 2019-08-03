@@ -7,7 +7,7 @@ import com.google.common.collect.Lists;
 import java.io.IOException;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
-import org.dayu.common.model.YarnApplication;
+import org.dayu.common.data.YarnApplication;
 import org.dayu.core.http.HadoopHACallService;
 import org.dayu.core.service.YarnApplicationService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -2,7 +2,7 @@ package org.dayu.core.service;
 
 import java.util.List;
 import java.util.Set;
-import org.dayu.common.model.ScheduleInfo;
+import org.dayu.common.data.ScheduleInfo;
 
 /**
  * @author Sean Liu

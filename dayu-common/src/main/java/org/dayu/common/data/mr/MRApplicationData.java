@@ -6,9 +6,9 @@ import java.util.Properties;
 import java.util.stream.Collectors;
 import lombok.Data;
 import org.dayu.common.data.ApplicationData;
+import org.dayu.common.data.YarnApplication;
+import org.dayu.common.data.YarnApplication.ApplicationType;
 import org.dayu.common.data.mr.MRTaskData.MRTaskType;
-import org.dayu.common.model.YarnApplication;
-import org.dayu.common.model.YarnApplication.ApplicationType;
 
 /**
  * @author Sean Liu

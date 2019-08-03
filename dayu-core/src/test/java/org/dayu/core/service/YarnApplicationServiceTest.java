@@ -7,7 +7,7 @@ import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.assertj.core.util.Lists;
 import org.dayu.TestBeanEntry;
-import org.dayu.common.model.YarnApplication;
+import org.dayu.common.data.YarnApplication;
 import org.dayu.core.dto.Filter;
 import org.dayu.core.dto.Filter.FilterType;
 import org.dayu.core.dto.Order;
