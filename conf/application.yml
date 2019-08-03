@@ -2,15 +2,22 @@ spring:
   data:
     elasticsearch:
       cluster-nodes: localhost:9300
-      cluster-name: docker-elasticsearch
-  mvc:
-    servlet:
-      path: /
+      cluster-name: docker-cluster
+      template-file: es_template.json
   cache:
     cache-names: job_application_log
     caffeine:
       spec:
         expireAfterWrite: 24h
+  activemq:
+    #    broker-url: tcp://localhost:9876 # comments for starting an embedded broker
+    user: admin
+    password: admin
+  messages:
+    encoding: UTF-8
+    default-lang: zh_CN
+    basename: messages/messages, messages/advisors
+
 
 http:
   maxTotal: 100 #最大连接数
@@ -22,7 +29,8 @@ http:
   redirectsEnabled: false # 是否允许重定向
 
 hadoop:
-  resourceManagerAddress: http://localhost:8088
+  resourceManagerAddress: http://localhost:8088,localhost:8089
+  historyServerAddress: http://localhost:19800
 
 spark:
   #  historyServerAddress: http://10.17.183.85:18080
@@ -32,9 +40,6 @@ logging:
   level:
     root: INFO
     org.hibernate: ERROR
-#  file: dayu.log
-#  max-size: 100M
-#  max-history: 3
 dayu:
   fetcher:
     interval_second: 60                #  fetch by started & finished time interval
@@ -44,4 +49,4 @@ dayu:
       class: org.dayu.plugin.schedule.MockSchedulePlugin
       interval_second: 60
       min_delay_second: 60              #  min time delay for fetch scheduleId after application finished
-      max_delay_second: 3600            #  max time delay for fetch scheduleId after application finished
+      max_delay_second: 2592000            #  max time delay for fetch scheduleId after application finished
