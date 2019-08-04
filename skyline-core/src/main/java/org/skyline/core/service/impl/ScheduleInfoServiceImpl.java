@@ -32,7 +32,7 @@ public class ScheduleInfoServiceImpl implements ScheduleInfoService {
     Set<String> existsIds = null;
     try {
       List<ScheduleInfo> scheduleInfoList = storage
-          .findByIds(ScheduleInfo.DATABASE_NAME, ScheduleInfo.TABLE_NAME, scheduleIds,
+          .findByIds(ScheduleInfo.INDEX_NAME, ScheduleInfo.TYPE_NAME, scheduleIds,
               ScheduleInfo.class);
       existsIds = scheduleInfoList.parallelStream().map(x -> x.getScheduleId())
           .collect(Collectors.toSet());
@@ -51,7 +51,7 @@ public class ScheduleInfoServiceImpl implements ScheduleInfoService {
     }).collect(Collectors.toList());
 
     try {
-      storage.bulkUpsert(ScheduleInfo.DATABASE_NAME, ScheduleInfo.TABLE_NAME,
+      storage.bulkUpsert(ScheduleInfo.INDEX_NAME, ScheduleInfo.TYPE_NAME,
           Records.fromObject(toSaved));
     } catch (ExecutionException e) {
       log.error(e.getMessage());

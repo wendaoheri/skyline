@@ -1,5 +1,6 @@
 package org.skyline.common.data;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import com.google.common.collect.Lists;
 import java.util.List;
 import lombok.Data;
@@ -11,10 +12,19 @@ import lombok.Data;
 @Data
 public class HandlerResult {
 
-  private ApplicationData applicationData;
+  public static final String INDEX_NAME = "advisor_result";
+  public static final String TYPE_NAME = "_doc";
 
+  @JSONField(serialize = false)
+  private transient ApplicationData applicationData;
+
+  @JSONField(name = "_id")
+  private String id;
+
+  @JSONField(name = "advise_details")
   private List<AdviseDetail> adviseDetails;
 
+  @JSONField(name = "handler_status")
   private HandlerStatus handlerStatus;
 
   public void addDetail(AdviseDetail detail) {

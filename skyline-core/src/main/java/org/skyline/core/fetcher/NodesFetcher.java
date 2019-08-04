@@ -43,7 +43,7 @@ public class NodesFetcher {
       List<Node> nodes = jo.getJSONObject("nodes").getJSONArray("node").toJavaList(Node.class);
       log.info("Got nodes size : {}", nodes.size());
       if (nodes.size() > 0) {
-        storage.bulkUpsert(Node.DATABASE_NAME, Node.TABLE_NAME, Records.fromObject(nodes));
+        storage.bulkUpsert(Node.INDEX_NAME, Node.TYPE_NAME, Records.fromObject(nodes));
       }
       log.info("Fetch nodes list end");
     } catch (IOException e) {

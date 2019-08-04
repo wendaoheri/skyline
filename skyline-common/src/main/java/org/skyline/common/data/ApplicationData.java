@@ -11,8 +11,8 @@ import org.skyline.common.data.YarnApplication.ApplicationType;
  */
 public interface ApplicationData {
 
-  String DATABASE_NAME = "application_data";
-  String TABLE_NAME = "_doc";
+  String INDEX_NAME = "application_data";
+  String TYPE_NAME = "_doc";
 
   /**
    * set YarnApplication of handlable data

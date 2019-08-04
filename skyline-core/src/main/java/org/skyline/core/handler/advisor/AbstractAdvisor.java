@@ -13,9 +13,11 @@ import org.skyline.common.data.AdviseDetail;
 import org.skyline.common.data.ApplicationData;
 import org.skyline.common.data.DisplayMessage;
 import org.skyline.common.data.HandlerResult;
+import org.skyline.common.data.Records;
 import org.skyline.common.data.Severity;
 import org.skyline.common.data.YarnApplication.ApplicationType;
 import org.skyline.core.handler.ApplicationTuningAdvisor;
+import org.skyline.core.storage.IStorage;
 import org.skyline.core.utils.SeverityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cglib.beans.BeanMap;
@@ -33,6 +35,9 @@ public abstract class AbstractAdvisor implements ApplicationTuningAdvisor {
   private static final String ADVISOR_CONFIG = "advisors.json";
 
   private static Map<String, List<AdvisorConfig>> advisorMap = Maps.newHashMap();
+
+  @Autowired
+  private IStorage storage;
 
   @SuppressWarnings("AlibabaLowerCamelCaseVariableNaming")
   @Autowired
@@ -59,10 +64,10 @@ public abstract class AbstractAdvisor implements ApplicationTuningAdvisor {
   @Override
   public HandlerResult handle(ApplicationData applicationData) {
     HandlerResult handlerResult = new HandlerResult();
+    handlerResult.setId(applicationData.getApplicationId());
 
     ApplicationType applicationType = applicationData.getApplicationType();
     List<AdvisorConfig> advisorConfigs = getAdvisorConfigByType(applicationType);
-
     // Sort by order
     advisorConfigs.sort(Comparator.comparingInt(AdvisorConfig::getOrder));
 
@@ -106,6 +111,8 @@ public abstract class AbstractAdvisor implements ApplicationTuningAdvisor {
 
       handlerResult.addDetail(detail);
     }
+    storage.upsert(HandlerResult.INDEX_NAME, HandlerResult.TYPE_NAME,
+        Records.fromObject(handlerResult));
     return handlerResult;
   }
 

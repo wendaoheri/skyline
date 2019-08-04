@@ -10,8 +10,8 @@ import lombok.Data;
 @Data
 public class YarnApplication implements Model {
 
-  public static final String DATABASE_NAME = "yarn_application";
-  public static final String TABLE_NAME = "_doc";
+  public static final String INDEX_NAME = "yarn_application";
+  public static final String TYPE_NAME = "_doc";
 
   public enum State {
     NEW, NEW_SAVING, SUBMITTED, ACCEPTED, RUNNING, FINISHED, FAILED, KILLED

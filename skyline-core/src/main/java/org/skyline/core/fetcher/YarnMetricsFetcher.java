@@ -40,7 +40,7 @@ public class YarnMetricsFetcher {
       JSONObject jo = JSON.parseObject(resp);
       YarnMetrics metrics = jo.getObject("clusterMetrics", YarnMetrics.class);
       storage
-          .upsert(YarnMetrics.DATABASE_NAME, YarnMetrics.TABLE_NAME, Records.fromObject(metrics));
+          .upsert(YarnMetrics.INDEX_NAME, YarnMetrics.TYPE_NAME, Records.fromObject(metrics));
       log.info("Fetch metrics end");
     } catch (IOException e) {
       log.error("Fetch yarn metrics failed : {}", e);

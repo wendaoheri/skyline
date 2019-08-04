@@ -102,7 +102,7 @@ public class MRFetcher implements ApplicationInfoFetcher {
       }
       // set id & save to es
       mrData.setId(applicationId);
-      storage.upsert(ApplicationData.DATABASE_NAME, ApplicationData.TABLE_NAME,
+      storage.upsert(ApplicationData.INDEX_NAME, ApplicationData.TYPE_NAME,
           Records.fromObject(mrData));
 
       result.setApplicationData(mrData);

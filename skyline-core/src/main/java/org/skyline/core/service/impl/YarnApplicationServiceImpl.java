@@ -66,7 +66,7 @@ public class YarnApplicationServiceImpl implements YarnApplicationService {
 
   @Override
   public void saveApplicationList(List<YarnApplication> apps) {
-    saveApplicationList(YarnApplication.DATABASE_NAME, YarnApplication.TABLE_NAME, apps);
+    saveApplicationList(YarnApplication.INDEX_NAME, YarnApplication.TYPE_NAME, apps);
   }
 
   @Override
@@ -86,10 +86,10 @@ public class YarnApplicationServiceImpl implements YarnApplicationService {
 
   @Override
   public void saveApplicationListTrace(List<YarnApplication> apps) {
-    String indexName = String.format(YarnApplication.DATABASE_NAME + "_trace-%s",
+    String indexName = String.format(YarnApplication.INDEX_NAME + "_trace-%s",
         DateFormatUtils.format(new Date(), "yyyyMMdd"));
 
-    saveApplicationList(indexName, YarnApplication.TABLE_NAME, apps);
+    saveApplicationList(indexName, YarnApplication.TYPE_NAME, apps);
   }
 
 
@@ -116,7 +116,7 @@ public class YarnApplicationServiceImpl implements YarnApplicationService {
         + "      ]\n"
         + "    }\n"
         + "  }";
-    return storage.findByDSL(YarnApplication.DATABASE_NAME, YarnApplication.TABLE_NAME,
+    return storage.findByDSL(YarnApplication.INDEX_NAME, YarnApplication.TYPE_NAME,
         String.format(dsl, begin, end), YarnApplication.class);
   }
 
@@ -129,7 +129,7 @@ public class YarnApplicationServiceImpl implements YarnApplicationService {
   @Override
   public YarnApplication getApplicationById(String applicationId) {
     return storage
-        .findById(YarnApplication.DATABASE_NAME, YarnApplication.TABLE_NAME, applicationId,
+        .findById(YarnApplication.INDEX_NAME, YarnApplication.TYPE_NAME, applicationId,
             YarnApplication.class);
   }
 
@@ -161,7 +161,7 @@ public class YarnApplicationServiceImpl implements YarnApplicationService {
           apps.add(app);
         });
     try {
-      storage.bulkUpsert(YarnApplication.DATABASE_NAME, YarnApplication.TABLE_NAME,
+      storage.bulkUpsert(YarnApplication.INDEX_NAME, YarnApplication.TYPE_NAME,
           Records.fromObject(apps));
     } catch (ExecutionException e) {
       log.error(e.getMessage());
