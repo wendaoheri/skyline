@@ -16,14 +16,14 @@ import org.skyline.common.data.ScheduleInfo;
 import org.skyline.common.data.YarnApplication;
 import org.skyline.common.message.Message;
 import org.skyline.common.message.MessageType;
-import org.skyline.core.dto.SearchRequestDTO;
+import org.skyline.core.dto.SearchRequest;
 import org.skyline.core.handler.MessageSerdes;
 import org.skyline.core.queue.MessageQueue;
 import org.skyline.core.service.YarnApplicationService;
 import org.skyline.core.storage.IStorage;
 import org.skyline.plugin.schedule.ScheduleTrigger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
+import org.springframework.data.elasticsearch.core.ScrolledPage;
 import org.springframework.stereotype.Service;
 
 /**
@@ -134,8 +134,8 @@ public class YarnApplicationServiceImpl implements YarnApplicationService {
   }
 
   @Override
-  public Page<YarnApplication> search(SearchRequestDTO request) {
-
+  public ScrolledPage<YarnApplication> search(SearchRequest request) {
+    
     return null;
   }
 

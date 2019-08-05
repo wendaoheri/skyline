@@ -1,17 +1,25 @@
 package org.skyline.core.storage.es;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
+import org.assertj.core.util.Lists;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.skyline.common.data.Records;
 import org.skyline.common.data.RuntimeConfig;
 import org.skyline.common.data.YarnApplication;
 import org.skyline.core.TestBeanEntry;
+import org.skyline.core.dto.Order;
+import org.skyline.core.dto.Order.OrderType;
+import org.skyline.core.dto.ScrolledPageResult;
+import org.skyline.core.dto.SearchRequest;
+import org.skyline.core.queue.MessageQueue;
 import org.skyline.core.storage.IStorage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 
 /**
@@ -26,6 +34,9 @@ public class ESStorageTest {
 
   @Autowired
   private IStorage storage;
+
+  @MockBean
+  private MessageQueue messageQueue;
 
   @Test
   public void testUpsert() {
@@ -60,4 +71,25 @@ public class ESStorageTest {
     log.info(result.toString());
   }
 
+  @Test
+  public void testScrollSearch() {
+    SearchRequest searchRequest = new SearchRequest();
+    searchRequest.setKeyword("application_*");
+
+    searchRequest.setFields(Lists.newArrayList(
+        "application_id",
+        "application_type",
+        "elapsed_time",
+        "started_time")
+    );
+
+    searchRequest.setPage(1);
+
+    searchRequest.setOrders(Lists.newArrayList(new Order(OrderType.DESC,"elapsed_time")));
+
+    ScrolledPageResult<YarnApplication> result = storage
+        .scrollSearch(YarnApplication.INDEX_NAME, YarnApplication.TYPE_NAME, searchRequest,
+            YarnApplication.class);
+    log.info("Search result : {}", JSON.toJSONString(result, true));
+  }
 }

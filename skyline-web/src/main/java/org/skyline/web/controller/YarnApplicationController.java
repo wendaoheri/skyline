@@ -3,7 +3,7 @@ package org.skyline.web.controller;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.skyline.common.data.YarnApplication;
-import org.skyline.core.dto.SearchRequestDTO;
+import org.skyline.core.dto.SearchRequest;
 import org.skyline.core.service.YarnApplicationService;
 import org.skyline.web.api.PageResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +32,7 @@ public class YarnApplicationController {
   }
 
   @PostMapping(path = "search", produces = MediaType.APPLICATION_JSON_UTF8_VALUE, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
-  public PageResponse search(@RequestBody SearchRequestDTO request) {
+  public PageResponse search(@RequestBody SearchRequest request) {
     log.info("request:{}", request);
     return PageResponse.fromPage(yarnApplicationService.search(request));
   }

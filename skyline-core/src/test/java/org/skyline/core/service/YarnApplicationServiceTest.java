@@ -14,7 +14,7 @@ import org.skyline.core.dto.Filter;
 import org.skyline.core.dto.Filter.FilterType;
 import org.skyline.core.dto.Order;
 import org.skyline.core.dto.Order.OrderType;
-import org.skyline.core.dto.SearchRequestDTO;
+import org.skyline.core.dto.SearchRequest;
 import org.skyline.core.http.HttpCallService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -44,7 +44,7 @@ public class YarnApplicationServiceTest {
 
   @Test
   public void testSearch() {
-    SearchRequestDTO request = new SearchRequestDTO();
+    SearchRequest request = new SearchRequest();
     request.setKeyword("hive");
     List<Filter> filters = Lists.newArrayList();
     filters.add(new Filter(FilterType.EQ, "queue", "root.dsp"));

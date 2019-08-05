@@ -4,9 +4,9 @@ import java.util.List;
 import java.util.Map;
 import org.skyline.common.data.ScheduleInfo;
 import org.skyline.common.data.YarnApplication;
-import org.skyline.core.dto.SearchRequestDTO;
+import org.skyline.core.dto.SearchRequest;
 import org.skyline.plugin.schedule.ScheduleTrigger;
-import org.springframework.data.domain.Page;
+import org.springframework.data.elasticsearch.core.ScrolledPage;
 
 /**
  * @author Sean Liu
@@ -32,7 +32,7 @@ public interface YarnApplicationService {
 
   YarnApplication getApplicationById(String applicationId);
 
-  Page<YarnApplication> search(SearchRequestDTO request);
+  ScrolledPage<YarnApplication> search(SearchRequest request);
 
   /**
    * @param appSchMap appId -> schedule_id

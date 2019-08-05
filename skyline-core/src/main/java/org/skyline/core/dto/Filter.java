@@ -14,7 +14,7 @@ public class Filter {
 
   private FilterType filterType;
   private String name;
-  private String value;
+  private Object value;
 
   public enum FilterType {
     EQ,
