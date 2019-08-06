@@ -14,6 +14,7 @@ import org.skyline.core.dto.Filter;
 import org.skyline.core.dto.Filter.FilterType;
 import org.skyline.core.dto.Order;
 import org.skyline.core.dto.Order.OrderType;
+import org.skyline.core.dto.ScrolledPageResult;
 import org.skyline.core.dto.SearchRequest;
 import org.skyline.core.http.HttpCallService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,10 +60,10 @@ public class YarnApplicationServiceTest {
 
     String json = JSON.toJSONString(request);
     log.info(json);
-    Page<YarnApplication> page = yarnApplicationService.search(request);
-    long totalElements = page.getTotalElements();
-    int totalPages = page.getTotalPages();
-    List<YarnApplication> apps = page.getContent();
+    ScrolledPageResult<YarnApplication> result = yarnApplicationService.search(request);
+    long totalElements = result.getTotal();
+    int totalPages = result.getTotalPages();
+    List<YarnApplication> apps = result.getContent();
     log.info("total elements : {}, total pages : {}", totalElements, totalPages);
     log.info(JSON.toJSONString(apps));
 

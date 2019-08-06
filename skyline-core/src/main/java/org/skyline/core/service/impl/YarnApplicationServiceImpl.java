@@ -16,6 +16,7 @@ import org.skyline.common.data.ScheduleInfo;
 import org.skyline.common.data.YarnApplication;
 import org.skyline.common.message.Message;
 import org.skyline.common.message.MessageType;
+import org.skyline.core.dto.ScrolledPageResult;
 import org.skyline.core.dto.SearchRequest;
 import org.skyline.core.handler.MessageSerdes;
 import org.skyline.core.queue.MessageQueue;
@@ -134,9 +135,9 @@ public class YarnApplicationServiceImpl implements YarnApplicationService {
   }
 
   @Override
-  public ScrolledPage<YarnApplication> search(SearchRequest request) {
+  public ScrolledPageResult<YarnApplication> search(SearchRequest request) {
     
-    return null;
+    return storage.scrollSearch(YarnApplication.INDEX_NAME,YarnApplication.TYPE_NAME,request,YarnApplication.class);
   }
 
 

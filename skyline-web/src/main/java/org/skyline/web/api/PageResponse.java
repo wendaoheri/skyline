@@ -1,7 +1,9 @@
 package org.skyline.web.api;
 
+import com.alibaba.fastjson.JSON;
 import java.util.List;
 import lombok.Data;
+import org.skyline.core.dto.ScrolledPageResult;
 import org.springframework.data.domain.Page;
 
 /**
@@ -9,9 +11,9 @@ import org.springframework.data.domain.Page;
  * @date 2019-03-27
  */
 @Data
-public class PageResponse {
+public class PageResponse<T> {
 
-  List<Object> data;
+  List<T> data;
 
   private int totalPages;
   private long totalElements;
@@ -20,16 +22,16 @@ public class PageResponse {
   private boolean last;
   private boolean empty;
 
-  public static PageResponse fromPage(Page page) {
-    PageResponse pageResponse = new PageResponse();
-    pageResponse.setData(page.getContent());
-    pageResponse.setTotalPages(page.getTotalPages());
-    pageResponse.setTotalElements(page.getTotalElements());
-    pageResponse.setSize(page.getSize());
-    pageResponse.setFirst(page.isFirst());
-    pageResponse.setLast(page.isLast());
-    pageResponse.setEmpty(page.isEmpty());
-    return pageResponse;
+  public static <T> String fromResult(ScrolledPageResult<T> result) {
+    PageResponse<T> pageResponse = new PageResponse();
+    pageResponse.setData(result.getContent());
+    pageResponse.setTotalPages(result.getTotalPages());
+    pageResponse.setTotalElements(result.getTotal());
+    pageResponse.setSize(result.getSize());
+    pageResponse.setFirst(result.isFirst());
+    pageResponse.setLast(result.isLast());
+    pageResponse.setEmpty(result.isEmpty());
+    return JSON.toJSONString(pageResponse);
   }
 
 }
