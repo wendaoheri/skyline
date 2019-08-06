@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Advisors</title>
+
+  <!-- Custom fonts for this template -->
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+
+  <!-- Custom styles for this template -->
+  <link href="css/sb-admin-2.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this page -->
+  <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+
+</head>
+
+<body id="page-top">
+
+<!-- Page Wrapper -->
+<div id="wrapper">
+
+  <!-- Sidebar -->
+  <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
+      id="accordionSidebar"></ul>
+  <!-- End of Sidebar -->
+
+  <!-- Content Wrapper -->
+  <div id="content-wrapper" class="d-flex flex-column">
+
+    <!-- Main Content -->
+    <div id="content">
+
+      <!-- Topbar -->
+      <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow"
+           id="topbar"></nav>
+      <!-- End of Topbar -->
+
+      <!-- Begin Page Content -->
+      <div class="container-fluid">
+
+        <div class="btn-group" role="group" aria-label="Basic example">
+          <button type="button" class="btn btn-dark">MapReduce</button>
+          <button type="button" class="btn btn-primary">TEZ</button>
+          <button type="button" class="btn btn-primary">SPARK</button>
+        </div>
+        <button type="Button" class="btn btn-success float-right">Create</button>
+
+        <div class="my-2"></div>
+
+        <div class="card shadow mb-4">
+          <!-- Card Header - Accordion -->
+          <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+            <a href="#advisorDetail" class="" data-toggle="collapse" role="button">
+              <h6 class="m-0 font-weight-bold text-primary">Mapper Task Elapsed Time Skew</h6>
+            </a>
+            <div class="dropdown no-arrow">
+              <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+              </a>
+              <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                <div class="dropdown-header">Actions:</div>
+                <a class="dropdown-item" href="#">Edit</a>
+                <a class="dropdown-item" href="#">Delete</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Something else here</a>
+              </div>
+            </div>
+          </div>
+          <!-- Card Content - Collapse -->
+          <div class="collapse" id="advisorDetail">
+            <div class="card-body">
+              <form>
+                <div class="form-group row">
+                  <label for="advisorName" class="col-sm-2 col-form-label">Name</label>
+                  <div class="col-md-4 mb-3">
+                    <input type="text" class="form-control" id="advisorName" readonly/>
+                  </div>
+                  <label for="advisorOrder" class="col-sm-2 col-form-label">Order</label>
+                  <div class="col-md-4 mb-3">
+                    <input type="number" class="form-control" id="advisorOrder" readonly/>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label for="measureExp" class="col-sm-2 col-form-label">MeasureExp</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="measureExp" aria-describedby="measureExpHelp" readonly/>
+                    <small id="measureExpHelp" class="form-text text-muted">Advisor度量值计算表达式</small>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label for="severityLimits" class="col-sm-2 col-form-label">Severity Limits</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="severityLimits" aria-describedby="severityLimitsHelp" placeholder="1,3,5,7" readonly/>
+                    <small id="severityLimitsHelp" class="form-text text-muted">Advisor度量值分级，逗号分隔的四个数组</small>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label for="weightExp" class="col-sm-2 col-form-label">WeightExp</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="weightExp" aria-describedby="weightExpHelp" readonly/>
+                    <small id="weightExpHelp" class="form-text text-muted">Advisor权重计算表达式</small>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label for="scoreExp" class="col-sm-2 col-form-label">ScoreExp</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="scoreExp" aria-describedby="scoreExpHelp" readonly/>
+                    <small id="scoreExpHelp" class="form-text text-muted">Advisor分数计算表达式</small>
+                  </div>
+                </div>
+
+                <fieldset class="form-group">
+                  <div class="row">
+                    <label for="advisorVariables" class="col-sm-2 col-form-label">Variables</label>
+                    <div class="form-row col-sm-10" id="advisorVariables">
+                      <div class="col col-md-3">
+                        <input type="text" class="form-control" placeholder="name" readonly>
+                      </div>
+                      <div class="col">
+                        <input type="text" class="form-control" placeholder="variable expression" readonly>
+                      </div>
+                    </div>
+                  </div>
+                </fieldset>
+
+                <div class="form-group row">
+                  <label for="advisorDescribe" class="col-sm-2 col-form-label">Describe</label>
+                  <div class="col-sm-10">
+                    <textarea type="text" class="form-control" id="advisorDescribe" aria-describedby="advisorDescribeHelp" readonly></textarea>
+                    <small id="advisorDescribeHelp" class="form-text text-muted">Advisor的描述</small>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label for="advisorDisplay" class="col-sm-2 col-form-label">Display Template</label>
+                  <div class="col-sm-10">
+                    <textarea type="text" class="form-control" id="advisorDisplay" aria-describedby="advisorDisplayHelp" readonly></textarea>
+                    <small id="advisorDisplayHelp" class="form-text text-muted">Advisor显式结果时的模板</small>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label for="advisorDisplayDetail" class="col-sm-2 col-form-label">Display Detail Template</label>
+                  <div class="col-sm-10">
+                    <textarea type="text" class="form-control" id="advisorDisplayDetail" aria-describedby="advisorDisplayDetailHelp" readonly></textarea>
+                    <small id="advisorDisplayDetailHelp" class="form-text text-muted">Advisor显式结果详细信息时的模板</small>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /.container-fluid -->
+
+    </div>
+    <!-- End of Main Content -->
+
+  </div>
+  <!-- End of Content Wrapper -->
+
+</div>
+<!-- End of Page Wrapper -->
+
+<!-- Bootstrap core JavaScript-->
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Core plugin JavaScript-->
+<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+<!-- Custom scripts for all pages-->
+<script src="js/skyline/base.js"></script>
+<script src="js/sb-admin-2.min.js"></script>
+
+<!-- Page level plugins -->
+<script src="vendor/datatables/jquery.dataTables.min.js"></script>
+<script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+<!-- Page level custom scripts -->
+
+
+</body>
+
+</html>
