@@ -28,7 +28,8 @@ public interface IStorage {
   <T> List<T> findByDSL(String indexName, String typeName, String dsl, Class<T> clazz)
       throws IndexNotFoundException;
 
-  <T> List<T> findByDSL(String indexName, String typeName, String dsl, Class<T> clazz, String... fields)
+  <T> List<T> findByDSL(String indexName, String typeName, String dsl, Class<T> clazz,
+      String... fields)
       throws IndexNotFoundException;
 
   <T> ScrolledPageResult<T> scrollSearch(String indexName, String typeName,
@@ -38,4 +39,19 @@ public interface IStorage {
   <T> List<T> findByIds(String indexName, String typeName, Set<String> ids, Class<T> clazz,
       String... fields) throws IndexNotFoundException;
 
+  /**
+   * Max size is 10000
+   *
+   * @param indexName
+   * @param typeName
+   * @param clazz
+   * @param fields
+   * @param <T>
+   * @return
+   * @throws IndexNotFoundException
+   */
+  <T> List<T> findAll(String indexName, String typeName, Class<T> clazz, boolean fetchSource,String... fields)
+      throws IndexNotFoundException;
+
+  boolean indexExists(String indexName);
 }

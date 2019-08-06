@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.assertj.core.util.Lists;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.skyline.common.data.AdvisorConfig;
 import org.skyline.common.data.Records;
 import org.skyline.common.data.RuntimeConfig;
 import org.skyline.common.data.YarnApplication;
@@ -85,11 +86,19 @@ public class ESStorageTest {
 
     searchRequest.setPage(1);
 
-    searchRequest.setOrders(Lists.newArrayList(new Order(OrderType.DESC,"elapsed_time")));
+    searchRequest.setOrders(Lists.newArrayList(new Order(OrderType.DESC, "elapsed_time")));
 
     ScrolledPageResult<YarnApplication> result = storage
         .scrollSearch(YarnApplication.INDEX_NAME, YarnApplication.TYPE_NAME, searchRequest,
             YarnApplication.class);
     log.info("Search result : {}", JSON.toJSONString(result, true));
   }
+
+  @Test
+  public void testFindAll() {
+    List<AdvisorConfig> configs = storage
+        .findAll(AdvisorConfig.INDEX_NAME, AdvisorConfig.TYPE_NAME, AdvisorConfig.class, false,"display");
+    log.info("Advisor configs : {}", JSON.toJSONString(configs, true));
+  }
+
 }

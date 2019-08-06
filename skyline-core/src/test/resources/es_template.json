@@ -8,7 +8,8 @@
       "nodes",
       "yarn_metrics",
       "application_data",
-      "advisor_result"
+      "advisor_result",
+      "advisor_config"
     ],
     "settings": {
       "index": {

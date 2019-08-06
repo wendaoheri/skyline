@@ -50,6 +50,7 @@ import org.springframework.util.CollectionUtils;
 @Service
 public class ESStorage implements IStorage {
 
+  public static final String NULL_VALUE = "null";
   public static final String KEY_ID = "_id";
   public static final String KEY_ROUTE = "_route";
 
@@ -231,6 +232,30 @@ public class ESStorage implements IStorage {
   }
 
   @Override
+  public <T> List<T> findAll(String indexName, String typeName, Class<T> clazz, boolean fetchSource,
+      String... fields)
+      throws IndexNotFoundException {
+    SearchRequestBuilder builder = client.prepareSearch(indexName)
+        .setTypes(typeName)
+        .setFetchSource(fetchSource)
+        .setQuery(QueryBuilders.matchAllQuery());
+
+    if (fields != null) {
+      for (String field : fields) {
+        builder.addDocValueField(field);
+      }
+    }
+
+    SearchResponse response = builder.get();
+    if (fetchSource) {
+      return parseResponseFromSource(response, clazz);
+    } else {
+      return parseResponse(response, clazz);
+    }
+
+  }
+
+  @Override
   public <T> ScrolledPageResult<T> scrollSearch(String indexName, String typeName,
       SearchRequest searchRequest, Class<T> clazz) throws IndexNotFoundException {
 
@@ -280,13 +305,13 @@ public class ESStorage implements IStorage {
       for (Filter filter : searchRequest.getFilters()) {
         switch (filter.getFilterType()) {
           case EQ:
-            qb = qb.must(QueryBuilders.termQuery(filter.getName(), filter.getValue()));
+            qb.must(QueryBuilders.termQuery(filter.getName(), filter.getValue()));
             break;
           case GT:
-            qb = qb.must(QueryBuilders.rangeQuery(filter.getName()).from(filter.getValue()));
+            qb.must(QueryBuilders.rangeQuery(filter.getName()).from(filter.getValue()));
             break;
           case LT:
-            qb = qb.must(QueryBuilders.rangeQuery(filter.getName()).to(filter.getValue()));
+            qb.must(QueryBuilders.rangeQuery(filter.getName()).to(filter.getValue()));
             break;
           default:
             break;
@@ -317,6 +342,14 @@ public class ESStorage implements IStorage {
     return result;
   }
 
+  private <T> List<T> parseResponseFromSource(SearchResponse response, Class<T> clazz) {
+    List<T> result = Lists.newArrayList();
+    for (SearchHit hit : response.getHits().getHits()) {
+      result.add(JSON.parseObject(hit.getSourceAsString(), clazz));
+    }
+    return result;
+  }
+
   private SearchRequestBuilder fieldSearchBuilder(String indexName, String typeName,
       QueryBuilder query, String... fields) {
     SearchRequestBuilder builder = client.prepareSearch(indexName)
@@ -330,7 +363,8 @@ public class ESStorage implements IStorage {
     return builder;
   }
 
-  private boolean indexExists(String indexName) {
+  @Override
+  public boolean indexExists(String indexName) {
     IndicesExistsRequestBuilder builder = client.admin().indices()
         .prepareExists(indexName);
     IndicesExistsResponse resp = builder.get();

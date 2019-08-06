@@ -7,7 +7,8 @@
       "schedule_info*",
       "nodes",
       "yarn_metrics",
-      "application_data"
+      "application_data",
+      "advisor_config"
     ],
     "settings": {
       "index": {

@@ -1,26 +1,22 @@
 [
   {
-    "type": "MAPREDUCE",
-    "advisors": [
-      {
-        "name": "map input skew",
-        "describe": "",
-        "display": "MAP Task输入文件大小倾斜度:${#DISPLAY.display(#summary.cv)} 总数:${#summary.count} 平均大小:${#DISPLAY.display(#summary.mean)}",
-        "displayDetail": "MAP Task输入文件大小：${taskDataList.?[type.name()=='MAP'].![taskCounterData.getCounterValue('HDFS_BYTES_READ')]}",
-        "measureExp": "#summary.cv",
-        "weightExp": "0.5",
-        "scoreExp": "#measure * #weight",
-        "variables": {
-          "summary": "#STAT.summary(taskDataList.?[type.name()=='MAP'].![taskCounterData.getCounterValue('HDFS_BYTES_READ')])"
-        },
-        "limits": [
-          0.2,
-          0.5,
-          1,
-          3
-        ],
-        "order": 1
-      }
-    ]
+    "name": "map input skew",
+    "describe": "",
+    "display": "MAP Task输入文件大小倾斜度:${#DISPLAY.display(#summary.cv)} 总数:${#summary.count} 平均大小:${#DISPLAY.display(#summary.mean)}",
+    "display_detail": "MAP Task输入文件大小：${taskDataList.?[type.name()=='MAP'].![taskCounterData.getCounterValue('HDFS_BYTES_READ')]}",
+    "measure_exp": "#summary.cv",
+    "weight_exp": "0.5",
+    "score_exp": "#measure * #weight",
+    "variables": {
+      "summary": "#STAT.summary(taskDataList.?[type.name()=='MAP'].![taskCounterData.getCounterValue('HDFS_BYTES_READ')])"
+    },
+    "limits": [
+      0.2,
+      0.5,
+      1,
+      3
+    ],
+    "order": 1,
+    "application_type": "MAPREDUCE"
   }
 ]
