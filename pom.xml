@@ -8,6 +8,7 @@
     <module>skyline-web</module>
     <module>skyline-common</module>
     <module>skyline-plugin</module>
+    <module>assembly</module>
   </modules>
 
   <parent>
@@ -43,6 +44,11 @@
       <dependency>
         <groupId>org.skyline</groupId>
         <artifactId>skyline-common</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.skyline</groupId>
+        <artifactId>skyline-web</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>

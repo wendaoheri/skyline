@@ -4,7 +4,6 @@ import com.alibaba.fastjson.JSON;
 import java.util.List;
 import lombok.Data;
 import org.skyline.core.dto.ScrolledPageResult;
-import org.springframework.data.domain.Page;
 
 /**
  * @author Sean Liu
