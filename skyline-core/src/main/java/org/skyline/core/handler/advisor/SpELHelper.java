@@ -3,9 +3,11 @@ package org.skyline.core.handler.advisor;
 import com.google.common.collect.Maps;
 import java.util.Map;
 import java.util.stream.Collectors;
+import javax.annotation.Nullable;
 import lombok.extern.slf4j.Slf4j;
 import org.skyline.common.data.ApplicationData;
 import org.skyline.core.utils.DisplayUtils;
+import org.skyline.core.utils.MemoryUtils;
 import org.skyline.core.utils.StatUtils;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.expression.Expression;
@@ -20,7 +22,6 @@ import org.springframework.util.CollectionUtils;
  * @author Sean Liu
  * @date 2019-08-01
  */
-@SuppressWarnings("ALL")
 @Configuration
 @Component
 @Slf4j
@@ -40,13 +41,14 @@ public class SpELHelper {
 
   }
 
-  public String evalTmplate(String el, StandardEvaluationContext context) {
+  public String evalTemplate(String el, StandardEvaluationContext context) {
     Object result = this.eval(el, context, TemplateParserContext.INSTANCE);
 
     return (String) result;
   }
 
-  private Object eval(String el, StandardEvaluationContext context, ParserContext parserContext) {
+  public Object eval(String el, StandardEvaluationContext context,
+      @Nullable ParserContext parserContext) {
 
     Expression exp = parser.parseExpression(el, parserContext);
 
@@ -61,6 +63,8 @@ public class SpELHelper {
     StandardEvaluationContext context = new StandardEvaluationContext(applicationData);
     context.setVariable("STAT", StatUtils.class);
     context.setVariable("DISPLAY", DisplayUtils.class);
+    context.setVariable("MEMORY", MemoryUtils.class);
+
     return context;
   }
 
@@ -72,7 +76,7 @@ public class SpELHelper {
   public Map<String, Object> addVariables(final StandardEvaluationContext context,
       final Map<String, Object> variables, boolean evalVariable) {
     if (evalVariable) {
-      return addVariables(context, variables);
+      return addVariables(context, variables, variables);
     } else {
       context.setVariables(variables);
     }
@@ -83,18 +87,19 @@ public class SpELHelper {
    * Evaluate variable recursive
    */
   private Map<String, Object> addVariables(final StandardEvaluationContext context,
-      final Map<String, Object> variables) {
+      final Map<String, Object> variables, final Map<String, Object> allVariables) {
     Map<String, Object> result = Maps.newHashMap();
     variables.forEach((k, v) -> {
       if (v instanceof String) {
         String expStr = (String) v;
         if (context.lookupVariable(k) == null) { // prevent eval multi times
-          Map<String, Object> references = findReferences(expStr, variables);
+          Map<String, Object> references = findReferences(expStr, allVariables);
           if (!CollectionUtils.isEmpty(references)) {
-            result.putAll(addVariables(context, references));
+            result.putAll(addVariables(context, references, allVariables));
           }
           Expression exp = parser.parseExpression(expStr);
           Object variable = exp.getValue(context);
+          log.info("Set variable : {} {}", k, variable);
           context.setVariable(k, variable);
           result.put(k, variable);
         }
@@ -110,7 +115,7 @@ public class SpELHelper {
   }
 
   private Map<String, Object> findReferences(String exp, Map<String, Object> variables) {
-    return variables.entrySet().parallelStream().filter(x -> exp.contains("#" + x.getKey()))
+    return variables.entrySet().stream().filter(x -> exp.contains("#" + x.getKey()))
         .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
   }
 

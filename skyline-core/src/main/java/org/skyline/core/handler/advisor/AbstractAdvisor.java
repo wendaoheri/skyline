@@ -47,9 +47,11 @@ public abstract class AbstractAdvisor implements ApplicationTuningAdvisor {
   @Autowired
   private SpELHelper spELHelper;
 
+  private boolean readFromFileOnly = true;
+
   @PostConstruct
   public void initConfig() {
-    if (storage.indexExists(AdvisorConfig.INDEX_NAME)) {
+    if (storage.indexExists(AdvisorConfig.INDEX_NAME) && !readFromFileOnly) {
       List<AdvisorConfig> configs = storage
           .findAll(AdvisorConfig.INDEX_NAME, AdvisorConfig.TYPE_NAME, AdvisorConfig.class, true);
       if (CollectionUtils.isEmpty(configs)) {
@@ -60,7 +62,6 @@ public abstract class AbstractAdvisor implements ApplicationTuningAdvisor {
     } else {
       initConfigFromFile();
     }
-
   }
 
   private void initConfigMap(Collection<AdvisorConfig> configs) {
@@ -181,11 +182,11 @@ public abstract class AbstractAdvisor implements ApplicationTuningAdvisor {
       spELHelper.addVariables(context, variables, false);
 
       String displayExp = advisorConfig.getDisplay();
-      String message = spELHelper.evalTmplate(displayExp, context);
+      String message = spELHelper.evalTemplate(displayExp, context);
       displayMessage.setContent(message);
 
       String displayDetailExp = advisorConfig.getDisplayDetail();
-      String detailMessage = spELHelper.evalTmplate(displayDetailExp, context);
+      String detailMessage = spELHelper.evalTemplate(displayDetailExp, context);
       displayMessage.setDetail(detailMessage);
 
     }

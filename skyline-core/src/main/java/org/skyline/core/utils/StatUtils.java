@@ -23,6 +23,8 @@ public class StatUtils {
      * See : https://en.wikipedia.org/wiki/Coefficient_of_variation
      */
     private double cv;
+    private double max;
+    private double min;
   }
 
   public static StatSummary summary(long[] values) {
@@ -47,8 +49,17 @@ public class StatUtils {
     StatSummary summary = new StatSummary();
     summary.setCount(values.length);
     summary.setMean(stats.getMean());
-    summary.setStd(stats.getStandardDeviation());
-    summary.setCv(summary.std / summary.mean);
+    summary.setMax(stats.getMax());
+    summary.setMin(stats.getMin());
+
+    //noinspection AlibabaUndefineMagicConstant
+    if (summary.count < 2) {
+      summary.setStd(0);
+      summary.setCv(0);
+    } else {
+      summary.setStd(stats.getStandardDeviation());
+      summary.setCv(summary.std / summary.mean);
+    }
 
     return summary;
   }

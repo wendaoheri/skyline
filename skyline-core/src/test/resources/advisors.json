@@ -1,14 +1,16 @@
 [
   {
     "name": "map input skew",
-    "describe": "",
+    "describe": "MapReduce 任务Map阶段输入的文件大小倾斜程度，数值越大说明数据分布越不均匀",
     "display": "MAP Task输入文件大小倾斜度:${#DISPLAY.display(#summary.cv)} 总数:${#summary.count} 平均大小:${#DISPLAY.display(#summary.mean)}",
-    "display_detail": "MAP Task输入文件大小：${taskDataList.?[type.name()=='MAP'].![taskCounterData.getCounterValue('HDFS_BYTES_READ')]}",
+    "display_detail": "MAP Task输入文件大小：${#taskInputDetail}",
     "measure_exp": "#summary.cv",
     "weight_exp": "0.5",
     "score_exp": "#measure * #weight",
     "variables": {
-      "summary": "#STAT.summary(taskDataList.?[type.name()=='MAP'].![taskCounterData.getCounterValue('HDFS_BYTES_READ')])"
+      "fsCounterGroup": "'org.apache.hadoop.mapreduce.FileSystemCounter'",
+      "taskInputDetail" : "taskDataList.?[type.name()=='MAP'].![taskCounterData.getCounterValue(#fsCounterGroup,'HDFS_BYTES_READ')]",
+      "summary": "#STAT.summary(#taskInputDetail)"
     },
     "limits": [
       0.2,
@@ -18,5 +20,51 @@
     ],
     "order": 1,
     "application_type": "MAPREDUCE"
+  },
+  {
+    "name": "reduce input skew",
+    "describe": "MapReduce 任务Reduce阶段输入的文件大小倾斜程度，数值越大说明数据分布越不均匀",
+    "display": "REDUCE Task输入文件大小倾斜度:${#DISPLAY.display(#summary.cv)} 总数:${#summary.count} 平均大小:${#DISPLAY.display(#summary.mean)}",
+    "display_detail": "REDUCE Task输入文件大小：${#taskInputDetail}",
+    "measure_exp": "#summary.cv",
+    "weight_exp": "0.5",
+    "score_exp": "#measure * #weight",
+    "variables": {
+      "taskCounterGroup": "'org.apache.hadoop.mapreduce.TaskCounter'",
+      "taskInputDetail" : "taskDataList.?[type.name()=='REDUCE'].![taskCounterData.getCounterValue(#taskCounterGroup,'REDUCE_SHUFFLE_BYTES')]",
+      "summary": "#STAT.summary(#taskInputDetail)"
+    },
+    "limits": [
+      0.2,
+      0.5,
+      1,
+      3
+    ],
+    "order": 2,
+    "application_type": "MAPREDUCE"
+  },
+  {
+    "name": "map memory check",
+    "describe": "MAP Task申请的内存和实际使用的是否匹配，如果申请的内存远超实际使用的内存则会造成浪费，而这一点在YARN的后台界面上并不容易发现",
+    "display": "REDUCE Task输入文件大小倾斜度:${#DISPLAY.display(#summary.cv)} 总数:${#summary.count} 平均大小:${#DISPLAY.display(#summary.mean)}",
+    "display_detail": "REDUCE Task输入文件大小：${#taskInputDetail}",
+    "measure_exp": "#memorySummary.mean / #memoryApplied",
+    "weight_exp": "0.5",
+    "score_exp": "#measure * #weight",
+    "variables": {
+      "taskCounterGroup": "'org.apache.hadoop.mapreduce.TaskCounter'",
+      "memoryApplied" : "#MEMORY.mbToBytes(T(java.lang.Long).parseLong(conf.getProperty('mapreduce.map.memory.mb')))",
+      "physicalMemoryUsed": "taskDataList.?[type.name()=='MAP'].![taskCounterData.getCounterValue(#taskCounterGroup,'PHYSICAL_MEMORY_BYTES')]",
+      "memorySummary": "#STAT.summary(#physicalMemoryUsed)"
+    },
+    "limits": [
+      0.2,
+      0.5,
+      1,
+      3
+    ],
+    "order": 3,
+    "application_type": "MAPREDUCE"
   }
+
 ]

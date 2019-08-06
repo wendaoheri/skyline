@@ -7,7 +7,8 @@
   "conf": {
     "dfs.datanode.data.dir": "/home/hadoop/hdfs/data",
     "hadoop.http.filter.initializers": "org.apache.hadoop.yarn.server.webproxy.amfilter.AmFilterInitializer",
-    "mapreduce.cluster.temp.dir": "/home/hadoop/tmp"
+    "mapreduce.cluster.temp.dir": "/home/hadoop/tmp",
+    "mapreduce.map.memory.mb": "2048"
   },
   "jobAttemptDataList": [
     {
@@ -101,7 +102,8 @@
           },
           "org.apache.hadoop.mapreduce.TaskCounter": {
             "COMBINE_OUTPUT_RECORDS": 0,
-            "COMBINE_INPUT_RECORDS": 0
+            "COMBINE_INPUT_RECORDS": 0,
+            "PHYSICAL_MEMORY_BYTES": 1232
           },
           "Shuffle Errors": {
             "CONNECTION": 0,
@@ -145,7 +147,8 @@
           },
           "org.apache.hadoop.mapreduce.TaskCounter": {
             "COMBINE_OUTPUT_RECORDS": 0,
-            "COMBINE_INPUT_RECORDS": 0
+            "COMBINE_INPUT_RECORDS": 0,
+            "PHYSICAL_MEMORY_BYTES": 1232
           },
           "Shuffle Errors": {
             "CONNECTION": 0,
@@ -188,7 +191,9 @@
           },
           "org.apache.hadoop.mapreduce.TaskCounter": {
             "COMBINE_OUTPUT_RECORDS": 0,
-            "COMBINE_INPUT_RECORDS": 0
+            "COMBINE_INPUT_RECORDS": 0,
+            "REDUCE_SHUFFLE_BYTES": 1024,
+            "PHYSICAL_MEMORY_BYTES": 1232
           },
           "Shuffle Errors": {
             "CONNECTION": 0,

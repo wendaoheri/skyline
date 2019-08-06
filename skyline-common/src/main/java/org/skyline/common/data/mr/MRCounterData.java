@@ -3,13 +3,14 @@ package org.skyline.common.data.mr;
 import com.google.common.collect.Maps;
 import java.util.Map;
 import lombok.Data;
-import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * @author Sean Liu
  * @date 2019-07-23
  */
 @Data
+@Slf4j
 public class MRCounterData {
 
   private Map<String, Map<String, Long>> counterData = Maps.newHashMap();
@@ -23,60 +24,13 @@ public class MRCounterData {
     counterGroup.put(counterName, value);
   }
 
-  public long getCounterValue(CounterName counterName) {
-    String groupName = counterName.getCounterGroup().getGroupName();
-    String name = counterName.getCounterName();
+  public long getCounterValue(String groupName, String counterName) {
     try {
-      return counterData.get(groupName).get(name);
+      return counterData.get(groupName).get(counterName);
     } catch (NullPointerException e) {
-      return 0L;
+      log.warn("No counter for [group | name] [{} | {}]", groupName, counterName);
+      return 0;
     }
   }
 
-  public long getCounterValue(String counterName) {
-    CounterName cn = CounterName.valueOf(counterName);
-    return getCounterValue(cn);
-  }
-
-  public enum CounterGroup {
-    /**
-     * org.apache.hadoop.mapreduce.FileSystemCounter
-     */
-    FILE_SYSTEM_COUNTER("org.apache.hadoop.mapreduce.FileSystemCounter"),
-    /**
-     * org.apache.hadoop.mapreduce.TaskCounter
-     */
-    TASK_COUNTER("org.apache.hadoop.mapreduce.TaskCounter");
-
-    @Getter
-    private String groupName;
-
-    CounterGroup(String groupName) {
-      this.groupName = groupName;
-    }
-  }
-
-  public enum CounterName {
-    /**
-     * HDFS_BYTES_READ
-     */
-    HDFS_BYTES_READ(CounterGroup.FILE_SYSTEM_COUNTER, "HDFS_BYTES_READ"),
-
-    /**
-     * REDUCE_SHUFFLE_BYTES
-     */
-    REDUCE_SHUFFLE_BYTES(CounterGroup.TASK_COUNTER, "REDUCE_SHUFFLE_BYTES");
-
-
-    @Getter
-    private CounterGroup counterGroup;
-
-    @Getter
-    private String counterName;
-
-    CounterName(CounterGroup counterGroup, String counterName) {
-      this.counterGroup = counterGroup;
-      this.counterName = counterName;
-    }
-  }
 }
