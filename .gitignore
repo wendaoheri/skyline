@@ -30,5 +30,3 @@ dependency-reduced-pom.xml
 *.idea
 
 metastore_db/
-
-skyline-plugin/skyline-dsp-schedule-plugin
