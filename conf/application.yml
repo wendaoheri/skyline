@@ -44,6 +44,9 @@ skyline:
   fetcher:
     interval_second: 60                #  fetch by started & finished time interval
     unfinished_interval_second: 1      #  unfinished application state fetch interval
+  handler:
+    fetcher:
+      save_data: false                 #  whether save application data to es, application data may be huge
   plugin:
     schedule:
       class: org.skyline.plugin.schedule.MockSchedulePlugin

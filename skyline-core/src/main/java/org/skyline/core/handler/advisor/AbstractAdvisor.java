@@ -1,16 +1,9 @@
 package org.skyline.core.handler.advisor;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
-import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import java.io.IOException;
-import java.util.Collection;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ExecutionException;
-import javax.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import org.skyline.common.data.AdviseDetail;
 import org.skyline.common.data.AdvisorConfig;
@@ -21,6 +14,7 @@ import org.skyline.common.data.Records;
 import org.skyline.common.data.Severity;
 import org.skyline.common.data.YarnApplication.ApplicationType;
 import org.skyline.core.handler.ApplicationTuningAdvisor;
+import org.skyline.core.service.AdvisorService;
 import org.skyline.core.storage.IStorage;
 import org.skyline.core.utils.SeverityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,8 +32,6 @@ public abstract class AbstractAdvisor implements ApplicationTuningAdvisor {
 
   private static final String ADVISOR_CONFIG = "advisors.json";
 
-  private static Map<ApplicationType, List<AdvisorConfig>> advisorMap = Maps.newHashMap();
-
   @Autowired
   private IStorage storage;
 
@@ -47,62 +39,10 @@ public abstract class AbstractAdvisor implements ApplicationTuningAdvisor {
   @Autowired
   private SpELHelper spELHelper;
 
+  @Autowired
+  private AdvisorService advisorService;
+
   private boolean readFromFileOnly = true;
-
-  @PostConstruct
-  public void initConfig() {
-    if (storage.indexExists(AdvisorConfig.INDEX_NAME) && !readFromFileOnly) {
-      List<AdvisorConfig> configs = storage
-          .findAll(AdvisorConfig.INDEX_NAME, AdvisorConfig.TYPE_NAME, AdvisorConfig.class, true);
-      if (CollectionUtils.isEmpty(configs)) {
-        initConfigFromFile();
-      } else {
-        initConfigMap(configs);
-      }
-    } else {
-      initConfigFromFile();
-    }
-  }
-
-  private void initConfigMap(Collection<AdvisorConfig> configs) {
-    for (AdvisorConfig ac : configs) {
-      ApplicationType applicationType = ac.getApplicationType();
-
-      List<AdvisorConfig> typeConfigs = advisorMap.get(applicationType);
-      if (typeConfigs == null) {
-        typeConfigs = Lists.newArrayList();
-        advisorMap.put(applicationType, typeConfigs);
-      }
-      typeConfigs.add(ac);
-    }
-  }
-
-  private void initConfigFromFile() {
-    try {
-      // Read advisors from file
-      JSONArray ja = JSON
-          .parseObject(this.getClass().getClassLoader().getResourceAsStream(ADVISOR_CONFIG),
-              JSONArray.class);
-      List<AdvisorConfig> configs = Lists.newArrayList();
-      for (int i = 0; i < ja.size(); i++) {
-        AdvisorConfig advisorConfig = ja.getObject(i, AdvisorConfig.class);
-        configs.add(advisorConfig);
-      }
-      initConfigMap(configs);
-      // Save advisors to es
-      try {
-        storage
-            .bulkUpsert(AdvisorConfig.INDEX_NAME, AdvisorConfig.TYPE_NAME,
-                Records.fromObject(configs));
-      } catch (ExecutionException | InterruptedException e) {
-        log.error("Save advisor config error", e);
-      }
-
-      log.info("Loaded advisor configs : {}", advisorMap);
-    } catch (IOException e) {
-      log.error("Init advisors error ", e);
-    }
-  }
 
   @Override
   public HandlerResult handle(ApplicationData applicationData) {
@@ -195,7 +135,7 @@ public abstract class AbstractAdvisor implements ApplicationTuningAdvisor {
   }
 
   protected List<AdvisorConfig> getAdvisorConfigByType(ApplicationType applicationType) {
-    List<AdvisorConfig> advisorConfigs = advisorMap.get(applicationType);
+    List<AdvisorConfig> advisorConfigs = advisorService.getAdvisorConfigByType(applicationType);
     return advisorConfigs;
   }
 

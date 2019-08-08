@@ -50,6 +50,9 @@ public class MRFetcher implements ApplicationInfoFetcher {
   @Autowired
   private IStorage storage;
 
+  @Value("${skyline.handler.fetcher.save_data:false}")
+  private boolean saveApplicationData;
+
   @Override
   public HandlerResult handle(ApplicationData applicationData) {
     HandlerResult result = new HandlerResult();
@@ -102,9 +105,10 @@ public class MRFetcher implements ApplicationInfoFetcher {
       }
       // set id & save to es
       mrData.setId(applicationId);
-      storage.upsert(ApplicationData.INDEX_NAME, ApplicationData.TYPE_NAME,
-          Records.fromObject(mrData));
-
+      if (saveApplicationData) {
+        storage.upsert(ApplicationData.INDEX_NAME, ApplicationData.TYPE_NAME,
+            Records.fromObject(mrData));
+      }
       result.setApplicationData(mrData);
       result.setHandlerStatus(HandlerStatus.SUCCESSED);
     } catch (IOException e) {
@@ -156,7 +160,7 @@ public class MRFetcher implements ApplicationInfoFetcher {
     JSONArray ja = jo.getJSONObject("conf").getJSONArray("property");
     for (int i = 0; i < ja.size(); i++) {
       JSONObject conf = ja.getJSONObject(i);
-      props.setProperty(conf.getString("name").replace('.','_'), conf.getString("value"));
+      props.setProperty(conf.getString("name").replace('.', '_'), conf.getString("value"));
     }
     return props;
   }

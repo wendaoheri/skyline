@@ -92,14 +92,15 @@ public class SpELHelper {
     variables.forEach((k, v) -> {
       if (v instanceof String) {
         String expStr = (String) v;
-        if (context.lookupVariable(k) == null) { // prevent eval multi times
+        // prevent eval multi times
+        if (context.lookupVariable(k) == null) {
           Map<String, Object> references = findReferences(expStr, allVariables);
           if (!CollectionUtils.isEmpty(references)) {
             result.putAll(addVariables(context, references, allVariables));
           }
           Expression exp = parser.parseExpression(expStr);
           Object variable = exp.getValue(context);
-          log.info("Set variable : {} {}", k, variable);
+          log.debug("Set variable : {} {}", k, variable);
           context.setVariable(k, variable);
           result.put(k, variable);
         }

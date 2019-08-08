@@ -4,11 +4,6 @@ spring:
       cluster-nodes: localhost:9300
       cluster-name: docker-cluster
       template-file: es_template.json
-  cache:
-    cache-names: job_application_log
-    caffeine:
-      spec:
-        expireAfterWrite: 24h
   activemq:
     #    broker-url: tcp://localhost:9876 # comments for starting an embedded broker
     user: admin
