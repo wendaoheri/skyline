@@ -1,0 +1,62 @@
+{
+  "skyline": {
+    "order": 1,
+    "index_patterns": [
+      "yarn_application*",
+      "skyline_config",
+      "schedule_info",
+      "nodes",
+      "yarn_metrics",
+      "application_data",
+      "advisor_config",
+      "advisor_result"
+    ],
+    "settings": {
+      "index": {
+        "number_of_shards": "5",
+        "number_of_replicas": "0",
+        "refresh_interval": "5s",
+        "mapping.total_fields.limit": 5000
+      }
+    },
+    "mappings": {
+      "_default_": {
+        "_source": {
+          "enabled": true
+        },
+        "dynamic_templates": [
+          {
+            "strings_as_keywords": {
+              "match_mapping_type": "string",
+              "mapping": {
+                "type": "keyword",
+                "ignore_above": 1024
+              }
+            }
+          }
+        ],
+        "_all": {
+          "enabled": false
+        },
+        "properties": {
+          "@timestamp": {
+            "format": "yyyy-MM-dd HH:mm:ss||yyyy-MM-dd||epoch_millis",
+            "type": "date",
+            "doc_values": true
+          },
+          "started_time": {
+            "format": "yyyy-MM-dd HH:mm:ss||yyyy-MM-dd||epoch_millis",
+            "type": "date",
+            "doc_values": true
+          },
+          "finished_time": {
+            "format": "yyyy-MM-dd HH:mm:ss||yyyy-MM-dd||epoch_millis",
+            "type": "date",
+            "doc_values": true
+          }
+        }
+      }
+    },
+    "aliases": {}
+  }
+}
