@@ -156,7 +156,7 @@ public class MRFetcher implements ApplicationInfoFetcher {
     JSONArray ja = jo.getJSONObject("conf").getJSONArray("property");
     for (int i = 0; i < ja.size(); i++) {
       JSONObject conf = ja.getJSONObject(i);
-      props.setProperty(conf.getString("name"), conf.getString("value"));
+      props.setProperty(conf.getString("name").replace('.','_'), conf.getString("value"));
     }
     return props;
   }

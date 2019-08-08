@@ -22,7 +22,13 @@ public class AdvisorDispatcher implements
   @Override
   public Message<HandlerResult> dispatch(String key, Message<HandlerResult> message) {
 
+    Message<HandlerResult> returnMessage = new Message<>();
+    returnMessage.setMessageType(MessageType.APPLICATION_ADVISE_DONE);
     HandlerResult handlerResult = message.getMessageContent();
+
+    if(handlerResult == null){
+      return returnMessage;
+    }
     ApplicationData applicationData = handlerResult.getApplicationData();
 
     HandlerResult advisorResult = null;
@@ -36,9 +42,9 @@ public class AdvisorDispatcher implements
     }
     handlerResult.merge(advisorResult);
 
-    Message<HandlerResult> returnMessage = new Message<>();
+
     returnMessage.setMessageContent(handlerResult);
-    returnMessage.setMessageType(MessageType.APPLICATION_ADVISE_DONE);
+
 
     return returnMessage;
   }

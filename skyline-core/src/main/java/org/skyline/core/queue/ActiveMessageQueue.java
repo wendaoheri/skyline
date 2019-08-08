@@ -50,7 +50,12 @@ public class ActiveMessageQueue implements MessageQueue {
 
   @JmsListener(destination = DEFAULT_DEST_NAME)
   public void processMessage(String content) {
-    handleMessage(null, content);
-    log.debug("got message : {}", content);
+    try {
+      handleMessage(null, content);
+      log.debug("Got message : {}", content);
+    } catch (Exception e) {
+      log.error("Process message error : {}", content, e);
+    }
+
   }
 }

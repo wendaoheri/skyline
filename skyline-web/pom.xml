@@ -30,7 +30,7 @@
       <build>
         <resources>
           <resource>
-            <directory>../conf</directory>
+            <directory>src/dev/conf</directory>
           </resource>
         </resources>
       </build>

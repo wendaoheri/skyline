@@ -154,6 +154,7 @@ public abstract class AbstractAdvisor implements ApplicationTuningAdvisor {
 
       handlerResult.addDetail(detail);
     }
+    log.info("Handler Result : {}", Records.fromObject(handlerResult));
     storage.upsert(HandlerResult.INDEX_NAME, HandlerResult.TYPE_NAME,
         Records.fromObject(handlerResult));
     return handlerResult;

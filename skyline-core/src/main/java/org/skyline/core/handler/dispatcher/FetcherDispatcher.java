@@ -33,9 +33,14 @@ public class FetcherDispatcher implements MessageDispatcher<YarnApplication, Han
 
   @Override
   public Message<HandlerResult> dispatch(String key, Message<YarnApplication> message) {
-
+    Message<HandlerResult> returnMessage = new Message<>();
     YarnApplication application = message.getMessageContent();
     log.debug("dispatch application : {}", application);
+
+    if (!application.isFinished()) {
+      returnMessage.setMessageType(MessageType.APPLICATION_FETCH_SKIPPED);
+      return returnMessage;
+    }
 
     ApplicationData data = new MRApplicationData();
     data.setApplication(application);
@@ -54,7 +59,6 @@ public class FetcherDispatcher implements MessageDispatcher<YarnApplication, Han
         break;
     }
 
-    Message<HandlerResult> returnMessage = new Message<>();
     returnMessage.setMessageContent(result);
     returnMessage.setMessageType(MessageType.APPLICATION_FETCH_DONE);
     return returnMessage;

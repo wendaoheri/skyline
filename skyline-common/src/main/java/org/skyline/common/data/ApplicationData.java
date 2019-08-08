@@ -2,6 +2,8 @@ package org.skyline.common.data;
 
 import java.util.Properties;
 import org.skyline.common.data.YarnApplication.ApplicationType;
+import org.skyline.common.data.YarnApplication.FinalStatus;
+import org.skyline.common.data.YarnApplication.State;
 
 /**
  * interface produced by ApplicationHandler
@@ -41,4 +43,17 @@ public interface ApplicationData {
    * @return config of application
    */
   Properties getConf();
+
+  /**
+   * return application state
+   * @return
+   */
+  State getState();
+
+  /**
+   * return application finalStatus
+   * @return
+   */
+  FinalStatus getFinalStatus();
+
 }

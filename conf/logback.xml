@@ -7,14 +7,9 @@
 
   <appender name="ROLLING-FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
     <file>${LOG_HOME}/${appName}.log</file>
-    <filter class="ch.qos.logback.classic.filter.LevelFilter">
-      <level>INFO</level>
-      <onMatch>ACCEPT</onMatch>
-      <onMismatch>DENY</onMismatch>
-    </filter>
     <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
       <Pattern>
-        %d{yyyy-MM-dd HH:mm:ss.SSS} [ %thread ] - [ %-5level ] [ %logger{50} : %line ] - %msg%n
+        %d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] - [%-5level] [%logger{50}] - %msg%n
       </Pattern>
     </encoder>
 
@@ -29,41 +24,13 @@
 
   </appender>
 
-  <appender name="ERROR-ROLLING-FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-    <file>${LOG_HOME}/${appName}-error.log</file>
-    <filter class="ch.qos.logback.classic.filter.LevelFilter">
-      <level>ERROR</level>
-      <onMatch>ACCEPT</onMatch>
-      <onMismatch>DENY</onMismatch>
-    </filter>
-    <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-      <Pattern>
-        %d{yyyy-MM-dd HH:mm:ss.SSS} [ %thread ] - [ %-5level ] [ %logger{50} : %line ] - %msg%n
-      </Pattern>
-    </encoder>
-
-    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-      <!-- rollover daily -->
-      <fileNamePattern>${LOG_HOME}/${appName}-error.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
-      <timeBasedFileNamingAndTriggeringPolicy
-        class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
-        <maxFileSize>100MB</maxFileSize>
-      </timeBasedFileNamingAndTriggeringPolicy>
-    </rollingPolicy>
-
-  </appender>
 
   <appender name="ASYNC" class="ch.qos.logback.classic.AsyncAppender">
     <appender-ref ref="ROLLING-FILE"/>
   </appender>
 
-  <appender name="ERROR-ASYNC" class="ch.qos.logback.classic.AsyncAppender">
-    <appender-ref ref="ERROR-ROLLING-FILE"/>
-  </appender>
-
   <root level="info">
     <appender-ref ref="ASYNC"/>
-    <appender-ref ref="ERROR-ASYNC"/>
   </root>
 
 </configuration>

@@ -17,6 +17,11 @@ public enum MessageType {
   APPLICATION_FETCH_DONE,
 
   /**
+   * Application not finished, skip fetch application data
+   */
+  APPLICATION_FETCH_SKIPPED,
+
+  /**
    * Application advisor advise done
    */
   APPLICATION_ADVISE_DONE

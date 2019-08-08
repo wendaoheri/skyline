@@ -8,7 +8,8 @@
     "dfs.datanode.data.dir": "/home/hadoop/hdfs/data",
     "hadoop.http.filter.initializers": "org.apache.hadoop.yarn.server.webproxy.amfilter.AmFilterInitializer",
     "mapreduce.cluster.temp.dir": "/home/hadoop/tmp",
-    "mapreduce.map.memory.mb": "2048"
+    "mapreduce.map.memory.mb": "2048",
+    "datanucleus.cache.level2": "false"
   },
   "jobAttemptDataList": [
     {

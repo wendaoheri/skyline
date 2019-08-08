@@ -8,6 +8,8 @@ import lombok.Data;
 import org.skyline.common.data.ApplicationData;
 import org.skyline.common.data.YarnApplication;
 import org.skyline.common.data.YarnApplication.ApplicationType;
+import org.skyline.common.data.YarnApplication.FinalStatus;
+import org.skyline.common.data.YarnApplication.State;
 import org.skyline.common.data.mr.MRTaskData.MRTaskType;
 
 /**
@@ -46,6 +48,16 @@ public class MRApplicationData implements ApplicationData {
   @Override
   public ApplicationType getApplicationType() {
     return ApplicationType.MAPREDUCE;
+  }
+
+  @Override
+  public State getState() {
+    return State.valueOf(application.getState());
+  }
+
+  @Override
+  public FinalStatus getFinalStatus() {
+    return FinalStatus.valueOf(application.getFinalStatus());
   }
 
   public List<MRTaskData> getTaskByType(MRTaskType type) {

@@ -1,7 +1,9 @@
 package org.skyline.core.utils;
 
 import java.util.Collection;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.math3.stat.descriptive.SummaryStatistics;
 
@@ -14,7 +16,11 @@ import org.apache.commons.math3.stat.descriptive.SummaryStatistics;
 public class StatUtils {
 
   @Data
+  @AllArgsConstructor
+  @NoArgsConstructor
   public static class StatSummary {
+
+    public static final StatSummary ZERO = new StatSummary(0, 0, 0, 0, 0, 0);
 
     private double mean;
     private int count;
@@ -41,6 +47,9 @@ public class StatUtils {
   }
 
   public static StatSummary summary(double[] values) {
+    if (values == null || values.length == 0) {
+      return StatSummary.ZERO;
+    }
     SummaryStatistics stats = new SummaryStatistics();
     for (double value : values) {
       stats.addValue(value);
@@ -53,7 +62,7 @@ public class StatUtils {
     summary.setMin(stats.getMin());
 
     //noinspection AlibabaUndefineMagicConstant
-    if (summary.count < 2) {
+    if (summary.count == 1) {
       summary.setStd(0);
       summary.setCv(0);
     } else {
