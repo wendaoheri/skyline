@@ -10,8 +10,6 @@ cache:
 script:
   - mvn clean package -DskipTests=true
 
-after_success:
-  - mvn clean
 
 branches:
   only:
