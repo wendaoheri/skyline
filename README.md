@@ -1,3 +1,7 @@
+Skyline
+=======
+
+[![Build Status](https://travis-ci.com/wendaoheri/skyline.svg?branch=dev)](https://travis-ci.com/wendaoheri/skyline)
 - [X] 任务metric，关联schedule_id
 - [ ] node manager 监控
 - [ ] 文件监控 hdfs hive
