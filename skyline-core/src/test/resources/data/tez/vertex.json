@@ -1,0 +1,3133 @@
+{
+  "entities": [
+    {
+      "events": [
+        {
+          "timestamp": 1565329095231,
+          "eventtype": "VERTEX_FINISHED",
+          "eventinfo": {}
+        },
+        {
+          "timestamp": 1565329086999,
+          "eventtype": "VERTEX_STARTED",
+          "eventinfo": {}
+        },
+        {
+          "timestamp": 1565329086997,
+          "eventtype": "VERTEX_INITIALIZED",
+          "eventinfo": {}
+        }
+      ],
+      "entitytype": "TEZ_VERTEX_ID",
+      "entity": "vertex_1562840950978_1761163_1_06",
+      "starttime": 1565329086997,
+      "domain": "Tez_ATS_application_1562840950978_1761163",
+      "relatedentities": {},
+      "primaryfilters": {
+        "TEZ_DAG_ID": [
+          "dag_1562840950978_1761163_1"
+        ],
+        "applicationId": [
+          "application_1562840950978_1761163"
+        ],
+        "status": [
+          "SUCCEEDED"
+        ]
+      },
+      "otherinfo": {
+        "numTasks": 13,
+        "numFailedTaskAttempts": 0,
+        "processorClassName": "org.apache.hadoop.hive.ql.exec.tez.MapTezProcessor",
+        "numKilledTaskAttempts": 0,
+        "vertexName": "Map 11",
+        "counters": {
+          "counterGroups": [
+            {
+              "counterGroupName": "org.apache.tez.common.counters.DAGCounter",
+              "counters": [
+                {
+                  "counterName": "OTHER_LOCAL_TASKS",
+                  "counterValue": 4
+                },
+                {
+                  "counterName": "DATA_LOCAL_TASKS",
+                  "counterValue": 6
+                },
+                {
+                  "counterName": "RACK_LOCAL_TASKS",
+                  "counterValue": 3
+                }
+              ]
+            },
+            {
+              "counterGroupName": "org.apache.tez.common.counters.FileSystemCounter",
+              "counterGroupDisplayName": "File System Counters",
+              "counters": [
+                {
+                  "counterName": "FILE_BYTES_READ",
+                  "counterValue": 629824
+                },
+                {
+                  "counterName": "FILE_BYTES_WRITTEN",
+                  "counterValue": 153502790
+                },
+                {
+                  "counterName": "HDFS_BYTES_READ",
+                  "counterValue": 12427434
+                },
+                {
+                  "counterName": "HDFS_READ_OPS",
+                  "counterValue": 42
+                }
+              ]
+            },
+            {
+              "counterGroupName": "org.apache.tez.common.counters.TaskCounter",
+              "counters": [
+                {
+                  "counterName": "SPILLED_RECORDS",
+                  "counterValue": 16721761
+                },
+                {
+                  "counterName": "GC_TIME_MILLIS",
+                  "counterValue": 1671
+                },
+                {
+                  "counterName": "CPU_MILLISECONDS",
+                  "counterValue": 134680
+                },
+                {
+                  "counterName": "PHYSICAL_MEMORY_BYTES",
+                  "counterValue": 27138195456
+                },
+                {
+                  "counterName": "VIRTUAL_MEMORY_BYTES",
+                  "counterValue": 59731595264
+                },
+                {
+                  "counterName": "COMMITTED_HEAP_BYTES",
+                  "counterValue": 27138195456
+                },
+                {
+                  "counterName": "INPUT_RECORDS_PROCESSED",
+                  "counterValue": 16721761
+                },
+                {
+                  "counterName": "OUTPUT_RECORDS",
+                  "counterValue": 16721761
+                },
+                {
+                  "counterName": "OUTPUT_BYTES",
+                  "counterValue": 284268737
+                },
+                {
+                  "counterName": "OUTPUT_BYTES_WITH_OVERHEAD",
+                  "counterValue": 317790961
+                },
+                {
+                  "counterName": "OUTPUT_BYTES_PHYSICAL",
+                  "counterValue": 153187878
+                },
+                {
+                  "counterName": "SHUFFLE_CHUNK_COUNT",
+                  "counterValue": 13
+                }
+              ]
+            },
+            {
+              "counterGroupName": "HIVE",
+              "counters": [
+                {
+                  "counterName": "RECORDS_IN_Map_11",
+                  "counterValue": 16721761
+                },
+                {
+                  "counterName": "RECORDS_OUT_INTERMEDIATE_Map_11",
+                  "counterValue": 16721761
+                }
+              ]
+            }
+          ]
+        },
+        "numCompletedTasks": 13,
+        "numSucceededTasks": 13,
+        "numFailedTasks": 0,
+        "initRequestedTime": 1565329086522,
+        "startRequestedTime": 1565329086523,
+        "timeTaken": 8232,
+        "diagnostics": "",
+        "stats": {
+          "firstTaskStartTime": 1565329089580,
+          "firstTasksToStart": [
+            "task_1562840950978_1761163_1_06_000007"
+          ],
+          "lastTaskFinishTime": 1565329095230,
+          "lastTasksToFinish": [
+            "task_1562840950978_1761163_1_06_000002"
+          ],
+          "minTaskDuration": 1485,
+          "maxTaskDuration": 4721,
+          "avgTaskDuration": 3616.3846153846152,
+          "shortestDurationTasks": [
+            "task_1562840950978_1761163_1_06_000012"
+          ],
+          "longestDurationTasks": [
+            "task_1562840950978_1761163_1_06_000002"
+          ]
+        },
+        "startTime": 1565329086999,
+        "endTime": 1565329095231,
+        "numKilledTasks": 0,
+        "initTime": 1565329086997,
+        "status": "SUCCEEDED"
+      }
+    },
+    {
+      "events": [
+        {
+          "timestamp": 1565329095882,
+          "eventtype": "VERTEX_FINISHED",
+          "eventinfo": {}
+        },
+        {
+          "timestamp": 1565329086998,
+          "eventtype": "VERTEX_STARTED",
+          "eventinfo": {}
+        },
+        {
+          "timestamp": 1565329086996,
+          "eventtype": "VERTEX_INITIALIZED",
+          "eventinfo": {}
+        }
+      ],
+      "entitytype": "TEZ_VERTEX_ID",
+      "entity": "vertex_1562840950978_1761163_1_01",
+      "starttime": 1565329086996,
+      "domain": "Tez_ATS_application_1562840950978_1761163",
+      "relatedentities": {},
+      "primaryfilters": {
+        "TEZ_DAG_ID": [
+          "dag_1562840950978_1761163_1"
+        ],
+        "applicationId": [
+          "application_1562840950978_1761163"
+        ],
+        "status": [
+          "SUCCEEDED"
+        ]
+      },
+      "otherinfo": {
+        "numTasks": 11,
+        "numFailedTaskAttempts": 0,
+        "processorClassName": "org.apache.hadoop.hive.ql.exec.tez.MapTezProcessor",
+        "numKilledTaskAttempts": 0,
+        "vertexName": "Map 4",
+        "counters": {
+          "counterGroups": [
+            {
+              "counterGroupName": "org.apache.tez.common.counters.DAGCounter",
+              "counters": [
+                {
+                  "counterName": "OTHER_LOCAL_TASKS",
+                  "counterValue": 2
+                },
+                {
+                  "counterName": "DATA_LOCAL_TASKS",
+                  "counterValue": 3
+                },
+                {
+                  "counterName": "RACK_LOCAL_TASKS",
+                  "counterValue": 6
+                }
+              ]
+            },
+            {
+              "counterGroupName": "org.apache.tez.common.counters.FileSystemCounter",
+              "counterGroupDisplayName": "File System Counters",
+              "counters": [
+                {
+                  "counterName": "FILE_BYTES_READ",
+                  "counterValue": 532928
+                },
+                {
+                  "counterName": "FILE_BYTES_WRITTEN",
+                  "counterValue": 215983753
+                },
+                {
+                  "counterName": "HDFS_BYTES_READ",
+                  "counterValue": 137954417
+                },
+                {
+                  "counterName": "HDFS_READ_OPS",
+                  "counterValue": 42
+                }
+              ]
+            },
+            {
+              "counterGroupName": "org.apache.tez.common.counters.TaskCounter",
+              "counters": [
+                {
+                  "counterName": "SPILLED_RECORDS",
+                  "counterValue": 10587992
+                },
+                {
+                  "counterName": "GC_TIME_MILLIS",
+                  "counterValue": 1903
+                },
+                {
+                  "counterName": "CPU_MILLISECONDS",
+                  "counterValue": 126250
+                },
+                {
+                  "counterName": "PHYSICAL_MEMORY_BYTES",
+                  "counterValue": 24740626432
+                },
+                {
+                  "counterName": "VIRTUAL_MEMORY_BYTES",
+                  "counterValue": 50628251648
+                },
+                {
+                  "counterName": "COMMITTED_HEAP_BYTES",
+                  "counterValue": 24740626432
+                },
+                {
+                  "counterName": "INPUT_RECORDS_PROCESSED",
+                  "counterValue": 16721761
+                },
+                {
+                  "counterName": "OUTPUT_RECORDS",
+                  "counterValue": 10587992
+                },
+                {
+                  "counterName": "OUTPUT_BYTES",
+                  "counterValue": 307634282
+                },
+                {
+                  "counterName": "OUTPUT_BYTES_WITH_OVERHEAD",
+                  "counterValue": 328876867
+                },
+                {
+                  "counterName": "OUTPUT_BYTES_PHYSICAL",
+                  "counterValue": 215717289
+                },
+                {
+                  "counterName": "SHUFFLE_CHUNK_COUNT",
+                  "counterValue": 11
+                }
+              ]
+            },
+            {
+              "counterGroupName": "HIVE",
+              "counters": [
+                {
+                  "counterName": "RECORDS_IN_Map_4",
+                  "counterValue": 16721761
+                },
+                {
+                  "counterName": "RECORDS_OUT_INTERMEDIATE_Map_4",
+                  "counterValue": 10587992
+                }
+              ]
+            }
+          ]
+        },
+        "numCompletedTasks": 11,
+        "numSucceededTasks": 11,
+        "numFailedTasks": 0,
+        "initRequestedTime": 1565329086517,
+        "startRequestedTime": 1565329086523,
+        "timeTaken": 8884,
+        "diagnostics": "",
+        "stats": {
+          "firstTaskStartTime": 1565329089571,
+          "firstTasksToStart": [
+            "task_1562840950978_1761163_1_01_000000"
+          ],
+          "lastTaskFinishTime": 1565329095882,
+          "lastTasksToFinish": [
+            "task_1562840950978_1761163_1_01_000007"
+          ],
+          "minTaskDuration": 1526,
+          "maxTaskDuration": 5026,
+          "avgTaskDuration": 4002.818181818182,
+          "shortestDurationTasks": [
+            "task_1562840950978_1761163_1_01_000010"
+          ],
+          "longestDurationTasks": [
+            "task_1562840950978_1761163_1_01_000000"
+          ]
+        },
+        "startTime": 1565329086998,
+        "endTime": 1565329095882,
+        "numKilledTasks": 0,
+        "initTime": 1565329086996,
+        "status": "SUCCEEDED"
+      }
+    },
+    {
+      "events": [
+        {
+          "timestamp": 1565329092159,
+          "eventtype": "VERTEX_FINISHED",
+          "eventinfo": {}
+        },
+        {
+          "timestamp": 1565329086999,
+          "eventtype": "VERTEX_STARTED",
+          "eventinfo": {}
+        },
+        {
+          "timestamp": 1565329086996,
+          "eventtype": "VERTEX_INITIALIZED",
+          "eventinfo": {}
+        }
+      ],
+      "entitytype": "TEZ_VERTEX_ID",
+      "entity": "vertex_1562840950978_1761163_1_02",
+      "starttime": 1565329086996,
+      "domain": "Tez_ATS_application_1562840950978_1761163",
+      "relatedentities": {},
+      "primaryfilters": {
+        "TEZ_DAG_ID": [
+          "dag_1562840950978_1761163_1"
+        ],
+        "applicationId": [
+          "application_1562840950978_1761163"
+        ],
+        "status": [
+          "SUCCEEDED"
+        ]
+      },
+      "otherinfo": {
+        "numTasks": 5,
+        "numFailedTaskAttempts": 0,
+        "processorClassName": "org.apache.hadoop.hive.ql.exec.tez.MapTezProcessor",
+        "numKilledTaskAttempts": 0,
+        "vertexName": "Map 7",
+        "counters": {
+          "counterGroups": [
+            {
+              "counterGroupName": "org.apache.tez.common.counters.DAGCounter",
+              "counters": [
+                {
+                  "counterName": "OTHER_LOCAL_TASKS",
+                  "counterValue": 2
+                },
+                {
+                  "counterName": "RACK_LOCAL_TASKS",
+                  "counterValue": 3
+                }
+              ]
+            },
+            {
+              "counterGroupName": "org.apache.tez.common.counters.FileSystemCounter",
+              "counterGroupDisplayName": "File System Counters",
+              "counters": [
+                {
+                  "counterName": "FILE_BYTES_READ",
+                  "counterValue": 2000
+                },
+                {
+                  "counterName": "FILE_BYTES_WRITTEN",
+                  "counterValue": 963649
+                },
+                {
+                  "counterName": "HDFS_BYTES_READ",
+                  "counterValue": 1041855
+                },
+                {
+                  "counterName": "HDFS_READ_OPS",
+                  "counterValue": 33
+                }
+              ]
+            },
+            {
+              "counterGroupName": "org.apache.tez.common.counters.TaskCounter",
+              "counters": [
+                {
+                  "counterName": "SPILLED_RECORDS",
+                  "counterValue": 100585
+                },
+                {
+                  "counterName": "GC_TIME_MILLIS",
+                  "counterValue": 255
+                },
+                {
+                  "counterName": "CPU_MILLISECONDS",
+                  "counterValue": 24270
+                },
+                {
+                  "counterName": "PHYSICAL_MEMORY_BYTES",
+                  "counterValue": 9027715072
+                },
+                {
+                  "counterName": "VIRTUAL_MEMORY_BYTES",
+                  "counterValue": 22945406976
+                },
+                {
+                  "counterName": "COMMITTED_HEAP_BYTES",
+                  "counterValue": 9027715072
+                },
+                {
+                  "counterName": "INPUT_RECORDS_PROCESSED",
+                  "counterValue": 100585
+                },
+                {
+                  "counterName": "OUTPUT_RECORDS",
+                  "counterValue": 100585
+                },
+                {
+                  "counterName": "OUTPUT_BYTES",
+                  "counterValue": 1674936
+                },
+                {
+                  "counterName": "OUTPUT_BYTES_WITH_OVERHEAD",
+                  "counterValue": 1876346
+                },
+                {
+                  "counterName": "OUTPUT_BYTES_PHYSICAL",
+                  "counterValue": 962649
+                },
+                {
+                  "counterName": "SHUFFLE_CHUNK_COUNT",
+                  "counterValue": 5
+                }
+              ]
+            },
+            {
+              "counterGroupName": "HIVE",
+              "counters": [
+                {
+                  "counterName": "RECORDS_IN_Map_7",
+                  "counterValue": 100585
+                },
+                {
+                  "counterName": "RECORDS_OUT_INTERMEDIATE_Map_7",
+                  "counterValue": 100585
+                }
+              ]
+            }
+          ]
+        },
+        "numCompletedTasks": 5,
+        "numSucceededTasks": 5,
+        "numFailedTasks": 0,
+        "initRequestedTime": 1565329086518,
+        "startRequestedTime": 1565329086523,
+        "timeTaken": 5160,
+        "diagnostics": "",
+        "stats": {
+          "firstTaskStartTime": 1565329089628,
+          "firstTasksToStart": [
+            "task_1562840950978_1761163_1_02_000004"
+          ],
+          "lastTaskFinishTime": 1565329092158,
+          "lastTasksToFinish": [
+            "task_1562840950978_1761163_1_02_000000"
+          ],
+          "minTaskDuration": 1246,
+          "maxTaskDuration": 1632,
+          "avgTaskDuration": 1410.6,
+          "shortestDurationTasks": [
+            "task_1562840950978_1761163_1_02_000004"
+          ],
+          "longestDurationTasks": [
+            "task_1562840950978_1761163_1_02_000000"
+          ]
+        },
+        "startTime": 1565329086999,
+        "endTime": 1565329092159,
+        "numKilledTasks": 0,
+        "initTime": 1565329086996,
+        "status": "SUCCEEDED"
+      }
+    },
+    {
+      "events": [
+        {
+          "timestamp": 1565329100293,
+          "eventtype": "VERTEX_FINISHED",
+          "eventinfo": {}
+        },
+        {
+          "timestamp": 1565329086998,
+          "eventtype": "VERTEX_STARTED",
+          "eventinfo": {}
+        },
+        {
+          "timestamp": 1565329086996,
+          "eventtype": "VERTEX_INITIALIZED",
+          "eventinfo": {}
+        }
+      ],
+      "entitytype": "TEZ_VERTEX_ID",
+      "entity": "vertex_1562840950978_1761163_1_08",
+      "starttime": 1565329086996,
+      "domain": "Tez_ATS_application_1562840950978_1761163",
+      "relatedentities": {},
+      "primaryfilters": {
+        "TEZ_DAG_ID": [
+          "dag_1562840950978_1761163_1"
+        ],
+        "applicationId": [
+          "application_1562840950978_1761163"
+        ],
+        "status": [
+          "SUCCEEDED"
+        ]
+      },
+      "otherinfo": {
+        "numTasks": 4,
+        "numFailedTaskAttempts": 0,
+        "processorClassName": "org.apache.hadoop.hive.ql.exec.tez.MapTezProcessor",
+        "numKilledTaskAttempts": 0,
+        "vertexName": "Map 13",
+        "counters": {
+          "counterGroups": [
+            {
+              "counterGroupName": "org.apache.tez.common.counters.DAGCounter",
+              "counters": [
+                {
+                  "counterName": "OTHER_LOCAL_TASKS",
+                  "counterValue": 2
+                },
+                {
+                  "counterName": "RACK_LOCAL_TASKS",
+                  "counterValue": 2
+                }
+              ]
+            },
+            {
+              "counterGroupName": "org.apache.tez.common.counters.FileSystemCounter",
+              "counterGroupDisplayName": "File System Counters",
+              "counters": [
+                {
+                  "counterName": "FILE_BYTES_READ",
+                  "counterValue": 193792
+                },
+                {
+                  "counterName": "FILE_BYTES_WRITTEN",
+                  "counterValue": 117956359
+                },
+                {
+                  "counterName": "HDFS_BYTES_READ",
+                  "counterValue": 13096915
+                },
+                {
+                  "counterName": "HDFS_READ_OPS",
+                  "counterValue": 21
+                }
+              ]
+            },
+            {
+              "counterGroupName": "org.apache.tez.common.counters.TaskCounter",
+              "counters": [
+                {
+                  "counterName": "SPILLED_RECORDS",
+                  "counterValue": 16721761
+                },
+                {
+                  "counterName": "GC_TIME_MILLIS",
+                  "counterValue": 881
+                },
+                {
+                  "counterName": "CPU_MILLISECONDS",
+                  "counterValue": 73770
+                },
+                {
+                  "counterName": "PHYSICAL_MEMORY_BYTES",
+                  "counterValue": 9676259328
+                },
+                {
+                  "counterName": "VIRTUAL_MEMORY_BYTES",
+                  "counterValue": 18400526336
+                },
+                {
+                  "counterName": "COMMITTED_HEAP_BYTES",
+                  "counterValue": 9676259328
+                },
+                {
+                  "counterName": "INPUT_RECORDS_PROCESSED",
+                  "counterValue": 16721761
+                },
+                {
+                  "counterName": "OUTPUT_RECORDS",
+                  "counterValue": 16721761
+                },
+                {
+                  "counterName": "OUTPUT_BYTES",
+                  "counterValue": 201556766
+                },
+                {
+                  "counterName": "OUTPUT_BYTES_WITH_OVERHEAD",
+                  "counterValue": 235024504
+                },
+                {
+                  "counterName": "OUTPUT_BYTES_PHYSICAL",
+                  "counterValue": 117859463
+                },
+                {
+                  "counterName": "SHUFFLE_CHUNK_COUNT",
+                  "counterValue": 4
+                }
+              ]
+            },
+            {
+              "counterGroupName": "HIVE",
+              "counters": [
+                {
+                  "counterName": "RECORDS_IN_Map_13",
+                  "counterValue": 16721761
+                },
+                {
+                  "counterName": "RECORDS_OUT_INTERMEDIATE_Map_13",
+                  "counterValue": 16721761
+                }
+              ]
+            }
+          ]
+        },
+        "numCompletedTasks": 4,
+        "numSucceededTasks": 4,
+        "numFailedTasks": 0,
+        "initRequestedTime": 1565329086487,
+        "startRequestedTime": 1565329086523,
+        "timeTaken": 13295,
+        "diagnostics": "",
+        "stats": {
+          "firstTaskStartTime": 1565329090518,
+          "firstTasksToStart": [
+            "task_1562840950978_1761163_1_08_000003"
+          ],
+          "lastTaskFinishTime": 1565329100293,
+          "lastTasksToFinish": [
+            "task_1562840950978_1761163_1_08_000001"
+          ],
+          "minTaskDuration": 4506,
+          "maxTaskDuration": 9713,
+          "avgTaskDuration": 7053.75,
+          "shortestDurationTasks": [
+            "task_1562840950978_1761163_1_08_000003"
+          ],
+          "longestDurationTasks": [
+            "task_1562840950978_1761163_1_08_000001"
+          ]
+        },
+        "startTime": 1565329086998,
+        "endTime": 1565329100293,
+        "numKilledTasks": 0,
+        "initTime": 1565329086996,
+        "status": "SUCCEEDED"
+      }
+    },
+    {
+      "events": [
+        {
+          "timestamp": 1565329092385,
+          "eventtype": "VERTEX_FINISHED",
+          "eventinfo": {}
+        },
+        {
+          "timestamp": 1565329086998,
+          "eventtype": "VERTEX_STARTED",
+          "eventinfo": {}
+        },
+        {
+          "timestamp": 1565329086996,
+          "eventtype": "VERTEX_INITIALIZED",
+          "eventinfo": {}
+        }
+      ],
+      "entitytype": "TEZ_VERTEX_ID",
+      "entity": "vertex_1562840950978_1761163_1_10",
+      "starttime": 1565329086996,
+      "domain": "Tez_ATS_application_1562840950978_1761163",
+      "relatedentities": {},
+      "primaryfilters": {
+        "TEZ_DAG_ID": [
+          "dag_1562840950978_1761163_1"
+        ],
+        "applicationId": [
+          "application_1562840950978_1761163"
+        ],
+        "status": [
+          "SUCCEEDED"
+        ]
+      },
+      "otherinfo": {
+        "numTasks": 7,
+        "numFailedTaskAttempts": 0,
+        "processorClassName": "org.apache.hadoop.hive.ql.exec.tez.MapTezProcessor",
+        "numKilledTaskAttempts": 0,
+        "vertexName": "Map 14",
+        "counters": {
+          "counterGroups": [
+            {
+              "counterGroupName": "org.apache.tez.common.counters.DAGCounter",
+              "counters": [
+                {
+                  "counterName": "OTHER_LOCAL_TASKS",
+                  "counterValue": 3
+                },
+                {
+                  "counterName": "RACK_LOCAL_TASKS",
+                  "counterValue": 4
+                }
+              ]
+            },
+            {
+              "counterGroupName": "org.apache.tez.common.counters.FileSystemCounter",
+              "counterGroupDisplayName": "File System Counters",
+              "counters": [
+                {
+                  "counterName": "FILE_BYTES_READ",
+                  "counterValue": 784
+                },
+                {
+                  "counterName": "FILE_BYTES_WRITTEN",
+                  "counterValue": 1249968
+                },
+                {
+                  "counterName": "HDFS_BYTES_READ",
+                  "counterValue": 1272458
+                },
+                {
+                  "counterName": "HDFS_READ_OPS",
+                  "counterValue": 36
+                }
+              ]
+            },
+            {
+              "counterGroupName": "org.apache.tez.common.counters.TaskCounter",
+              "counters": [
+                {
+                  "counterName": "SPILLED_RECORDS",
+                  "counterValue": 51247
+                },
+                {
+                  "counterName": "GC_TIME_MILLIS",
+                  "counterValue": 311
+                },
+                {
+                  "counterName": "CPU_MILLISECONDS",
+                  "counterValue": 29750
+                },
+                {
+                  "counterName": "PHYSICAL_MEMORY_BYTES",
+                  "counterValue": 11392778240
+                },
+                {
+                  "counterName": "VIRTUAL_MEMORY_BYTES",
+                  "counterValue": 32189530112
+                },
+                {
+                  "counterName": "COMMITTED_HEAP_BYTES",
+                  "counterValue": 11392778240
+                },
+                {
+                  "counterName": "INPUT_RECORDS_PROCESSED",
+                  "counterValue": 70339
+                },
+                {
+                  "counterName": "OUTPUT_RECORDS",
+                  "counterValue": 51247
+                },
+                {
+                  "counterName": "OUTPUT_BYTES",
+                  "counterValue": 2280699
+                },
+                {
+                  "counterName": "OUTPUT_BYTES_WITH_OVERHEAD",
+                  "counterValue": 2383277
+                },
+                {
+                  "counterName": "OUTPUT_BYTES_PHYSICAL",
+                  "counterValue": 1249576
+                },
+                {
+                  "counterName": "SHUFFLE_CHUNK_COUNT",
+                  "counterValue": 7
+                }
+              ]
+            },
+            {
+              "counterGroupName": "HIVE",
+              "counters": [
+                {
+                  "counterName": "RECORDS_IN_Map_14",
+                  "counterValue": 70339
+                },
+                {
+                  "counterName": "RECORDS_OUT_INTERMEDIATE_Map_14",
+                  "counterValue": 51247
+                }
+              ]
+            }
+          ]
+        },
+        "numCompletedTasks": 7,
+        "numSucceededTasks": 7,
+        "numFailedTasks": 0,
+        "initRequestedTime": 1565329086514,
+        "startRequestedTime": 1565329086523,
+        "timeTaken": 5387,
+        "diagnostics": "",
+        "stats": {
+          "firstTaskStartTime": 1565329089572,
+          "firstTasksToStart": [
+            "task_1562840950978_1761163_1_10_000001"
+          ],
+          "lastTaskFinishTime": 1565329092383,
+          "lastTasksToFinish": [
+            "task_1562840950978_1761163_1_10_000004"
+          ],
+          "minTaskDuration": 1261,
+          "maxTaskDuration": 1791,
+          "avgTaskDuration": 1501,
+          "shortestDurationTasks": [
+            "task_1562840950978_1761163_1_10_000005"
+          ],
+          "longestDurationTasks": [
+            "task_1562840950978_1761163_1_10_000004"
+          ]
+        },
+        "startTime": 1565329086998,
+        "endTime": 1565329092385,
+        "numKilledTasks": 0,
+        "initTime": 1565329086996,
+        "status": "SUCCEEDED"
+      }
+    },
+    {
+      "events": [
+        {
+          "timestamp": 1565329092453,
+          "eventtype": "VERTEX_FINISHED",
+          "eventinfo": {}
+        },
+        {
+          "timestamp": 1565329086997,
+          "eventtype": "VERTEX_STARTED",
+          "eventinfo": {}
+        },
+        {
+          "timestamp": 1565329086996,
+          "eventtype": "VERTEX_INITIALIZED",
+          "eventinfo": {}
+        }
+      ],
+      "entitytype": "TEZ_VERTEX_ID",
+      "entity": "vertex_1562840950978_1761163_1_13",
+      "starttime": 1565329086996,
+      "domain": "Tez_ATS_application_1562840950978_1761163",
+      "relatedentities": {},
+      "primaryfilters": {
+        "TEZ_DAG_ID": [
+          "dag_1562840950978_1761163_1"
+        ],
+        "applicationId": [
+          "application_1562840950978_1761163"
+        ],
+        "status": [
+          "SUCCEEDED"
+        ]
+      },
+      "otherinfo": {
+        "numTasks": 6,
+        "numFailedTaskAttempts": 0,
+        "processorClassName": "org.apache.hadoop.hive.ql.exec.tez.MapTezProcessor",
+        "numKilledTaskAttempts": 0,
+        "vertexName": "Map 16",
+        "counters": {
+          "counterGroups": [
+            {
+              "counterGroupName": "org.apache.tez.common.counters.DAGCounter",
+              "counters": [
+                {
+                  "counterName": "RACK_LOCAL_TASKS",
+                  "counterValue": 6
+                }
+              ]
+            },
+            {
+              "counterGroupName": "org.apache.tez.common.counters.FileSystemCounter",
+              "counterGroupDisplayName": "File System Counters",
+              "counters": [
+                {
+                  "counterName": "FILE_BYTES_READ",
+                  "counterValue": 76128
+                },
+                {
+                  "counterName": "FILE_BYTES_WRITTEN",
+                  "counterValue": 2834616
+                },
+                {
+                  "counterName": "HDFS_BYTES_READ",
+                  "counterValue": 1328745
+                },
+                {
+                  "counterName": "HDFS_READ_OPS",
+                  "counterValue": 30
+                }
+              ]
+            },
+            {
+              "counterGroupName": "org.apache.tez.common.counters.TaskCounter",
+              "counters": [
+                {
+                  "counterName": "SPILLED_RECORDS",
+                  "counterValue": 309733
+                },
+                {
+                  "counterName": "GC_TIME_MILLIS",
+                  "counterValue": 238
+                },
+                {
+                  "counterName": "CPU_MILLISECONDS",
+                  "counterValue": 27960
+                },
+                {
+                  "counterName": "PHYSICAL_MEMORY_BYTES",
+                  "counterValue": 9086435328
+                },
+                {
+                  "counterName": "VIRTUAL_MEMORY_BYTES",
+                  "counterValue": 27562409984
+                },
+                {
+                  "counterName": "COMMITTED_HEAP_BYTES",
+                  "counterValue": 9086435328
+                },
+                {
+                  "counterName": "INPUT_RECORDS_PROCESSED",
+                  "counterValue": 309733
+                },
+                {
+                  "counterName": "OUTPUT_RECORDS",
+                  "counterValue": 309733
+                },
+                {
+                  "counterName": "OUTPUT_BYTES",
+                  "counterValue": 4613162
+                },
+                {
+                  "counterName": "OUTPUT_BYTES_WITH_OVERHEAD",
+                  "counterValue": 5242132
+                },
+                {
+                  "counterName": "OUTPUT_BYTES_PHYSICAL",
+                  "counterValue": 2796552
+                },
+                {
+                  "counterName": "SHUFFLE_CHUNK_COUNT",
+                  "counterValue": 6
+                }
+              ]
+            },
+            {
+              "counterGroupName": "HIVE",
+              "counters": [
+                {
+                  "counterName": "RECORDS_IN_Map_16",
+                  "counterValue": 309733
+                },
+                {
+                  "counterName": "RECORDS_OUT_INTERMEDIATE_Map_16",
+                  "counterValue": 309733
+                }
+              ]
+            }
+          ]
+        },
+        "numCompletedTasks": 6,
+        "numSucceededTasks": 6,
+        "numFailedTasks": 0,
+        "initRequestedTime": 1565329086515,
+        "startRequestedTime": 1565329086523,
+        "timeTaken": 5456,
+        "diagnostics": "",
+        "stats": {
+          "firstTaskStartTime": 1565329089603,
+          "firstTasksToStart": [
+            "task_1562840950978_1761163_1_13_000003"
+          ],
+          "lastTaskFinishTime": 1565329092452,
+          "lastTasksToFinish": [
+            "task_1562840950978_1761163_1_13_000005"
+          ],
+          "minTaskDuration": 1371,
+          "maxTaskDuration": 1826,
+          "avgTaskDuration": 1479,
+          "shortestDurationTasks": [
+            "task_1562840950978_1761163_1_13_000005"
+          ],
+          "longestDurationTasks": [
+            "task_1562840950978_1761163_1_13_000000"
+          ]
+        },
+        "startTime": 1565329086997,
+        "endTime": 1565329092453,
+        "numKilledTasks": 0,
+        "initTime": 1565329086996,
+        "status": "SUCCEEDED"
+      }
+    },
+    {
+      "events": [
+        {
+          "timestamp": 1565329103702,
+          "eventtype": "VERTEX_FINISHED",
+          "eventinfo": {}
+        },
+        {
+          "timestamp": 1565329086996,
+          "eventtype": "VERTEX_STARTED",
+          "eventinfo": {}
+        },
+        {
+          "timestamp": 1565329086995,
+          "eventtype": "VERTEX_INITIALIZED",
+          "eventinfo": {}
+        }
+      ],
+      "entitytype": "TEZ_VERTEX_ID",
+      "entity": "vertex_1562840950978_1761163_1_07",
+      "starttime": 1565329086995,
+      "domain": "Tez_ATS_application_1562840950978_1761163",
+      "relatedentities": {},
+      "primaryfilters": {
+        "TEZ_DAG_ID": [
+          "dag_1562840950978_1761163_1"
+        ],
+        "applicationId": [
+          "application_1562840950978_1761163"
+        ],
+        "status": [
+          "SUCCEEDED"
+        ]
+      },
+      "otherinfo": {
+        "numTasks": 3,
+        "numFailedTaskAttempts": 0,
+        "processorClassName": "org.apache.hadoop.hive.ql.exec.tez.MapTezProcessor",
+        "numKilledTaskAttempts": 0,
+        "vertexName": "Map 12",
+        "counters": {
+          "counterGroups": [
+            {
+              "counterGroupName": "org.apache.tez.common.counters.DAGCounter",
+              "counters": [
+                {
+                  "counterName": "RACK_LOCAL_TASKS",
+                  "counterValue": 3
+                }
+              ]
+            },
+            {
+              "counterGroupName": "org.apache.tez.common.counters.FileSystemCounter",
+              "counterGroupDisplayName": "File System Counters",
+              "counters": [
+                {
+                  "counterName": "FILE_BYTES_READ",
+                  "counterValue": 145344
+                },
+                {
+                  "counterName": "FILE_BYTES_WRITTEN",
+                  "counterValue": 89468542
+                },
+                {
+                  "counterName": "HDFS_BYTES_READ",
+                  "counterValue": 1711891
+                },
+                {
+                  "counterName": "HDFS_READ_OPS",
+                  "counterValue": 18
+                }
+              ]
+            },
+            {
+              "counterGroupName": "org.apache.tez.common.counters.TaskCounter",
+              "counters": [
+                {
+                  "counterName": "SPILLED_RECORDS",
+                  "counterValue": 16721761
+                },
+                {
+                  "counterName": "GC_TIME_MILLIS",
+                  "counterValue": 726
+                },
+                {
+                  "counterName": "CPU_MILLISECONDS",
+                  "counterValue": 65810
+                },
+                {
+                  "counterName": "PHYSICAL_MEMORY_BYTES",
+                  "counterValue": 7321681920
+                },
+                {
+                  "counterName": "VIRTUAL_MEMORY_BYTES",
+                  "counterValue": 13771010048
+                },
+                {
+                  "counterName": "COMMITTED_HEAP_BYTES",
+                  "counterValue": 7321681920
+                },
+                {
+                  "counterName": "INPUT_RECORDS_PROCESSED",
+                  "counterValue": 16721761
+                },
+                {
+                  "counterName": "OUTPUT_RECORDS",
+                  "counterValue": 16721761
+                },
+                {
+                  "counterName": "OUTPUT_BYTES",
+                  "counterValue": 183944047
+                },
+                {
+                  "counterName": "OUTPUT_BYTES_WITH_OVERHEAD",
+                  "counterValue": 217405731
+                },
+                {
+                  "counterName": "OUTPUT_BYTES_PHYSICAL",
+                  "counterValue": 89395870
+                },
+                {
+                  "counterName": "SHUFFLE_CHUNK_COUNT",
+                  "counterValue": 3
+                }
+              ]
+            },
+            {
+              "counterGroupName": "HIVE",
+              "counters": [
+                {
+                  "counterName": "RECORDS_IN_Map_12",
+                  "counterValue": 16721761
+                },
+                {
+                  "counterName": "RECORDS_OUT_INTERMEDIATE_Map_12",
+                  "counterValue": 16721761
+                }
+              ]
+            }
+          ]
+        },
+        "numCompletedTasks": 3,
+        "numSucceededTasks": 3,
+        "numFailedTasks": 0,
+        "initRequestedTime": 1565329086521,
+        "startRequestedTime": 1565329086523,
+        "timeTaken": 16706,
+        "diagnostics": "",
+        "stats": {
+          "firstTaskStartTime": 1565329089562,
+          "firstTasksToStart": [
+            "task_1562840950978_1761163_1_07_000002"
+          ],
+          "lastTaskFinishTime": 1565329103701,
+          "lastTasksToFinish": [
+            "task_1562840950978_1761163_1_07_000001"
+          ],
+          "minTaskDuration": 3516,
+          "maxTaskDuration": 13229,
+          "avgTaskDuration": 8701,
+          "shortestDurationTasks": [
+            "task_1562840950978_1761163_1_07_000002"
+          ],
+          "longestDurationTasks": [
+            "task_1562840950978_1761163_1_07_000001"
+          ]
+        },
+        "startTime": 1565329086996,
+        "endTime": 1565329103702,
+        "numKilledTasks": 0,
+        "initTime": 1565329086995,
+        "status": "SUCCEEDED"
+      }
+    },
+    {
+      "events": [
+        {
+          "timestamp": 1565329096080,
+          "eventtype": "VERTEX_FINISHED",
+          "eventinfo": {}
+        },
+        {
+          "timestamp": 1565329086995,
+          "eventtype": "VERTEX_STARTED",
+          "eventinfo": {}
+        },
+        {
+          "timestamp": 1565329086994,
+          "eventtype": "VERTEX_INITIALIZED",
+          "eventinfo": {}
+        }
+      ],
+      "entitytype": "TEZ_VERTEX_ID",
+      "entity": "vertex_1562840950978_1761163_1_00",
+      "starttime": 1565329086994,
+      "domain": "Tez_ATS_application_1562840950978_1761163",
+      "relatedentities": {},
+      "primaryfilters": {
+        "TEZ_DAG_ID": [
+          "dag_1562840950978_1761163_1"
+        ],
+        "applicationId": [
+          "application_1562840950978_1761163"
+        ],
+        "status": [
+          "SUCCEEDED"
+        ]
+      },
+      "otherinfo": {
+        "numTasks": 21,
+        "numFailedTaskAttempts": 0,
+        "processorClassName": "org.apache.hadoop.hive.ql.exec.tez.MapTezProcessor",
+        "numKilledTaskAttempts": 0,
+        "vertexName": "Map 9",
+        "counters": {
+          "counterGroups": [
+            {
+              "counterGroupName": "org.apache.tez.common.counters.DAGCounter",
+              "counters": [
+                {
+                  "counterName": "DATA_LOCAL_TASKS",
+                  "counterValue": 18
+                },
+                {
+                  "counterName": "RACK_LOCAL_TASKS",
+                  "counterValue": 3
+                }
+              ]
+            },
+            {
+              "counterGroupName": "org.apache.tez.common.counters.FileSystemCounter",
+              "counterGroupDisplayName": "File System Counters",
+              "counters": [
+                {
+                  "counterName": "FILE_BYTES_READ",
+                  "counterValue": 1017408
+                },
+                {
+                  "counterName": "FILE_BYTES_WRITTEN",
+                  "counterValue": 138355159
+                },
+                {
+                  "counterName": "HDFS_BYTES_READ",
+                  "counterValue": 77690508
+                },
+                {
+                  "counterName": "HDFS_READ_OPS",
+                  "counterValue": 63
+                }
+              ]
+            },
+            {
+              "counterGroupName": "org.apache.tez.common.counters.TaskCounter",
+              "counters": [
+                {
+                  "counterName": "SPILLED_RECORDS",
+                  "counterValue": 16721761
+                },
+                {
+                  "counterName": "GC_TIME_MILLIS",
+                  "counterValue": 2413
+                },
+                {
+                  "counterName": "CPU_MILLISECONDS",
+                  "counterValue": 193550
+                },
+                {
+                  "counterName": "PHYSICAL_MEMORY_BYTES",
+                  "counterValue": 40137916416
+                },
+                {
+                  "counterName": "VIRTUAL_MEMORY_BYTES",
+                  "counterValue": 96509435904
+                },
+                {
+                  "counterName": "COMMITTED_HEAP_BYTES",
+                  "counterValue": 40137916416
+                },
+                {
+                  "counterName": "INPUT_RECORDS_PROCESSED",
+                  "counterValue": 16721761
+                },
+                {
+                  "counterName": "OUTPUT_RECORDS",
+                  "counterValue": 16721761
+                },
+                {
+                  "counterName": "OUTPUT_BYTES",
+                  "counterValue": 284172569
+                },
+                {
+                  "counterName": "OUTPUT_BYTES_WITH_OVERHEAD",
+                  "counterValue": 317743225
+                },
+                {
+                  "counterName": "OUTPUT_BYTES_PHYSICAL",
+                  "counterValue": 137846455
+                },
+                {
+                  "counterName": "SHUFFLE_CHUNK_COUNT",
+                  "counterValue": 21
+                }
+              ]
+            },
+            {
+              "counterGroupName": "HIVE",
+              "counters": [
+                {
+                  "counterName": "RECORDS_IN_Map_9",
+                  "counterValue": 16721761
+                },
+                {
+                  "counterName": "RECORDS_OUT_INTERMEDIATE_Map_9",
+                  "counterValue": 16721761
+                }
+              ]
+            }
+          ]
+        },
+        "numCompletedTasks": 21,
+        "numSucceededTasks": 21,
+        "numFailedTasks": 0,
+        "initRequestedTime": 1565329086518,
+        "startRequestedTime": 1565329086523,
+        "timeTaken": 9085,
+        "diagnostics": "",
+        "stats": {
+          "firstTaskStartTime": 1565329089543,
+          "firstTasksToStart": [
+            "task_1562840950978_1761163_1_00_000016"
+          ],
+          "lastTaskFinishTime": 1565329096080,
+          "lastTasksToFinish": [
+            "task_1562840950978_1761163_1_00_000010"
+          ],
+          "minTaskDuration": 1741,
+          "maxTaskDuration": 5501,
+          "avgTaskDuration": 3229.4285714285716,
+          "shortestDurationTasks": [
+            "task_1562840950978_1761163_1_00_000013"
+          ],
+          "longestDurationTasks": [
+            "task_1562840950978_1761163_1_00_000012"
+          ]
+        },
+        "startTime": 1565329086995,
+        "endTime": 1565329096080,
+        "numKilledTasks": 0,
+        "initTime": 1565329086994,
+        "status": "SUCCEEDED"
+      }
+    },
+    {
+      "events": [
+        {
+          "timestamp": 1565329097621,
+          "eventtype": "VERTEX_FINISHED",
+          "eventinfo": {}
+        },
+        {
+          "timestamp": 1565329086868,
+          "eventtype": "VERTEX_INITIALIZED",
+          "eventinfo": {}
+        },
+        {
+          "timestamp": 1565329086868,
+          "eventtype": "VERTEX_STARTED",
+          "eventinfo": {}
+        }
+      ],
+      "entitytype": "TEZ_VERTEX_ID",
+      "entity": "vertex_1562840950978_1761163_1_04",
+      "starttime": 1565329086868,
+      "domain": "Tez_ATS_application_1562840950978_1761163",
+      "relatedentities": {},
+      "primaryfilters": {
+        "TEZ_DAG_ID": [
+          "dag_1562840950978_1761163_1"
+        ],
+        "applicationId": [
+          "application_1562840950978_1761163"
+        ],
+        "status": [
+          "SUCCEEDED"
+        ]
+      },
+      "otherinfo": {
+        "numTasks": 39,
+        "numFailedTaskAttempts": 0,
+        "processorClassName": "org.apache.hadoop.hive.ql.exec.tez.MapTezProcessor",
+        "numKilledTaskAttempts": 0,
+        "vertexName": "Map 6",
+        "counters": {
+          "counterGroups": [
+            {
+              "counterGroupName": "org.apache.tez.common.counters.DAGCounter",
+              "counters": [
+                {
+                  "counterName": "DATA_LOCAL_TASKS",
+                  "counterValue": 21
+                },
+                {
+                  "counterName": "RACK_LOCAL_TASKS",
+                  "counterValue": 18
+                }
+              ]
+            },
+            {
+              "counterGroupName": "org.apache.tez.common.counters.FileSystemCounter",
+              "counterGroupDisplayName": "File System Counters",
+              "counters": [
+                {
+                  "counterName": "FILE_BYTES_READ",
+                  "counterValue": 1889472
+                },
+                {
+                  "counterName": "FILE_BYTES_WRITTEN",
+                  "counterValue": 163367456
+                },
+                {
+                  "counterName": "HDFS_BYTES_READ",
+                  "counterValue": 822825011
+                },
+                {
+                  "counterName": "HDFS_READ_OPS",
+                  "counterValue": 117
+                }
+              ]
+            },
+            {
+              "counterGroupName": "org.apache.tez.common.counters.TaskCounter",
+              "counters": [
+                {
+                  "counterName": "SPILLED_RECORDS",
+                  "counterValue": 16687084
+                },
+                {
+                  "counterName": "GC_TIME_MILLIS",
+                  "counterValue": 8240
+                },
+                {
+                  "counterName": "CPU_MILLISECONDS",
+                  "counterValue": 477420
+                },
+                {
+                  "counterName": "PHYSICAL_MEMORY_BYTES",
+                  "counterValue": 95207555072
+                },
+                {
+                  "counterName": "VIRTUAL_MEMORY_BYTES",
+                  "counterValue": 179306102784
+                },
+                {
+                  "counterName": "COMMITTED_HEAP_BYTES",
+                  "counterValue": 95207555072
+                },
+                {
+                  "counterName": "INPUT_RECORDS_PROCESSED",
+                  "counterValue": 16687084
+                },
+                {
+                  "counterName": "OUTPUT_RECORDS",
+                  "counterValue": 16687084
+                },
+                {
+                  "counterName": "OUTPUT_BYTES",
+                  "counterValue": 319944876
+                },
+                {
+                  "counterName": "OUTPUT_BYTES_WITH_OVERHEAD",
+                  "counterValue": 353555150
+                },
+                {
+                  "counterName": "OUTPUT_BYTES_PHYSICAL",
+                  "counterValue": 162422720
+                },
+                {
+                  "counterName": "SHUFFLE_CHUNK_COUNT",
+                  "counterValue": 39
+                }
+              ]
+            },
+            {
+              "counterGroupName": "HIVE",
+              "counters": [
+                {
+                  "counterName": "RECORDS_IN_Map_6",
+                  "counterValue": 16687084
+                },
+                {
+                  "counterName": "RECORDS_OUT_INTERMEDIATE_Map_6",
+                  "counterValue": 16687084
+                }
+              ]
+            }
+          ]
+        },
+        "numCompletedTasks": 39,
+        "numSucceededTasks": 39,
+        "numFailedTasks": 0,
+        "initRequestedTime": 1565329086520,
+        "startRequestedTime": 1565329086523,
+        "timeTaken": 10753,
+        "diagnostics": "",
+        "stats": {
+          "firstTaskStartTime": 1565329089556,
+          "firstTasksToStart": [
+            "task_1562840950978_1761163_1_04_000005"
+          ],
+          "lastTaskFinishTime": 1565329097620,
+          "lastTasksToFinish": [
+            "task_1562840950978_1761163_1_04_000025"
+          ],
+          "minTaskDuration": 1791,
+          "maxTaskDuration": 7917,
+          "avgTaskDuration": 4247.025641025641,
+          "shortestDurationTasks": [
+            "task_1562840950978_1761163_1_04_000030"
+          ],
+          "longestDurationTasks": [
+            "task_1562840950978_1761163_1_04_000027"
+          ]
+        },
+        "startTime": 1565329086868,
+        "endTime": 1565329097621,
+        "numKilledTasks": 0,
+        "initTime": 1565329086868,
+        "status": "SUCCEEDED"
+      }
+    },
+    {
+      "events": [
+        {
+          "timestamp": 1565329090715,
+          "eventtype": "VERTEX_FINISHED",
+          "eventinfo": {}
+        },
+        {
+          "timestamp": 1565329086778,
+          "eventtype": "VERTEX_STARTED",
+          "eventinfo": {}
+        },
+        {
+          "timestamp": 1565329086777,
+          "eventtype": "VERTEX_INITIALIZED",
+          "eventinfo": {}
+        }
+      ],
+      "entitytype": "TEZ_VERTEX_ID",
+      "entity": "vertex_1562840950978_1761163_1_05",
+      "starttime": 1565329086777,
+      "domain": "Tez_ATS_application_1562840950978_1761163",
+      "relatedentities": {},
+      "primaryfilters": {
+        "TEZ_DAG_ID": [
+          "dag_1562840950978_1761163_1"
+        ],
+        "applicationId": [
+          "application_1562840950978_1761163"
+        ],
+        "status": [
+          "SUCCEEDED"
+        ]
+      },
+      "otherinfo": {
+        "numTasks": 1,
+        "numFailedTaskAttempts": 0,
+        "processorClassName": "org.apache.hadoop.hive.ql.exec.tez.MapTezProcessor",
+        "numKilledTaskAttempts": 0,
+        "vertexName": "Map 10",
+        "counters": {
+          "counterGroups": [
+            {
+              "counterGroupName": "org.apache.tez.common.counters.DAGCounter",
+              "counters": [
+                {
+                  "counterName": "DATA_LOCAL_TASKS",
+                  "counterValue": 1
+                }
+              ]
+            },
+            {
+              "counterGroupName": "org.apache.tez.common.counters.FileSystemCounter",
+              "counterGroupDisplayName": "File System Counters",
+              "counters": [
+                {
+                  "counterName": "FILE_BYTES_WRITTEN",
+                  "counterValue": 1270
+                },
+                {
+                  "counterName": "HDFS_BYTES_READ",
+                  "counterValue": 7400
+                },
+                {
+                  "counterName": "HDFS_READ_OPS",
+                  "counterValue": 3
+                }
+              ]
+            },
+            {
+              "counterGroupName": "org.apache.tez.common.counters.TaskCounter",
+              "counters": [
+                {
+                  "counterName": "GC_TIME_MILLIS",
+                  "counterValue": 46
+                },
+                {
+                  "counterName": "CPU_MILLISECONDS",
+                  "counterValue": 2690
+                },
+                {
+                  "counterName": "PHYSICAL_MEMORY_BYTES",
+                  "counterValue": 1517813760
+                },
+                {
+                  "counterName": "VIRTUAL_MEMORY_BYTES",
+                  "counterValue": 4590743552
+                },
+                {
+                  "counterName": "COMMITTED_HEAP_BYTES",
+                  "counterValue": 1517813760
+                },
+                {
+                  "counterName": "INPUT_RECORDS_PROCESSED",
+                  "counterValue": 109
+                },
+                {
+                  "counterName": "OUTPUT_RECORDS",
+                  "counterValue": 109
+                },
+                {
+                  "counterName": "OUTPUT_BYTES",
+                  "counterValue": 2150
+                },
+                {
+                  "counterName": "OUTPUT_BYTES_WITH_OVERHEAD",
+                  "counterValue": 2374
+                },
+                {
+                  "counterName": "OUTPUT_BYTES_PHYSICAL",
+                  "counterValue": 1262
+                }
+              ]
+            },
+            {
+              "counterGroupName": "HIVE",
+              "counters": [
+                {
+                  "counterName": "RECORDS_IN_Map_10",
+                  "counterValue": 109
+                },
+                {
+                  "counterName": "RECORDS_OUT_INTERMEDIATE_Map_10",
+                  "counterValue": 109
+                }
+              ]
+            }
+          ]
+        },
+        "numCompletedTasks": 1,
+        "numSucceededTasks": 1,
+        "numFailedTasks": 0,
+        "initRequestedTime": 1565329086519,
+        "startRequestedTime": 1565329086523,
+        "timeTaken": 3937,
+        "diagnostics": "",
+        "stats": {
+          "firstTaskStartTime": 1565329089652,
+          "firstTasksToStart": [
+            "task_1562840950978_1761163_1_05_000000"
+          ],
+          "lastTaskFinishTime": 1565329090706,
+          "lastTasksToFinish": [
+            "task_1562840950978_1761163_1_05_000000"
+          ],
+          "minTaskDuration": 1054,
+          "maxTaskDuration": 1054,
+          "avgTaskDuration": 1054,
+          "shortestDurationTasks": [
+            "task_1562840950978_1761163_1_05_000000"
+          ],
+          "longestDurationTasks": [
+            "task_1562840950978_1761163_1_05_000000"
+          ]
+        },
+        "startTime": 1565329086778,
+        "endTime": 1565329090715,
+        "numKilledTasks": 0,
+        "initTime": 1565329086777,
+        "status": "SUCCEEDED"
+      }
+    },
+    {
+      "events": [
+        {
+          "timestamp": 1565329090840,
+          "eventtype": "VERTEX_FINISHED",
+          "eventinfo": {}
+        },
+        {
+          "timestamp": 1565329086779,
+          "eventtype": "VERTEX_STARTED",
+          "eventinfo": {}
+        },
+        {
+          "timestamp": 1565329086777,
+          "eventtype": "VERTEX_INITIALIZED",
+          "eventinfo": {}
+        }
+      ],
+      "entitytype": "TEZ_VERTEX_ID",
+      "entity": "vertex_1562840950978_1761163_1_12",
+      "starttime": 1565329086777,
+      "domain": "Tez_ATS_application_1562840950978_1761163",
+      "relatedentities": {},
+      "primaryfilters": {
+        "TEZ_DAG_ID": [
+          "dag_1562840950978_1761163_1"
+        ],
+        "applicationId": [
+          "application_1562840950978_1761163"
+        ],
+        "status": [
+          "SUCCEEDED"
+        ]
+      },
+      "otherinfo": {
+        "numTasks": 1,
+        "numFailedTaskAttempts": 0,
+        "processorClassName": "org.apache.hadoop.hive.ql.exec.tez.MapTezProcessor",
+        "numKilledTaskAttempts": 0,
+        "vertexName": "Map 1",
+        "counters": {
+          "counterGroups": [
+            {
+              "counterGroupName": "org.apache.tez.common.counters.DAGCounter",
+              "counters": [
+                {
+                  "counterName": "DATA_LOCAL_TASKS",
+                  "counterValue": 1
+                }
+              ]
+            },
+            {
+              "counterGroupName": "org.apache.tez.common.counters.FileSystemCounter",
+              "counterGroupDisplayName": "File System Counters",
+              "counters": [
+                {
+                  "counterName": "FILE_BYTES_READ",
+                  "counterValue": 11440
+                },
+                {
+                  "counterName": "FILE_BYTES_WRITTEN",
+                  "counterValue": 855145
+                },
+                {
+                  "counterName": "HDFS_BYTES_READ",
+                  "counterValue": 200805
+                },
+                {
+                  "counterName": "HDFS_READ_OPS",
+                  "counterValue": 3
+                }
+              ]
+            },
+            {
+              "counterGroupName": "org.apache.tez.common.counters.TaskCounter",
+              "counters": [
+                {
+                  "counterName": "SPILLED_RECORDS",
+                  "counterValue": 4178
+                },
+                {
+                  "counterName": "GC_TIME_MILLIS",
+                  "counterValue": 44
+                },
+                {
+                  "counterName": "CPU_MILLISECONDS",
+                  "counterValue": 3170
+                },
+                {
+                  "counterName": "PHYSICAL_MEMORY_BYTES",
+                  "counterValue": 1532493824
+                },
+                {
+                  "counterName": "VIRTUAL_MEMORY_BYTES",
+                  "counterValue": 4576206848
+                },
+                {
+                  "counterName": "COMMITTED_HEAP_BYTES",
+                  "counterValue": 1532493824
+                },
+                {
+                  "counterName": "INPUT_RECORDS_PROCESSED",
+                  "counterValue": 4178
+                },
+                {
+                  "counterName": "OUTPUT_RECORDS",
+                  "counterValue": 4178
+                },
+                {
+                  "counterName": "OUTPUT_BYTES",
+                  "counterValue": 1362703
+                },
+                {
+                  "counterName": "OUTPUT_BYTES_WITH_OVERHEAD",
+                  "counterValue": 1368246
+                },
+                {
+                  "counterName": "OUTPUT_BYTES_PHYSICAL",
+                  "counterValue": 849425
+                },
+                {
+                  "counterName": "SHUFFLE_CHUNK_COUNT",
+                  "counterValue": 1
+                }
+              ]
+            },
+            {
+              "counterGroupName": "HIVE",
+              "counters": [
+                {
+                  "counterName": "RECORDS_IN_Map_1",
+                  "counterValue": 4178
+                },
+                {
+                  "counterName": "RECORDS_OUT_INTERMEDIATE_Map_1",
+                  "counterValue": 4178
+                }
+              ]
+            }
+          ]
+        },
+        "numCompletedTasks": 1,
+        "numSucceededTasks": 1,
+        "numFailedTasks": 0,
+        "initRequestedTime": 1565329086516,
+        "startRequestedTime": 1565329086523,
+        "timeTaken": 4061,
+        "diagnostics": "",
+        "stats": {
+          "firstTaskStartTime": 1565329089598,
+          "firstTasksToStart": [
+            "task_1562840950978_1761163_1_12_000000"
+          ],
+          "lastTaskFinishTime": 1565329090833,
+          "lastTasksToFinish": [
+            "task_1562840950978_1761163_1_12_000000"
+          ],
+          "minTaskDuration": 1235,
+          "maxTaskDuration": 1235,
+          "avgTaskDuration": 1235,
+          "shortestDurationTasks": [
+            "task_1562840950978_1761163_1_12_000000"
+          ],
+          "longestDurationTasks": [
+            "task_1562840950978_1761163_1_12_000000"
+          ]
+        },
+        "startTime": 1565329086779,
+        "endTime": 1565329090840,
+        "numKilledTasks": 0,
+        "initTime": 1565329086777,
+        "status": "SUCCEEDED"
+      }
+    },
+    {
+      "events": [
+        {
+          "timestamp": 1565329122360,
+          "eventtype": "VERTEX_FINISHED",
+          "eventinfo": {}
+        },
+        {
+          "timestamp": 1565329117846,
+          "eventtype": "VERTEX_PARALLELISM_UPDATED",
+          "eventinfo": {
+            "numTasks": 33,
+            "oldNumTasks": 264,
+            "updatedEdgeManagers": {
+              "Reducer 2": {
+                "schedulingType": "SEQUENTIAL",
+                "edgeSourceClass": "org.apache.tez.runtime.library.output.OrderedPartitionedKVOutput",
+                "edgeManagerClass": "org.apache.tez.dag.library.vertexmanager.ShuffleVertexManager$CustomShuffleEdgeManager",
+                "dataMovementType": "CUSTOM",
+                "edgeDestinationClass": "org.apache.tez.runtime.library.input.OrderedGroupedKVInput",
+                "dataSourceType": "PERSISTED"
+              },
+              "Map 16": {
+                "schedulingType": "SEQUENTIAL",
+                "edgeSourceClass": "org.apache.tez.runtime.library.output.OrderedPartitionedKVOutput",
+                "edgeManagerClass": "org.apache.tez.dag.library.vertexmanager.ShuffleVertexManager$CustomShuffleEdgeManager",
+                "dataMovementType": "CUSTOM",
+                "edgeDestinationClass": "org.apache.tez.runtime.library.input.OrderedGroupedKVInput",
+                "dataSourceType": "PERSISTED"
+              },
+              "Reducer 15": {
+                "schedulingType": "SEQUENTIAL",
+                "edgeSourceClass": "org.apache.tez.runtime.library.output.OrderedPartitionedKVOutput",
+                "edgeManagerClass": "org.apache.tez.dag.library.vertexmanager.ShuffleVertexManager$CustomShuffleEdgeManager",
+                "dataMovementType": "CUSTOM",
+                "edgeDestinationClass": "org.apache.tez.runtime.library.input.OrderedGroupedKVInput",
+                "dataSourceType": "PERSISTED"
+              }
+            }
+          }
+        },
+        {
+          "timestamp": 1565329087008,
+          "eventtype": "VERTEX_STARTED",
+          "eventinfo": {}
+        },
+        {
+          "timestamp": 1565329086566,
+          "eventtype": "VERTEX_INITIALIZED",
+          "eventinfo": {}
+        }
+      ],
+      "entitytype": "TEZ_VERTEX_ID",
+      "entity": "vertex_1562840950978_1761163_1_15",
+      "starttime": 1565329086566,
+      "domain": "Tez_ATS_application_1562840950978_1761163",
+      "relatedentities": {},
+      "primaryfilters": {
+        "TEZ_DAG_ID": [
+          "dag_1562840950978_1761163_1"
+        ],
+        "applicationId": [
+          "application_1562840950978_1761163"
+        ],
+        "status": [
+          "SUCCEEDED"
+        ]
+      },
+      "otherinfo": {
+        "numTasks": 33,
+        "numFailedTaskAttempts": 0,
+        "processorClassName": "org.apache.hadoop.hive.ql.exec.tez.ReduceTezProcessor",
+        "numKilledTaskAttempts": 0,
+        "vertexName": "Reducer 3",
+        "counters": {
+          "counterGroups": [
+            {
+              "counterGroupName": "org.apache.tez.common.counters.FileSystemCounter",
+              "counterGroupDisplayName": "File System Counters",
+              "counters": [
+                {
+                  "counterName": "FILE_BYTES_READ",
+                  "counterValue": 6271992
+                },
+                {
+                  "counterName": "FILE_BYTES_WRITTEN",
+                  "counterValue": 4386035
+                },
+                {
+                  "counterName": "HDFS_BYTES_WRITTEN",
+                  "counterValue": 1022360
+                },
+                {
+                  "counterName": "HDFS_READ_OPS",
+                  "counterValue": 99
+                },
+                {
+                  "counterName": "HDFS_WRITE_OPS",
+                  "counterValue": 99
+                }
+              ]
+            },
+            {
+              "counterGroupName": "org.apache.tez.common.counters.TaskCounter",
+              "counters": [
+                {
+                  "counterName": "REDUCE_INPUT_GROUPS",
+                  "counterValue": 355162
+                },
+                {
+                  "counterName": "REDUCE_INPUT_RECORDS",
+                  "counterValue": 363019
+                },
+                {
+                  "counterName": "SPILLED_RECORDS",
+                  "counterValue": 363019
+                },
+                {
+                  "counterName": "NUM_SHUFFLED_INPUTS",
+                  "counterValue": 4677
+                },
+                {
+                  "counterName": "NUM_SKIPPED_INPUTS",
+                  "counterValue": 5091
+                },
+                {
+                  "counterName": "MERGED_MAP_OUTPUTS",
+                  "counterValue": 4677
+                },
+                {
+                  "counterName": "GC_TIME_MILLIS",
+                  "counterValue": 1383
+                },
+                {
+                  "counterName": "CPU_MILLISECONDS",
+                  "counterValue": 283440
+                },
+                {
+                  "counterName": "PHYSICAL_MEMORY_BYTES",
+                  "counterValue": 49928470528
+                },
+                {
+                  "counterName": "VIRTUAL_MEMORY_BYTES",
+                  "counterValue": 156394565632
+                },
+                {
+                  "counterName": "COMMITTED_HEAP_BYTES",
+                  "counterValue": 49928470528
+                },
+                {
+                  "counterName": "ADDITIONAL_SPILLS_BYTES_WRITTEN",
+                  "counterValue": 4386035
+                },
+                {
+                  "counterName": "ADDITIONAL_SPILLS_BYTES_READ",
+                  "counterValue": 4403934
+                },
+                {
+                  "counterName": "SHUFFLE_BYTES",
+                  "counterValue": 5311894
+                },
+                {
+                  "counterName": "SHUFFLE_BYTES_DECOMPRESSED",
+                  "counterValue": 8665445
+                },
+                {
+                  "counterName": "SHUFFLE_BYTES_TO_MEM",
+                  "counterValue": 5293995
+                },
+                {
+                  "counterName": "SHUFFLE_BYTES_DISK_DIRECT",
+                  "counterValue": 17899
+                },
+                {
+                  "counterName": "SHUFFLE_PHASE_TIME",
+                  "counterValue": 7732
+                },
+                {
+                  "counterName": "MERGE_PHASE_TIME",
+                  "counterValue": 10549
+                },
+                {
+                  "counterName": "FIRST_EVENT_RECEIVED",
+                  "counterValue": 2007
+                },
+                {
+                  "counterName": "LAST_EVENT_RECEIVED",
+                  "counterValue": 2698
+                }
+              ]
+            },
+            {
+              "counterGroupName": "HIVE",
+              "counters": [
+                {
+                  "counterName": "CREATED_FILES",
+                  "counterValue": 33
+                },
+                {
+                  "counterName": "RECORDS_OUT_1_view.sl_work_activity_new_tmp_201908080000_746",
+                  "counterValue": 4334
+                }
+              ]
+            }
+          ]
+        },
+        "numCompletedTasks": 33,
+        "numSucceededTasks": 33,
+        "numFailedTasks": 0,
+        "initRequestedTime": 1565329086565,
+        "startRequestedTime": 1565329087008,
+        "timeTaken": 35352,
+        "diagnostics": "",
+        "stats": {
+          "firstTaskStartTime": 1565329120447,
+          "firstTasksToStart": [
+            "task_1562840950978_1761163_1_15_000008"
+          ],
+          "lastTaskFinishTime": 1565329122360,
+          "lastTasksToFinish": [
+            "task_1562840950978_1761163_1_15_000019"
+          ],
+          "minTaskDuration": 1401,
+          "maxTaskDuration": 1786,
+          "avgTaskDuration": 1551.1818181818182,
+          "shortestDurationTasks": [
+            "task_1562840950978_1761163_1_15_000007"
+          ],
+          "longestDurationTasks": [
+            "task_1562840950978_1761163_1_15_000019"
+          ]
+        },
+        "startTime": 1565329087008,
+        "endTime": 1565329122360,
+        "numKilledTasks": 0,
+        "initTime": 1565329086566,
+        "status": "SUCCEEDED"
+      }
+    },
+    {
+      "events": [
+        {
+          "timestamp": 1565329117843,
+          "eventtype": "VERTEX_FINISHED",
+          "eventinfo": {}
+        },
+        {
+          "timestamp": 1565329112184,
+          "eventtype": "VERTEX_PARALLELISM_UPDATED",
+          "eventinfo": {
+            "numTasks": 30,
+            "oldNumTasks": 238,
+            "updatedEdgeManagers": {
+              "Map 1": {
+                "schedulingType": "SEQUENTIAL",
+                "edgeSourceClass": "org.apache.tez.runtime.library.output.OrderedPartitionedKVOutput",
+                "edgeManagerClass": "org.apache.tez.dag.library.vertexmanager.ShuffleVertexManager$CustomShuffleEdgeManager",
+                "dataMovementType": "CUSTOM",
+                "edgeDestinationClass": "org.apache.tez.runtime.library.input.OrderedGroupedKVInput",
+                "dataSourceType": "PERSISTED"
+              },
+              "Reducer 5": {
+                "schedulingType": "SEQUENTIAL",
+                "edgeSourceClass": "org.apache.tez.runtime.library.output.OrderedPartitionedKVOutput",
+                "edgeManagerClass": "org.apache.tez.dag.library.vertexmanager.ShuffleVertexManager$CustomShuffleEdgeManager",
+                "dataMovementType": "CUSTOM",
+                "edgeDestinationClass": "org.apache.tez.runtime.library.input.OrderedGroupedKVInput",
+                "dataSourceType": "PERSISTED"
+              }
+            }
+          }
+        },
+        {
+          "timestamp": 1565329087008,
+          "eventtype": "VERTEX_STARTED",
+          "eventinfo": {}
+        },
+        {
+          "timestamp": 1565329086564,
+          "eventtype": "VERTEX_INITIALIZED",
+          "eventinfo": {}
+        }
+      ],
+      "entitytype": "TEZ_VERTEX_ID",
+      "entity": "vertex_1562840950978_1761163_1_14",
+      "starttime": 1565329086564,
+      "domain": "Tez_ATS_application_1562840950978_1761163",
+      "relatedentities": {},
+      "primaryfilters": {
+        "TEZ_DAG_ID": [
+          "dag_1562840950978_1761163_1"
+        ],
+        "applicationId": [
+          "application_1562840950978_1761163"
+        ],
+        "status": [
+          "SUCCEEDED"
+        ]
+      },
+      "otherinfo": {
+        "numTasks": 30,
+        "numFailedTaskAttempts": 0,
+        "processorClassName": "org.apache.hadoop.hive.ql.exec.tez.ReduceTezProcessor",
+        "numKilledTaskAttempts": 0,
+        "vertexName": "Reducer 2",
+        "counters": {
+          "counterGroups": [
+            {
+              "counterGroupName": "org.apache.tez.common.counters.FileSystemCounter",
+              "counterGroupDisplayName": "File System Counters",
+              "counters": [
+                {
+                  "counterName": "FILE_BYTES_READ",
+                  "counterValue": 280211584
+                },
+                {
+                  "counterName": "FILE_BYTES_WRITTEN",
+                  "counterValue": 243637704
+                }
+              ]
+            },
+            {
+              "counterGroupName": "org.apache.tez.common.counters.TaskCounter",
+              "counters": [
+                {
+                  "counterName": "REDUCE_INPUT_GROUPS",
+                  "counterValue": 10424507
+                },
+                {
+                  "counterName": "REDUCE_INPUT_RECORDS",
+                  "counterValue": 10453229
+                },
+                {
+                  "counterName": "SPILLED_RECORDS",
+                  "counterValue": 10504139
+                },
+                {
+                  "counterName": "NUM_SHUFFLED_INPUTS",
+                  "counterValue": 60452
+                },
+                {
+                  "counterName": "MERGED_MAP_OUTPUTS",
+                  "counterValue": 448113
+                },
+                {
+                  "counterName": "GC_TIME_MILLIS",
+                  "counterValue": 9284
+                },
+                {
+                  "counterName": "CPU_MILLISECONDS",
+                  "counterValue": 558820
+                },
+                {
+                  "counterName": "PHYSICAL_MEMORY_BYTES",
+                  "counterValue": 74284793856
+                },
+                {
+                  "counterName": "VIRTUAL_MEMORY_BYTES",
+                  "counterValue": 138805633024
+                },
+                {
+                  "counterName": "COMMITTED_HEAP_BYTES",
+                  "counterValue": 74284793856
+                },
+                {
+                  "counterName": "OUTPUT_RECORDS",
+                  "counterValue": 4183
+                },
+                {
+                  "counterName": "OUTPUT_BYTES",
+                  "counterValue": 1548842
+                },
+                {
+                  "counterName": "OUTPUT_BYTES_WITH_OVERHEAD",
+                  "counterValue": 1604458
+                },
+                {
+                  "counterName": "OUTPUT_BYTES_PHYSICAL",
+                  "counterValue": 1452903
+                },
+                {
+                  "counterName": "ADDITIONAL_SPILLS_BYTES_WRITTEN",
+                  "counterValue": 1070199
+                },
+                {
+                  "counterName": "ADDITIONAL_SPILLS_BYTES_READ",
+                  "counterValue": 244405432
+                },
+                {
+                  "counterName": "SHUFFLE_CHUNK_COUNT",
+                  "counterValue": 30
+                },
+                {
+                  "counterName": "SHUFFLE_BYTES",
+                  "counterValue": 309502337
+                },
+                {
+                  "counterName": "SHUFFLE_BYTES_DECOMPRESSED",
+                  "counterValue": 524578178
+                },
+                {
+                  "counterName": "SHUFFLE_BYTES_TO_MEM",
+                  "counterValue": 306703653
+                },
+                {
+                  "counterName": "SHUFFLE_BYTES_DISK_DIRECT",
+                  "counterValue": 2798684
+                },
+                {
+                  "counterName": "NUM_DISK_TO_DISK_MERGES",
+                  "counterValue": 8
+                },
+                {
+                  "counterName": "SHUFFLE_PHASE_TIME",
+                  "counterValue": 21762
+                },
+                {
+                  "counterName": "MERGE_PHASE_TIME",
+                  "counterValue": 35253
+                },
+                {
+                  "counterName": "FIRST_EVENT_RECEIVED",
+                  "counterValue": 1059
+                },
+                {
+                  "counterName": "LAST_EVENT_RECEIVED",
+                  "counterValue": 2303
+                }
+              ]
+            },
+            {
+              "counterGroupName": "HIVE",
+              "counters": [
+                {
+                  "counterName": "RECORDS_OUT_INTERMEDIATE_Reducer_2",
+                  "counterValue": 4183
+                }
+              ]
+            }
+          ]
+        },
+        "numCompletedTasks": 30,
+        "numSucceededTasks": 30,
+        "numFailedTasks": 0,
+        "initRequestedTime": 1565329086563,
+        "startRequestedTime": 1565329087007,
+        "timeTaken": 30835,
+        "diagnostics": "",
+        "stats": {
+          "firstTaskStartTime": 1565329114439,
+          "firstTasksToStart": [
+            "task_1562840950978_1761163_1_14_000007"
+          ],
+          "lastTaskFinishTime": 1565329117843,
+          "lastTasksToFinish": [
+            "task_1562840950978_1761163_1_14_000021"
+          ],
+          "minTaskDuration": 2899,
+          "maxTaskDuration": 3355,
+          "avgTaskDuration": 3120.4333333333334,
+          "shortestDurationTasks": [
+            "task_1562840950978_1761163_1_14_000026"
+          ],
+          "longestDurationTasks": [
+            "task_1562840950978_1761163_1_14_000021"
+          ]
+        },
+        "startTime": 1565329087008,
+        "endTime": 1565329117843,
+        "numKilledTasks": 0,
+        "initTime": 1565329086564,
+        "status": "SUCCEEDED"
+      }
+    },
+    {
+      "events": [
+        {
+          "timestamp": 1565329112174,
+          "eventtype": "VERTEX_FINISHED",
+          "eventinfo": {}
+        },
+        {
+          "timestamp": 1565329103709,
+          "eventtype": "VERTEX_PARALLELISM_UPDATED",
+          "eventinfo": {
+            "numTasks": 253,
+            "oldNumTasks": 1009,
+            "updatedEdgeManagers": {
+              "Map 6": {
+                "schedulingType": "SEQUENTIAL",
+                "edgeSourceClass": "org.apache.tez.runtime.library.output.OrderedPartitionedKVOutput",
+                "edgeManagerClass": "org.apache.tez.dag.library.vertexmanager.ShuffleVertexManager$CustomShuffleEdgeManager",
+                "dataMovementType": "CUSTOM",
+                "edgeDestinationClass": "org.apache.tez.runtime.library.input.OrderedGroupedKVInput",
+                "dataSourceType": "PERSISTED"
+              },
+              "Map 13": {
+                "schedulingType": "SEQUENTIAL",
+                "edgeSourceClass": "org.apache.tez.runtime.library.output.OrderedPartitionedKVOutput",
+                "edgeManagerClass": "org.apache.tez.dag.library.vertexmanager.ShuffleVertexManager$CustomShuffleEdgeManager",
+                "dataMovementType": "CUSTOM",
+                "edgeDestinationClass": "org.apache.tez.runtime.library.input.OrderedGroupedKVInput",
+                "dataSourceType": "PERSISTED"
+              },
+              "Map 12": {
+                "schedulingType": "SEQUENTIAL",
+                "edgeSourceClass": "org.apache.tez.runtime.library.output.OrderedPartitionedKVOutput",
+                "edgeManagerClass": "org.apache.tez.dag.library.vertexmanager.ShuffleVertexManager$CustomShuffleEdgeManager",
+                "dataMovementType": "CUSTOM",
+                "edgeDestinationClass": "org.apache.tez.runtime.library.input.OrderedGroupedKVInput",
+                "dataSourceType": "PERSISTED"
+              },
+              "Map 4": {
+                "schedulingType": "SEQUENTIAL",
+                "edgeSourceClass": "org.apache.tez.runtime.library.output.OrderedPartitionedKVOutput",
+                "edgeManagerClass": "org.apache.tez.dag.library.vertexmanager.ShuffleVertexManager$CustomShuffleEdgeManager",
+                "dataMovementType": "CUSTOM",
+                "edgeDestinationClass": "org.apache.tez.runtime.library.input.OrderedGroupedKVInput",
+                "dataSourceType": "PERSISTED"
+              },
+              "Map 11": {
+                "schedulingType": "SEQUENTIAL",
+                "edgeSourceClass": "org.apache.tez.runtime.library.output.OrderedPartitionedKVOutput",
+                "edgeManagerClass": "org.apache.tez.dag.library.vertexmanager.ShuffleVertexManager$CustomShuffleEdgeManager",
+                "dataMovementType": "CUSTOM",
+                "edgeDestinationClass": "org.apache.tez.runtime.library.input.OrderedGroupedKVInput",
+                "dataSourceType": "PERSISTED"
+              },
+              "Map 9": {
+                "schedulingType": "SEQUENTIAL",
+                "edgeSourceClass": "org.apache.tez.runtime.library.output.OrderedPartitionedKVOutput",
+                "edgeManagerClass": "org.apache.tez.dag.library.vertexmanager.ShuffleVertexManager$CustomShuffleEdgeManager",
+                "dataMovementType": "CUSTOM",
+                "edgeDestinationClass": "org.apache.tez.runtime.library.input.OrderedGroupedKVInput",
+                "dataSourceType": "PERSISTED"
+              },
+              "Reducer 8": {
+                "schedulingType": "SEQUENTIAL",
+                "edgeSourceClass": "org.apache.tez.runtime.library.output.OrderedPartitionedKVOutput",
+                "edgeManagerClass": "org.apache.tez.dag.library.vertexmanager.ShuffleVertexManager$CustomShuffleEdgeManager",
+                "dataMovementType": "CUSTOM",
+                "edgeDestinationClass": "org.apache.tez.runtime.library.input.OrderedGroupedKVInput",
+                "dataSourceType": "PERSISTED"
+              }
+            }
+          }
+        },
+        {
+          "timestamp": 1565329087006,
+          "eventtype": "VERTEX_STARTED",
+          "eventinfo": {}
+        },
+        {
+          "timestamp": 1565329086563,
+          "eventtype": "VERTEX_INITIALIZED",
+          "eventinfo": {}
+        }
+      ],
+      "entitytype": "TEZ_VERTEX_ID",
+      "entity": "vertex_1562840950978_1761163_1_09",
+      "starttime": 1565329086563,
+      "domain": "Tez_ATS_application_1562840950978_1761163",
+      "relatedentities": {},
+      "primaryfilters": {
+        "TEZ_DAG_ID": [
+          "dag_1562840950978_1761163_1"
+        ],
+        "applicationId": [
+          "application_1562840950978_1761163"
+        ],
+        "status": [
+          "SUCCEEDED"
+        ]
+      },
+      "otherinfo": {
+        "numTasks": 253,
+        "numFailedTaskAttempts": 0,
+        "processorClassName": "org.apache.hadoop.hive.ql.exec.tez.ReduceTezProcessor",
+        "numKilledTaskAttempts": 0,
+        "vertexName": "Reducer 5",
+        "counters": {
+          "counterGroups": [
+            {
+              "counterGroupName": "org.apache.tez.common.counters.FileSystemCounter",
+              "counterGroupDisplayName": "File System Counters",
+              "counters": [
+                {
+                  "counterName": "FILE_BYTES_READ",
+                  "counterValue": 847551186
+                },
+                {
+                  "counterName": "FILE_BYTES_WRITTEN",
+                  "counterValue": 1084405096
+                }
+              ]
+            },
+            {
+              "counterGroupName": "org.apache.tez.common.counters.TaskCounter",
+              "counters": [
+                {
+                  "counterName": "REDUCE_INPUT_GROUPS",
+                  "counterValue": 94262703
+                },
+                {
+                  "counterName": "REDUCE_INPUT_RECORDS",
+                  "counterValue": 94262703
+                },
+                {
+                  "counterName": "SPILLED_RECORDS",
+                  "counterValue": 104711754
+                },
+                {
+                  "counterName": "NUM_SHUFFLED_INPUTS",
+                  "counterValue": 82991
+                },
+                {
+                  "counterName": "NUM_SKIPPED_INPUTS",
+                  "counterValue": 10090
+                },
+                {
+                  "counterName": "MERGED_MAP_OUTPUTS",
+                  "counterValue": 82738
+                },
+                {
+                  "counterName": "GC_TIME_MILLIS",
+                  "counterValue": 19257
+                },
+                {
+                  "counterName": "CPU_MILLISECONDS",
+                  "counterValue": 4421430
+                },
+                {
+                  "counterName": "PHYSICAL_MEMORY_BYTES",
+                  "counterValue": 374511501312
+                },
+                {
+                  "counterName": "VIRTUAL_MEMORY_BYTES",
+                  "counterValue": 1177227862016
+                },
+                {
+                  "counterName": "COMMITTED_HEAP_BYTES",
+                  "counterValue": 374511501312
+                },
+                {
+                  "counterName": "INPUT_RECORDS_PROCESSED",
+                  "counterValue": 27577
+                },
+                {
+                  "counterName": "OUTPUT_RECORDS",
+                  "counterValue": 10449051
+                },
+                {
+                  "counterName": "OUTPUT_BYTES",
+                  "counterValue": 501950539
+                },
+                {
+                  "counterName": "OUTPUT_BYTES_WITH_OVERHEAD",
+                  "counterValue": 523209932
+                },
+                {
+                  "counterName": "OUTPUT_BYTES_PHYSICAL",
+                  "counterValue": 308652912
+                },
+                {
+                  "counterName": "ADDITIONAL_SPILLS_BYTES_WRITTEN",
+                  "counterValue": 774305024
+                },
+                {
+                  "counterName": "ADDITIONAL_SPILLS_BYTES_READ",
+                  "counterValue": 782227912
+                },
+                {
+                  "counterName": "SHUFFLE_CHUNK_COUNT",
+                  "counterValue": 253
+                },
+                {
+                  "counterName": "SHUFFLE_BYTES",
+                  "counterValue": 877514207
+                },
+                {
+                  "counterName": "SHUFFLE_BYTES_DECOMPRESSED",
+                  "counterValue": 1772617476
+                },
+                {
+                  "counterName": "SHUFFLE_BYTES_TO_MEM",
+                  "counterValue": 869588843
+                },
+                {
+                  "counterName": "SHUFFLE_BYTES_DISK_DIRECT",
+                  "counterValue": 7925364
+                },
+                {
+                  "counterName": "SHUFFLE_PHASE_TIME",
+                  "counterValue": 496410
+                },
+                {
+                  "counterName": "MERGE_PHASE_TIME",
+                  "counterValue": 648212
+                },
+                {
+                  "counterName": "FIRST_EVENT_RECEIVED",
+                  "counterValue": 132208
+                },
+                {
+                  "counterName": "LAST_EVENT_RECEIVED",
+                  "counterValue": 198803
+                }
+              ]
+            },
+            {
+              "counterGroupName": "HIVE",
+              "counters": [
+                {
+                  "counterName": "RECORDS_OUT_INTERMEDIATE_Reducer_5",
+                  "counterValue": 10449051
+                }
+              ]
+            }
+          ]
+        },
+        "numCompletedTasks": 253,
+        "numSucceededTasks": 253,
+        "numFailedTasks": 0,
+        "initRequestedTime": 1565329086543,
+        "startRequestedTime": 1565329087005,
+        "timeTaken": 25168,
+        "diagnostics": "",
+        "stats": {
+          "firstTaskStartTime": 1565329105402,
+          "firstTasksToStart": [
+            "task_1562840950978_1761163_1_09_000072"
+          ],
+          "lastTaskFinishTime": 1565329112171,
+          "lastTasksToFinish": [
+            "task_1562840950978_1761163_1_09_000224"
+          ],
+          "minTaskDuration": 1967,
+          "maxTaskDuration": 4165,
+          "avgTaskDuration": 2955.300395256918,
+          "shortestDurationTasks": [
+            "task_1562840950978_1761163_1_09_000252"
+          ],
+          "longestDurationTasks": [
+            "task_1562840950978_1761163_1_09_000037"
+          ]
+        },
+        "startTime": 1565329087006,
+        "endTime": 1565329112174,
+        "numKilledTasks": 0,
+        "initTime": 1565329086563,
+        "status": "SUCCEEDED"
+      }
+    },
+    {
+      "events": [
+        {
+          "timestamp": 1565329095998,
+          "eventtype": "VERTEX_FINISHED",
+          "eventinfo": {}
+        },
+        {
+          "timestamp": 1565329092167,
+          "eventtype": "VERTEX_PARALLELISM_UPDATED",
+          "eventinfo": {
+            "numTasks": 1,
+            "oldNumTasks": 8,
+            "updatedEdgeManagers": {
+              "Map 7": {
+                "schedulingType": "SEQUENTIAL",
+                "edgeSourceClass": "org.apache.tez.runtime.library.output.OrderedPartitionedKVOutput",
+                "edgeManagerClass": "org.apache.tez.dag.library.vertexmanager.ShuffleVertexManager$CustomShuffleEdgeManager",
+                "dataMovementType": "CUSTOM",
+                "edgeDestinationClass": "org.apache.tez.runtime.library.input.OrderedGroupedKVInput",
+                "dataSourceType": "PERSISTED"
+              }
+            }
+          }
+        },
+        {
+          "timestamp": 1565329087005,
+          "eventtype": "VERTEX_STARTED",
+          "eventinfo": {}
+        },
+        {
+          "timestamp": 1565329086542,
+          "eventtype": "VERTEX_INITIALIZED",
+          "eventinfo": {}
+        }
+      ],
+      "entitytype": "TEZ_VERTEX_ID",
+      "entity": "vertex_1562840950978_1761163_1_03",
+      "starttime": 1565329086542,
+      "domain": "Tez_ATS_application_1562840950978_1761163",
+      "relatedentities": {},
+      "primaryfilters": {
+        "TEZ_DAG_ID": [
+          "dag_1562840950978_1761163_1"
+        ],
+        "applicationId": [
+          "application_1562840950978_1761163"
+        ],
+        "status": [
+          "SUCCEEDED"
+        ]
+      },
+      "otherinfo": {
+        "numTasks": 1,
+        "numFailedTaskAttempts": 0,
+        "processorClassName": "org.apache.hadoop.hive.ql.exec.tez.ReduceTezProcessor",
+        "numKilledTaskAttempts": 0,
+        "vertexName": "Reducer 8",
+        "counters": {
+          "counterGroups": [
+            {
+              "counterGroupName": "org.apache.tez.common.counters.FileSystemCounter",
+              "counterGroupDisplayName": "File System Counters",
+              "counters": [
+                {
+                  "counterName": "FILE_BYTES_READ",
+                  "counterValue": 869824
+                },
+                {
+                  "counterName": "FILE_BYTES_WRITTEN",
+                  "counterValue": 1818718
+                }
+              ]
+            },
+            {
+              "counterGroupName": "org.apache.tez.common.counters.TaskCounter",
+              "counters": [
+                {
+                  "counterName": "REDUCE_INPUT_GROUPS",
+                  "counterValue": 100583
+                },
+                {
+                  "counterName": "REDUCE_INPUT_RECORDS",
+                  "counterValue": 100585
+                },
+                {
+                  "counterName": "SPILLED_RECORDS",
+                  "counterValue": 201168
+                },
+                {
+                  "counterName": "NUM_SHUFFLED_INPUTS",
+                  "counterValue": 40
+                },
+                {
+                  "counterName": "MERGED_MAP_OUTPUTS",
+                  "counterValue": 40
+                },
+                {
+                  "counterName": "GC_TIME_MILLIS",
+                  "counterValue": 43
+                },
+                {
+                  "counterName": "CPU_MILLISECONDS",
+                  "counterValue": 6100
+                },
+                {
+                  "counterName": "PHYSICAL_MEMORY_BYTES",
+                  "counterValue": 1521483776
+                },
+                {
+                  "counterName": "VIRTUAL_MEMORY_BYTES",
+                  "counterValue": 4583079936
+                },
+                {
+                  "counterName": "COMMITTED_HEAP_BYTES",
+                  "counterValue": 1521483776
+                },
+                {
+                  "counterName": "OUTPUT_RECORDS",
+                  "counterValue": 100583
+                },
+                {
+                  "counterName": "OUTPUT_BYTES",
+                  "counterValue": 1473736
+                },
+                {
+                  "counterName": "OUTPUT_BYTES_WITH_OVERHEAD",
+                  "counterValue": 1680956
+                },
+                {
+                  "counterName": "OUTPUT_BYTES_PHYSICAL",
+                  "counterValue": 973118
+                },
+                {
+                  "counterName": "ADDITIONAL_SPILLS_BYTES_WRITTEN",
+                  "counterValue": 821376
+                },
+                {
+                  "counterName": "ADDITIONAL_SPILLS_BYTES_READ",
+                  "counterValue": 821376
+                },
+                {
+                  "counterName": "SHUFFLE_CHUNK_COUNT",
+                  "counterValue": 1
+                },
+                {
+                  "counterName": "SHUFFLE_BYTES",
+                  "counterValue": 962649
+                },
+                {
+                  "counterName": "SHUFFLE_BYTES_DECOMPRESSED",
+                  "counterValue": 1876346
+                },
+                {
+                  "counterName": "SHUFFLE_BYTES_TO_MEM",
+                  "counterValue": 962649
+                },
+                {
+                  "counterName": "SHUFFLE_PHASE_TIME",
+                  "counterValue": 62
+                },
+                {
+                  "counterName": "MERGE_PHASE_TIME",
+                  "counterValue": 196
+                },
+                {
+                  "counterName": "FIRST_EVENT_RECEIVED",
+                  "counterValue": 15
+                },
+                {
+                  "counterName": "LAST_EVENT_RECEIVED",
+                  "counterValue": 22
+                }
+              ]
+            },
+            {
+              "counterGroupName": "HIVE",
+              "counters": [
+                {
+                  "counterName": "RECORDS_OUT_INTERMEDIATE_Reducer_8",
+                  "counterValue": 100583
+                }
+              ]
+            }
+          ]
+        },
+        "numCompletedTasks": 1,
+        "numSucceededTasks": 1,
+        "numFailedTasks": 0,
+        "initRequestedTime": 1565329086542,
+        "startRequestedTime": 1565329087002,
+        "timeTaken": 8993,
+        "diagnostics": "",
+        "stats": {
+          "firstTaskStartTime": 1565329094401,
+          "firstTasksToStart": [
+            "task_1562840950978_1761163_1_03_000000"
+          ],
+          "lastTaskFinishTime": 1565329095997,
+          "lastTasksToFinish": [
+            "task_1562840950978_1761163_1_03_000000"
+          ],
+          "minTaskDuration": 1596,
+          "maxTaskDuration": 1596,
+          "avgTaskDuration": 1596,
+          "shortestDurationTasks": [
+            "task_1562840950978_1761163_1_03_000000"
+          ],
+          "longestDurationTasks": [
+            "task_1562840950978_1761163_1_03_000000"
+          ]
+        },
+        "startTime": 1565329087005,
+        "endTime": 1565329095998,
+        "numKilledTasks": 0,
+        "initTime": 1565329086542,
+        "status": "SUCCEEDED"
+      }
+    },
+    {
+      "events": [
+        {
+          "timestamp": 1565329095972,
+          "eventtype": "VERTEX_FINISHED",
+          "eventinfo": {}
+        },
+        {
+          "timestamp": 1565329092388,
+          "eventtype": "VERTEX_PARALLELISM_UPDATED",
+          "eventinfo": {
+            "numTasks": 1,
+            "oldNumTasks": 2,
+            "updatedEdgeManagers": {
+              "Map 14": {
+                "schedulingType": "SEQUENTIAL",
+                "edgeSourceClass": "org.apache.tez.runtime.library.output.OrderedPartitionedKVOutput",
+                "edgeManagerClass": "org.apache.tez.dag.library.vertexmanager.ShuffleVertexManager$CustomShuffleEdgeManager",
+                "dataMovementType": "CUSTOM",
+                "edgeDestinationClass": "org.apache.tez.runtime.library.input.OrderedGroupedKVInput",
+                "dataSourceType": "PERSISTED"
+              }
+            }
+          }
+        },
+        {
+          "timestamp": 1565329087004,
+          "eventtype": "VERTEX_STARTED",
+          "eventinfo": {}
+        },
+        {
+          "timestamp": 1565329086540,
+          "eventtype": "VERTEX_INITIALIZED",
+          "eventinfo": {}
+        }
+      ],
+      "entitytype": "TEZ_VERTEX_ID",
+      "entity": "vertex_1562840950978_1761163_1_11",
+      "starttime": 1565329086540,
+      "domain": "Tez_ATS_application_1562840950978_1761163",
+      "relatedentities": {},
+      "primaryfilters": {
+        "TEZ_DAG_ID": [
+          "dag_1562840950978_1761163_1"
+        ],
+        "applicationId": [
+          "application_1562840950978_1761163"
+        ],
+        "status": [
+          "SUCCEEDED"
+        ]
+      },
+      "otherinfo": {
+        "numTasks": 1,
+        "numFailedTaskAttempts": 0,
+        "processorClassName": "org.apache.hadoop.hive.ql.exec.tez.ReduceTezProcessor",
+        "numKilledTaskAttempts": 0,
+        "vertexName": "Reducer 15",
+        "counters": {
+          "counterGroups": [
+            {
+              "counterGroupName": "org.apache.tez.common.counters.FileSystemCounter",
+              "counterGroupDisplayName": "File System Counters",
+              "counters": [
+                {
+                  "counterName": "FILE_BYTES_READ",
+                  "counterValue": 1073634
+                },
+                {
+                  "counterName": "FILE_BYTES_WRITTEN",
+                  "counterValue": 2231549
+                }
+              ]
+            },
+            {
+              "counterGroupName": "org.apache.tez.common.counters.TaskCounter",
+              "counters": [
+                {
+                  "counterName": "REDUCE_INPUT_GROUPS",
+                  "counterValue": 49103
+                },
+                {
+                  "counterName": "REDUCE_INPUT_RECORDS",
+                  "counterValue": 51247
+                },
+                {
+                  "counterName": "SPILLED_RECORDS",
+                  "counterValue": 100350
+                },
+                {
+                  "counterName": "NUM_SHUFFLED_INPUTS",
+                  "counterValue": 14
+                },
+                {
+                  "counterName": "MERGED_MAP_OUTPUTS",
+                  "counterValue": 14
+                },
+                {
+                  "counterName": "GC_TIME_MILLIS",
+                  "counterValue": 45
+                },
+                {
+                  "counterName": "CPU_MILLISECONDS",
+                  "counterValue": 6280
+                },
+                {
+                  "counterName": "PHYSICAL_MEMORY_BYTES",
+                  "counterValue": 1517289472
+                },
+                {
+                  "counterName": "VIRTUAL_MEMORY_BYTES",
+                  "counterValue": 4597792768
+                },
+                {
+                  "counterName": "COMMITTED_HEAP_BYTES",
+                  "counterValue": 1517289472
+                },
+                {
+                  "counterName": "OUTPUT_RECORDS",
+                  "counterValue": 49103
+                },
+                {
+                  "counterName": "OUTPUT_BYTES",
+                  "counterValue": 1819179
+                },
+                {
+                  "counterName": "OUTPUT_BYTES_WITH_OVERHEAD",
+                  "counterValue": 1849401
+                },
+                {
+                  "counterName": "OUTPUT_BYTES_PHYSICAL",
+                  "counterValue": 1164259
+                },
+                {
+                  "counterName": "ADDITIONAL_SPILLS_BYTES_WRITTEN",
+                  "counterValue": 1060946
+                },
+                {
+                  "counterName": "ADDITIONAL_SPILLS_BYTES_READ",
+                  "counterValue": 1060946
+                },
+                {
+                  "counterName": "SHUFFLE_CHUNK_COUNT",
+                  "counterValue": 1
+                },
+                {
+                  "counterName": "SHUFFLE_BYTES",
+                  "counterValue": 1249576
+                },
+                {
+                  "counterName": "SHUFFLE_BYTES_DECOMPRESSED",
+                  "counterValue": 2383277
+                },
+                {
+                  "counterName": "SHUFFLE_BYTES_TO_MEM",
+                  "counterValue": 1249576
+                },
+                {
+                  "counterName": "SHUFFLE_PHASE_TIME",
+                  "counterValue": 58
+                },
+                {
+                  "counterName": "MERGE_PHASE_TIME",
+                  "counterValue": 171
+                },
+                {
+                  "counterName": "FIRST_EVENT_RECEIVED",
+                  "counterValue": 24
+                },
+                {
+                  "counterName": "LAST_EVENT_RECEIVED",
+                  "counterValue": 27
+                }
+              ]
+            },
+            {
+              "counterGroupName": "HIVE",
+              "counters": [
+                {
+                  "counterName": "RECORDS_OUT_INTERMEDIATE_Reducer_15",
+                  "counterValue": 49103
+                }
+              ]
+            }
+          ]
+        },
+        "numCompletedTasks": 1,
+        "numSucceededTasks": 1,
+        "numFailedTasks": 0,
+        "initRequestedTime": 1565329086523,
+        "startRequestedTime": 1565329087001,
+        "timeTaken": 8968,
+        "diagnostics": "",
+        "stats": {
+          "firstTaskStartTime": 1565329094457,
+          "firstTasksToStart": [
+            "task_1562840950978_1761163_1_11_000000"
+          ],
+          "lastTaskFinishTime": 1565329095972,
+          "lastTasksToFinish": [
+            "task_1562840950978_1761163_1_11_000000"
+          ],
+          "minTaskDuration": 1515,
+          "maxTaskDuration": 1515,
+          "avgTaskDuration": 1515,
+          "shortestDurationTasks": [
+            "task_1562840950978_1761163_1_11_000000"
+          ],
+          "longestDurationTasks": [
+            "task_1562840950978_1761163_1_11_000000"
+          ]
+        },
+        "startTime": 1565329087004,
+        "endTime": 1565329095972,
+        "numKilledTasks": 0,
+        "initTime": 1565329086540,
+        "status": "SUCCEEDED"
+      }
+    }
+  ]
+}
