@@ -14,7 +14,6 @@ import org.springframework.jms.annotation.EnableJms;
 @EnableAutoConfiguration
 @ComponentScan({"org.skyline"})
 @EnableJms
-@PropertySource("classpath:/application-handler.yml")
 public class TestBeanEntry {
 
 }

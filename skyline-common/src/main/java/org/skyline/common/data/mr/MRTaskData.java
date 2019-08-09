@@ -3,6 +3,7 @@ package org.skyline.common.data.mr;
 import com.alibaba.fastjson.annotation.JSONField;
 import java.util.List;
 import lombok.Data;
+import org.skyline.common.data.CounterData;
 
 /**
  * @author Sean Liu
@@ -23,7 +24,7 @@ public class MRTaskData {
   private List<TaskAttemptData> taskAttemptDataList;
 
   @JSONField(name = "task_counter_data")
-  private MRCounterData taskCounterData;
+  private CounterData taskCounterData;
 
   private Integer progress;
 

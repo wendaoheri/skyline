@@ -14,10 +14,9 @@ import org.skyline.common.data.Records;
 import org.skyline.common.data.mr.JobAttemptData;
 import org.skyline.common.data.mr.JobData;
 import org.skyline.common.data.mr.MRApplicationData;
-import org.skyline.common.data.mr.MRCounterData;
+import org.skyline.common.data.CounterData;
 import org.skyline.common.data.mr.MRTaskData;
 import org.skyline.common.data.mr.TaskAttemptData;
-import org.skyline.core.handler.ApplicationInfoFetcher;
 import org.skyline.core.http.HadoopHACallService;
 import org.skyline.core.storage.IStorage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +30,7 @@ import org.springframework.stereotype.Component;
 @SuppressWarnings("ALL")
 @Component("mrFetcher")
 @Slf4j
-public class MRFetcher implements ApplicationInfoFetcher {
+public class MRFetcher extends ApplicationInfoFetcher {
 
   private static final String JOB_INFO_URL = "/ws/v1/history/mapreduce/jobs/%s";
   private static final String JOB_CONF_URL = "/ws/v1/history/mapreduce/jobs/%s/conf";
@@ -50,7 +49,7 @@ public class MRFetcher implements ApplicationInfoFetcher {
   @Autowired
   private IStorage storage;
 
-  @Value("${skyline.handler.fetcher.save_data:false}")
+  @Value("${skyline.handler.fetcher.mr.save_data:false}")
   private boolean saveApplicationData;
 
   @Override
@@ -79,7 +78,7 @@ public class MRFetcher implements ApplicationInfoFetcher {
 
       // fetch job counter
       jo = getDataFromAHS(getJobCounterUrl(jobId));
-      MRCounterData jobCounterData = parseJobCounterFromJson(jo);
+      CounterData jobCounterData = parseJobCounterFromJson(jo);
       mrData.setJobCounterData(jobCounterData);
 
       // fetch job tasks
@@ -94,7 +93,7 @@ public class MRFetcher implements ApplicationInfoFetcher {
 
         // fetch task counter
         jo = getDataFromAHS(getTaskCounterUrl(jobId, taskId));
-        MRCounterData taskCounterData = parseTaskCounterFromJson(jo);
+        CounterData taskCounterData = parseTaskCounterFromJson(jo);
         taskData.setTaskCounterData(taskCounterData);
 
         // fetch task attempts
@@ -165,23 +164,23 @@ public class MRFetcher implements ApplicationInfoFetcher {
     return props;
   }
 
-  private MRCounterData parseJobCounterFromJson(JSONObject jo) {
-    MRCounterData data = new MRCounterData();
+  private CounterData parseJobCounterFromJson(JSONObject jo) {
+    CounterData data = new CounterData();
     List<JSONObject> groups = jo.getJSONObject("jobCounters").getJSONArray("counterGroup")
         .toJavaList(JSONObject.class);
     parseCounterValue("totalCounterValue", data, groups);
     return data;
   }
 
-  private MRCounterData parseTaskCounterFromJson(JSONObject jo) {
-    MRCounterData data = new MRCounterData();
+  private CounterData parseTaskCounterFromJson(JSONObject jo) {
+    CounterData data = new CounterData();
     List<JSONObject> groups = jo.getJSONObject("jobTaskCounters").getJSONArray("taskCounterGroup")
         .toJavaList(JSONObject.class);
     parseCounterValue("value", data, groups);
     return data;
   }
 
-  private void parseCounterValue(String valueName, MRCounterData data, List<JSONObject> groups) {
+  private void parseCounterValue(String valueName, CounterData data, List<JSONObject> groups) {
     for (JSONObject group : groups) {
       String counterGroupName = group.getString("counterGroupName");
       List<JSONObject> counters = group.getJSONArray("counter").toJavaList(JSONObject.class);

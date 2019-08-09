@@ -2,7 +2,6 @@ package org.skyline.core.handler.fetcher;
 
 import org.skyline.common.data.ApplicationData;
 import org.skyline.common.data.HandlerResult;
-import org.skyline.core.handler.ApplicationInfoFetcher;
 import org.springframework.stereotype.Component;
 
 /**
@@ -10,7 +9,7 @@ import org.springframework.stereotype.Component;
  * @date 2019-07-13
  */
 @Component("sparkFetcher")
-public class SparkFetcher implements ApplicationInfoFetcher {
+public class SparkFetcher extends ApplicationInfoFetcher {
 
   @Override
   public HandlerResult handle(ApplicationData applicationData) {

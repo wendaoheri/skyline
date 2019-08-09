@@ -6,6 +6,7 @@ import java.util.Properties;
 import java.util.stream.Collectors;
 import lombok.Data;
 import org.skyline.common.data.ApplicationData;
+import org.skyline.common.data.CounterData;
 import org.skyline.common.data.YarnApplication;
 import org.skyline.common.data.YarnApplication.ApplicationType;
 import org.skyline.common.data.YarnApplication.FinalStatus;
@@ -31,7 +32,7 @@ public class MRApplicationData implements ApplicationData {
   private Properties conf;
 
   @JSONField(name = "job_counter_data")
-  private MRCounterData jobCounterData;
+  private CounterData jobCounterData;
 
   @JSONField(name = "task_data_list")
   private List<MRTaskData> taskDataList;
@@ -52,11 +53,17 @@ public class MRApplicationData implements ApplicationData {
 
   @Override
   public State getState() {
+    if (application.getState() == null) {
+      return null;
+    }
     return State.valueOf(application.getState());
   }
 
   @Override
   public FinalStatus getFinalStatus() {
+    if (application.getFinalStatus() == null) {
+      return null;
+    }
     return FinalStatus.valueOf(application.getFinalStatus());
   }
 

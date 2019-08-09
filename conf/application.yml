@@ -46,7 +46,11 @@ skyline:
     unfinished_interval_second: 1      #  unfinished application state fetch interval
   handler:
     fetcher:
-      save_data: false                 #  whether save application data to es, application data may be huge
+      mr:
+        save_data: false                 #  whether save application data to es, application data may be huge
+      tez:
+        save_data: false                 #  whether save application data to es, application data may be huge
+        max_task_size: 10000
   plugin:
     schedule:
       class: org.skyline.plugin.schedule.MockSchedulePlugin

@@ -31,6 +31,7 @@ http:
 hadoop:
   resourceManagerAddress: http://localhost:8088,localhost:8089
   historyServerAddress: http://localhost:19800
+  timelineServerAddress: http://localhost:8188
 
 spark:
   #  historyServerAddress: http://10.17.183.85:18080
@@ -50,3 +51,10 @@ skyline:
       interval_second: 60
       min_delay_second: 60              #  min time delay for fetch scheduleId after application finished
       max_delay_second: 2592000            #  max time delay for fetch scheduleId after application finished
+  handler:
+    fetcher:
+      mr:
+        save_data: false                 #  whether save application data to es, application data may be huge
+      tez:
+        save_data: false                 #  whether save application data to es, application data may be huge
+        max_task_size: 10000

@@ -1,4 +1,4 @@
-package org.skyline.common.data.mr;
+package org.skyline.common.data;
 
 import com.google.common.collect.Maps;
 import java.util.Map;
@@ -11,7 +11,7 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Data
 @Slf4j
-public class MRCounterData {
+public class CounterData {
 
   private Map<String, Map<String, Long>> counterData = Maps.newHashMap();
 
