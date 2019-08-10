@@ -11,7 +11,7 @@ import org.skyline.common.data.YarnApplication;
 import org.skyline.common.data.YarnApplication.ApplicationType;
 import org.skyline.common.data.YarnApplication.FinalStatus;
 import org.skyline.common.data.YarnApplication.State;
-import org.skyline.common.data.mr.MRTaskData.MRTaskType;
+import org.skyline.common.data.mr.MRTask.MRTaskType;
 
 /**
  * @author Sean Liu
@@ -26,19 +26,19 @@ public class MRApplicationData implements ApplicationData {
   @JSONField(serialize = false)
   private transient YarnApplication application;
 
-  @JSONField(name = "job_data")
-  private JobData jobData;
+  @JSONField(name = "job")
+  private Job job;
 
   private Properties conf;
 
-  @JSONField(name = "job_counter_data")
-  private CounterData jobCounterData;
+  @JSONField(name = "counters")
+  private CounterData counters;
 
-  @JSONField(name = "task_data_list")
-  private List<MRTaskData> taskDataList;
+  @JSONField(name = "tasks")
+  private List<MRTask> tasks;
 
-  @JSONField(name = "job_attempt_data_list")
-  private List<JobAttemptData> jobAttemptDataList;
+  @JSONField(name = "job_attempts")
+  private List<JobAttempt> jobAttempts;
 
 
   @Override
@@ -67,12 +67,12 @@ public class MRApplicationData implements ApplicationData {
     return FinalStatus.valueOf(application.getFinalStatus());
   }
 
-  public List<MRTaskData> getTaskByType(MRTaskType type) {
-    return taskDataList.parallelStream().filter(x -> type.equals(x.getType()))
+  public List<MRTask> getTaskByType(MRTaskType type) {
+    return tasks.parallelStream().filter(x -> type.equals(x.getType()))
         .collect(Collectors.toList());
   }
 
-  public List<MRTaskData> getTaskByType(String typeName) {
+  public List<MRTask> getTaskByType(String typeName) {
     MRTaskType type = MRTaskType.valueOf(typeName);
     return getTaskByType(type);
   }

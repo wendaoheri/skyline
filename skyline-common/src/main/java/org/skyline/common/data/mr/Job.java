@@ -8,7 +8,7 @@ import lombok.Data;
  * @date 2019-07-23
  */
 @Data
-public class JobData {
+public class Job {
 
   public enum MRJobState {
     NEW, INITED, RUNNING, SUCCEEDED, FAILED, KILL_WAIT, KILLED, ERROR
@@ -41,7 +41,7 @@ public class JobData {
 
   private String id;
 
-  @JSONField(name = "avg_ap_time")
+  @JSONField(name = "avg_map_time")
   private Long avgMapTime;
 
   @JSONField(name = "successful_map_attempts")

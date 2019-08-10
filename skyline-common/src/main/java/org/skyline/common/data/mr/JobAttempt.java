@@ -8,7 +8,7 @@ import lombok.Data;
  * @date 2019-07-23
  */
 @Data
-public class JobAttemptData {
+public class JobAttempt {
 
   @JSONField(name = "node_id")
   private String nodeId;

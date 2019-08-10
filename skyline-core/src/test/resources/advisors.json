@@ -9,7 +9,7 @@
     "score_exp": "#measure * #weight",
     "variables": {
       "fsCounterGroup": "'org.apache.hadoop.mapreduce.FileSystemCounter'",
-      "taskInputDetail" : "taskDataList.?[type.name()=='MAP'].![taskCounterData.getCounterValue(#fsCounterGroup,'HDFS_BYTES_READ')]",
+      "taskInputDetail" : "tasks.?[type.name()=='MAP'].![counters.getCounterValue(#fsCounterGroup,'HDFS_BYTES_READ')]",
       "summary": "#STAT.summary(#taskInputDetail)"
     },
     "limits": [
@@ -31,7 +31,7 @@
     "score_exp": "#measure * #weight",
     "variables": {
       "taskCounterGroup": "'org.apache.hadoop.mapreduce.TaskCounter'",
-      "taskInputDetail" : "taskDataList.?[type.name()=='REDUCE'].![taskCounterData.getCounterValue(#taskCounterGroup,'REDUCE_SHUFFLE_BYTES')]",
+      "taskInputDetail" : "tasks.?[type.name()=='REDUCE'].![counters.getCounterValue(#taskCounterGroup,'REDUCE_SHUFFLE_BYTES')]",
       "summary": "#STAT.summary(#taskInputDetail)"
     },
     "limits": [
@@ -54,7 +54,7 @@
     "variables": {
       "taskCounterGroup": "'org.apache.hadoop.mapreduce.TaskCounter'",
       "memoryApplied" : "#MEMORY.mbToBytes(T(java.lang.Long).parseLong(conf.getProperty('mapreduce.map.memory.mb')))",
-      "physicalMemoryUsed": "taskDataList.?[type.name()=='MAP'].![taskCounterData.getCounterValue(#taskCounterGroup,'PHYSICAL_MEMORY_BYTES')]",
+      "physicalMemoryUsed": "tasks.?[type.name()=='MAP'].![counters.getCounterValue(#taskCounterGroup,'PHYSICAL_MEMORY_BYTES')]",
       "memorySummary": "#STAT.summary(#physicalMemoryUsed)"
     },
     "limits": [

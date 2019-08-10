@@ -26,7 +26,7 @@ public class SpELHelperTest extends BaseAdvisorTest {
   public void testEval() throws NoSuchMethodException {
 
     String el = "#expTest";
-//    String el = "#summary(taskDataList.?[type.name()=='MAP'].![taskCounterData.getCounterValue('HDFS_BYTES_READ')]).cv";
+//    String el = "#summary(tasks.?[type.name()=='MAP'].![counters.getCounterValue('HDFS_BYTES_READ')]).cv";
     MRApplicationData applicationData = generateApplicationData();
     ExpressionParser parser = new SpelExpressionParser();
     Expression exp = parser.parseExpression(el);

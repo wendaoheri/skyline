@@ -8,15 +8,15 @@ import java.util.List;
 import java.util.Properties;
 import lombok.extern.slf4j.Slf4j;
 import org.skyline.common.data.ApplicationData;
+import org.skyline.common.data.CounterData;
 import org.skyline.common.data.HandlerResult;
 import org.skyline.common.data.HandlerStatus;
 import org.skyline.common.data.Records;
-import org.skyline.common.data.mr.JobAttemptData;
-import org.skyline.common.data.mr.JobData;
+import org.skyline.common.data.mr.Job;
+import org.skyline.common.data.mr.JobAttempt;
 import org.skyline.common.data.mr.MRApplicationData;
-import org.skyline.common.data.CounterData;
-import org.skyline.common.data.mr.MRTaskData;
-import org.skyline.common.data.mr.TaskAttemptData;
+import org.skyline.common.data.mr.MRTask;
+import org.skyline.common.data.mr.TaskAttempt;
 import org.skyline.core.http.HadoopHACallService;
 import org.skyline.core.storage.IStorage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,8 +62,8 @@ public class MRFetcher extends ApplicationInfoFetcher {
     try {
       // fetch job info
       JSONObject jo = getDataFromAHS(getJobInfoUrl(jobId));
-      JobData jobData = jo.getObject("job", JobData.class);
-      mrData.setJobData(jobData);
+      Job job = jo.getObject("job", Job.class);
+      mrData.setJob(job);
 
       // fetch job config
       jo = getDataFromAHS(getJobConfUrl(jobId));
@@ -72,35 +72,35 @@ public class MRFetcher extends ApplicationInfoFetcher {
 
       // fetch job attempts
       jo = getDataFromAHS(getJobAttemptsUrl(jobId));
-      List<JobAttemptData> jobAttemptDataList = jo.getJSONObject("jobAttempts")
-          .getJSONArray("jobAttempt").toJavaList(JobAttemptData.class);
-      mrData.setJobAttemptDataList(jobAttemptDataList);
+      List<JobAttempt> jobAttemptList = jo.getJSONObject("jobAttempts")
+          .getJSONArray("jobAttempt").toJavaList(JobAttempt.class);
+      mrData.setJobAttempts(jobAttemptList);
 
       // fetch job counter
       jo = getDataFromAHS(getJobCounterUrl(jobId));
       CounterData jobCounterData = parseJobCounterFromJson(jo);
-      mrData.setJobCounterData(jobCounterData);
+      mrData.setCounters(jobCounterData);
 
       // fetch job tasks
       jo = getDataFromAHS(getJobTasksUrl(jobId));
-      List<MRTaskData> mrTaskDataList = jo.getJSONObject("tasks").getJSONArray("task")
-          .toJavaList(MRTaskData.class);
-      mrData.setTaskDataList(mrTaskDataList);
+      List<MRTask> mrTaskList = jo.getJSONObject("tasks").getJSONArray("task")
+          .toJavaList(MRTask.class);
+      mrData.setTasks(mrTaskList);
 
       // fetch task level info
-      for (MRTaskData taskData : mrTaskDataList) {
+      for (MRTask taskData : mrTaskList) {
         String taskId = taskData.getId();
 
         // fetch task counter
         jo = getDataFromAHS(getTaskCounterUrl(jobId, taskId));
         CounterData taskCounterData = parseTaskCounterFromJson(jo);
-        taskData.setTaskCounterData(taskCounterData);
+        taskData.setCounters(taskCounterData);
 
         // fetch task attempts
         jo = getDataFromAHS(getTaskAttemptsUrl(jobId, taskId));
-        List<TaskAttemptData> taskAttemptDataList = jo.getJSONObject("taskAttempts")
-            .getJSONArray("taskAttempt").toJavaList(TaskAttemptData.class);
-        taskData.setTaskAttemptDataList(taskAttemptDataList);
+        List<TaskAttempt> taskAttemptList = jo.getJSONObject("taskAttempts")
+            .getJSONArray("taskAttempt").toJavaList(TaskAttempt.class);
+        taskData.setTaskAttempts(taskAttemptList);
       }
       // set id & save to es
       mrData.setId(applicationId);

@@ -2,14 +2,14 @@ package org.skyline.common.data.mr;
 
 import com.alibaba.fastjson.annotation.JSONField;
 import lombok.Data;
-import org.skyline.common.data.mr.MRTaskData.MRTaskType;
+import org.skyline.common.data.mr.MRTask.MRTaskType;
 
 /**
  * @author Sean Liu
  * @date 2019-07-23
  */
 @Data
-public class TaskAttemptData {
+public class TaskAttempt {
 
   @JSONField(name = "assigned_container_id")
   private String assignedContainerId;

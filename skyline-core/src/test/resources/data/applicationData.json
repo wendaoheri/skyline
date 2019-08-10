@@ -11,7 +11,7 @@
     "mapreduce.map.memory.mb": "2048",
     "datanucleus.cache.level2": "false"
   },
-  "jobAttemptDataList": [
+  "job_attempts": [
     {
       "container_id": "container_1326381300833_0002_01_000001",
       "id": 1,
@@ -21,8 +21,8 @@
       "start_time": 1326381444693
     }
   ],
-  "jobCounterData": {
-    "counterData": {
+  "jobcounter_data": {
+    "counter_data": {
       "org.apache.hadoop.mapreduce.FileSystemCounter": {
         "FILE_BYTES_WRITTEN": 108525,
         "FILE_BYTES_READ": 2483
@@ -43,7 +43,7 @@
       }
     }
   },
-  "jobData": {
+  "job": {
     "avg_merge_time": 2589,
     "avg_reduce_time": 124961,
     "avg_shuffle_time": 2540,
@@ -68,7 +68,7 @@
     "uberized": false,
     "user": "user1"
   },
-  "taskDataList": [
+  "tasks": [
     {
       "elapsed_time": 6777,
       "finish_time": 1326381453318,
@@ -76,7 +76,7 @@
       "progress": 100,
       "start_time": 1326381446541,
       "successful_attempt": "attempt_1326381300833_2_2_m_0_0",
-      "taskAttemptDataList": [
+      "task_attempts": [
         {
           "assigned_container_id": "container_1326381300833_0002_01_000002",
           "diagnostics": "",
@@ -91,8 +91,8 @@
           "type": "MAP"
         }
       ],
-      "taskCounterData": {
-        "counterData": {
+      "counters": {
+        "counter_data": {
           "org.apache.hadoop.mapreduce.FileSystemCounter": {
             "FILE_BYTES_WRITTEN": 54372,
             "FILE_BYTES_READ": 2363,
@@ -121,7 +121,7 @@
       "progress": 100,
       "start_time": 1326381446541,
       "successful_attempt": "attempt_1326381300833_2_2_m_0_0",
-      "taskAttemptDataList": [
+      "task_attempts": [
         {
           "assigned_container_id": "container_1326381300833_0002_01_000002",
           "diagnostics": "",
@@ -136,8 +136,8 @@
           "type": "MAP"
         }
       ],
-      "taskCounterData": {
-        "counterData": {
+      "counters": {
+        "counter_data": {
           "org.apache.hadoop.mapreduce.FileSystemCounter": {
             "FILE_BYTES_WRITTEN": 54372,
             "FILE_BYTES_READ": 2363,
@@ -166,7 +166,7 @@
       "progress": 100,
       "start_time": 1326381446544,
       "successful_attempt": "attempt_1326381300833_2_2_r_0_0",
-      "taskAttemptDataList": [
+      "task_attempts": [
         {
           "assigned_container_id": "container_1326381300833_0002_01_000002",
           "diagnostics": "",
@@ -181,8 +181,8 @@
           "type": "MAP"
         }
       ],
-      "taskCounterData": {
-        "counterData": {
+      "counters": {
+        "counter_data": {
           "org.apache.hadoop.mapreduce.FileSystemCounter": {
             "FILE_BYTES_WRITTEN": 54372,
             "FILE_BYTES_READ": 2363

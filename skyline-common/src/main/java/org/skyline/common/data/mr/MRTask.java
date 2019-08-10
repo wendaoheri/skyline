@@ -10,7 +10,7 @@ import org.skyline.common.data.CounterData;
  * @date 2019-07-23
  */
 @Data
-public class MRTaskData {
+public class MRTask {
 
   public enum MRTaskType {
     MAP, REDUCE
@@ -20,11 +20,10 @@ public class MRTaskData {
 
   }
 
-  @JSONField(name = "task_attempt_data_list")
-  private List<TaskAttemptData> taskAttemptDataList;
+  @JSONField(name = "task_attempts")
+  private List<TaskAttempt> taskAttempts;
 
-  @JSONField(name = "task_counter_data")
-  private CounterData taskCounterData;
+  private CounterData counters;
 
   private Integer progress;
 

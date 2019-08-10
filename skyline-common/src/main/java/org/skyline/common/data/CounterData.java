@@ -1,5 +1,6 @@
 package org.skyline.common.data;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import com.google.common.collect.Maps;
 import java.util.Map;
 import lombok.Data;
@@ -13,6 +14,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class CounterData {
 
+  @JSONField(name = "counter_data")
   private Map<String, Map<String, Long>> counterData = Maps.newHashMap();
 
   public void setCounter(String groupName, String counterName, Long value) {
