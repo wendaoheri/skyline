@@ -6,7 +6,9 @@ package org.skyline.common.data;
  */
 public enum HandlerStatus {
 
-  SUCCESSED,
-  FAILED
+  SUCCEEDED,
+  FAILED,
+
+  NO_ADVISOR_FOUND
 
 }

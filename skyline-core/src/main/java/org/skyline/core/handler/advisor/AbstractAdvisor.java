@@ -10,6 +10,7 @@ import org.skyline.common.data.AdvisorConfig;
 import org.skyline.common.data.ApplicationData;
 import org.skyline.common.data.DisplayMessage;
 import org.skyline.common.data.HandlerResult;
+import org.skyline.common.data.HandlerStatus;
 import org.skyline.common.data.Records;
 import org.skyline.common.data.Severity;
 import org.skyline.common.data.YarnApplication.ApplicationType;
@@ -51,6 +52,12 @@ public abstract class AbstractAdvisor implements ApplicationTuningAdvisor {
 
     ApplicationType applicationType = applicationData.getApplicationType();
     List<AdvisorConfig> advisorConfigs = getAdvisorConfigByType(applicationType);
+    if (advisorConfigs == null) {
+      log.warn("No advisor config found for {} application : {}", applicationType,
+          applicationData.getApplicationId());
+      handlerResult.setHandlerStatus(HandlerStatus.NO_ADVISOR_FOUND);
+      return handlerResult;
+    }
     // Sort by order
     advisorConfigs.sort(Comparator.comparingInt(AdvisorConfig::getOrder));
 
