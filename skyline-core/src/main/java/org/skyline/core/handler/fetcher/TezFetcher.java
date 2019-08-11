@@ -5,14 +5,23 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.google.common.annotations.VisibleForTesting;
 import java.io.IOException;
+import java.util.List;
+import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Properties;
+import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
 import org.skyline.common.data.ApplicationData;
+import org.skyline.common.data.CounterData;
 import org.skyline.common.data.HandlerResult;
 import org.skyline.common.data.tez.TezApplicationData;
 import org.skyline.common.data.tez.TezDAG;
+import org.skyline.common.data.tez.TezEdge;
+import org.skyline.common.data.tez.TezTask;
+import org.skyline.common.data.tez.TezTaskAttempt;
+import org.skyline.common.data.tez.TezVertex;
 import org.skyline.core.http.HadoopHACallService;
+import org.skyline.core.utils.SkylineUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -58,7 +67,7 @@ public class TezFetcher extends ApplicationInfoFetcher {
     String url = null;
     JSONObject fetchedData;
     try {
-      // DAG data
+      // DAG data & inited vertices info
       url = this.getTezDagUrl(applicationId);
       fetchedData = getDataFromTLS(url);
       TezDAG tezDAG = parseDag(fetchedData);
@@ -69,16 +78,64 @@ public class TezFetcher extends ApplicationInfoFetcher {
       fetchedData = getDataFromTLS(url);
       tezData.setConf(parseConfFromJson(fetchedData));
 
+      // Tez vertex
       String dagId = tezDAG.getDagId();
 
-      // Tez vertex
+      url = this.getTezVertexUrl(dagId);
+      fetchedData = getDataFromTLS(url);
+      parseRuntimeVerticesInfo(fetchedData, tezDAG.getVertices());
 
+      // Tez tasks
+      url = this.getTezTaskUrl(dagId);
+      fetchedData = getDataFromTLS(url);
+      parseVertexTaskInfo(fetchedData, tezDAG.getVertices());
 
+      // Tez task attempts
+      url = this.getTezTaskAttemptUrl(dagId);
+      fetchedData = getDataFromTLS(url);
+      parseVertexTaskAttemptInfo(fetchedData, tezDAG.getVertices());
+
+      log.info("End fetch Tez application data for {}", applicationId);
     } catch (IOException e) {
       log.error("Error fetch TEZ application data, url : {}", url, e);
     }
+    result.setApplicationData(tezData);
+    return result;
+  }
 
-    return null;
+  private void parseVertexTaskAttemptInfo(JSONObject fetchedData, Map<String, TezVertex> vertices) {
+    JSONArray entities = fetchedData.getJSONArray(ENTITIES_KEY);
+    entities.forEach(x -> {
+      JSONObject entity = (JSONObject) x;
+      String attemptId = entity.getString(ENTITY_KEY);
+      String vertexId = entity.getJSONObject("primaryfilters").getJSONArray("TEZ_VERTEX_ID")
+          .toJavaList(String.class).get(0);
+      String taskId = entity.getJSONObject("primaryfilters").getJSONArray("TEZ_TASK_ID")
+          .toJavaList(String.class).get(0);
+      TezTask task = vertices.get(vertexId).getTaskByTaskId(taskId);
+
+      TezTaskAttempt attempt = entity.getObject(OTHER_INFO_KEY, TezTaskAttempt.class);
+      attempt.setAttemptId(attemptId);
+      task.addAttemp(attempt);
+    });
+  }
+
+  private void parseVertexTaskInfo(JSONObject fetchedData, Map<String, TezVertex> vertices) {
+    JSONArray entities = fetchedData.getJSONArray(ENTITIES_KEY);
+    entities.forEach(x -> {
+      JSONObject entity = (JSONObject) x;
+      String taskId = entity.getString(ENTITY_KEY);
+      String vertexId = entity.getJSONObject("primaryfilters").getJSONArray("TEZ_VERTEX_ID")
+          .toJavaList(String.class).get(0);
+      TezTask task = entity.getObject(OTHER_INFO_KEY, TezTask.class);
+      task.setTaskId(taskId);
+      if (task.getCounters() != null) {
+        task.setCounters(
+            parseCountersFromJson(entity.getJSONObject(OTHER_INFO_KEY).getJSONObject("counters")));
+      }
+      TezVertex vertex = vertices.get(vertexId);
+      vertex.addTask(task);
+    });
   }
 
   private Properties parseConfFromJson(JSONObject fetchedData) {
@@ -92,7 +149,72 @@ public class TezFetcher extends ApplicationInfoFetcher {
 
   private TezDAG parseDag(JSONObject fetchedData) {
     JSONObject dagJson = getLastEntity(fetchedData);
-    return null;
+    JSONObject otherInfo = dagJson.getJSONObject(OTHER_INFO_KEY);
+
+    TezDAG dag = new TezDAG();
+    dag.setDagId(dagJson.getString(ENTITY_KEY));
+    dag.setDagName(otherInfo.getJSONObject("dagPlan").getString("dagName"));
+    dag.setInitTime(otherInfo.getLongValue("initTime"));
+    dag.setStartTime(otherInfo.getLongValue("startTime"));
+    dag.setEndTime(otherInfo.getLongValue("endTime"));
+    dag.setStatus(otherInfo.getString("status"));
+
+    // parse vertex & edge info when inited
+    parseBasicVertexAndEdge(otherInfo, dag);
+
+    return dag;
+  }
+
+  /**
+   * Parse Basic Vertex & Edge info in dag response
+   *
+   * This is generated when dag inited
+   */
+  private void parseBasicVertexAndEdge(JSONObject otherInfo, TezDAG dag) {
+
+    List<TezVertex> vertices = otherInfo.getJSONObject("dagPlan").getJSONArray("vertices")
+        .toJavaList(TezVertex.class);
+
+    List<TezEdge> edges = otherInfo.getJSONObject("dagPlan").getJSONArray("edges")
+        .toJavaList(TezEdge.class);
+
+    JSONObject vertexNameIdMapping = otherInfo.getJSONObject("vertexNameIdMapping");
+    vertices.forEach(x -> x.setVertexId(vertexNameIdMapping.getString(x.getVertexName())));
+
+    dag.setVertices(vertices.stream().collect(Collectors.toMap(TezVertex::getVertexId, v -> v)));
+    dag.setEdges(edges.stream().collect(Collectors.toMap(TezEdge::getEdgeId, e -> e)));
+
+  }
+
+  /**
+   * Parse runtime vertex info & merge it to basic vertex info
+   */
+  private void parseRuntimeVerticesInfo(JSONObject fetchedData, Map<String, TezVertex> vertices) {
+    JSONArray entities = fetchedData.getJSONArray(ENTITIES_KEY);
+    entities.forEach(x -> {
+      JSONObject entity = (JSONObject) x;
+      String vertexId = entity.getString(ENTITY_KEY);
+      TezVertex vertex = entity.getObject(OTHER_INFO_KEY, TezVertex.class);
+      if (vertex.getCounters() != null) {
+        vertex.setCounters(
+            parseCountersFromJson(entity.getJSONObject(OTHER_INFO_KEY).getJSONObject("counters")));
+      }
+      SkylineUtils.copyPropertiesIgnoreNull(vertex, vertices.get(vertexId));
+    });
+  }
+
+  private CounterData parseCountersFromJson(JSONObject counters) {
+    CounterData counterData = new CounterData();
+    counters.getJSONArray("counterGroups").forEach(x -> {
+      JSONObject counterGroup = (JSONObject) x;
+      String counterGroupName = counterGroup.getString("counterGroupName");
+      counterGroup.getJSONArray("counters").forEach(y -> {
+        JSONObject counter = (JSONObject) y;
+        counterData.setCounter(counterGroupName, counter.getString("counterName"),
+            counter.getLong("counterValue"));
+      });
+    });
+    return counterData;
   }
 
   /**
@@ -126,7 +248,7 @@ public class TezFetcher extends ApplicationInfoFetcher {
 
   @VisibleForTesting
   String getTezVertexUrl(String dagId) {
-    return String.format(TEZ_VERTEX_URL, dagId);
+    return String.format(TEZ_VERTEX_URL, dagId, maxTaskSize);
   }
 
   @VisibleForTesting

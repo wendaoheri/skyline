@@ -1,12 +1,10 @@
 package org.skyline.core.data;
 
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
+import org.skyline.core.utils.SkylineUtils;
 
 /**
  * @author Sean Liu
@@ -50,9 +48,7 @@ public class TezDataAnswer implements Answer<String> {
 
   private String readAllFromFile(String path) {
     try {
-      return new String(Files
-          .readAllBytes(Paths.get(this.getClass().getClassLoader().getResource(path).getPath())),
-          "UTF-8");
+      return SkylineUtils.readFile(path);
     } catch (IOException e) {
       e.printStackTrace();
     }

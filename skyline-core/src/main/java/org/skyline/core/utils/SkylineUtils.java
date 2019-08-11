@@ -1,7 +1,16 @@
 package org.skyline.core.utils;
 
+import java.beans.FeatureDescriptor;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
+import java.util.stream.Stream;
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.RandomUtils;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.BeanWrapper;
+import org.springframework.beans.BeanWrapperImpl;
 
 /**
  * @author Sean Liu
@@ -49,6 +58,23 @@ public class SkylineUtils {
   public static void checkHttpSchema(String httpUrl) {
     httpUrl = httpUrl.replace("http://", "");
     httpUrl = "http://" + httpUrl;
+  }
+
+  public static String readFile(String path) throws IOException {
+    InputStream in = SkylineUtils.class.getClassLoader().getResourceAsStream(path);
+    return String.join("\n", IOUtils.readLines(in, StandardCharsets.UTF_8));
+  }
+
+  public static void copyPropertiesIgnoreNull(Object src, Object target) {
+    BeanUtils.copyProperties(src, target, getNullPropertyNames(src));
+  }
+
+  public static String[] getNullPropertyNames(Object source) {
+    final BeanWrapper wrappedSource = new BeanWrapperImpl(source);
+    return Stream.of(wrappedSource.getPropertyDescriptors())
+        .map(FeatureDescriptor::getName)
+        .filter(propertyName -> wrappedSource.getPropertyValue(propertyName) == null)
+        .toArray(String[]::new);
   }
 
 }

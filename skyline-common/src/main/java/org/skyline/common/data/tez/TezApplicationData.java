@@ -16,12 +16,15 @@ import org.skyline.common.data.YarnApplication.State;
 @Data
 public class TezApplicationData implements ApplicationData {
 
+  @JSONField(name = "_id")
+  private String id;
+
+  @JSONField(serialize = false)
   private YarnApplication application;
 
   private Properties conf;
 
-  @JSONField(name = "tez_dag")
-  private TezDAG tezDAG;
+  private TezDAG dag;
 
   @Override
   public void setApplication(YarnApplication application) {

@@ -1,5 +1,6 @@
 package org.skyline.common.data;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import java.util.Properties;
 import org.skyline.common.data.YarnApplication.ApplicationType;
 import org.skyline.common.data.YarnApplication.FinalStatus;
@@ -28,6 +29,7 @@ public interface ApplicationData {
    *
    * @return application Id
    */
+  @JSONField(name = "application_id")
   String getApplicationId();
 
   /**
@@ -35,6 +37,7 @@ public interface ApplicationData {
    *
    * @return applicationType
    */
+  @JSONField(name = "application_type")
   ApplicationType getApplicationType();
 
   /**
@@ -54,6 +57,7 @@ public interface ApplicationData {
    * return application finalStatus
    * @return
    */
+  @JSONField(name = "final_status")
   FinalStatus getFinalStatus();
 
 }
