@@ -42,6 +42,7 @@ public class StatUtils {
   }
 
   public static StatSummary summary(Collection<Double> values) {
+    // TODO handle null Double value
     double[] valueArray = ArrayUtils.toPrimitive(values.toArray(new Double[values.size()]), 0.);
     return summary(valueArray);
   }

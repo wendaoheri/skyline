@@ -111,7 +111,7 @@ public class TezFetcher extends ApplicationInfoFetcher {
       log.error("Error fetch TEZ application data, url : {}", url, e);
     }
     result.setApplicationData(tezData);
-    result.setHandlerStatus(HandlerStatus.SUCCESSED);
+    result.setHandlerStatus(HandlerStatus.SUCCEEDED);
     return result;
   }
 
@@ -144,6 +144,8 @@ public class TezFetcher extends ApplicationInfoFetcher {
       if (task.getCounters() != null) {
         task.setCounters(
             parseCountersFromJson(entity.getJSONObject(OTHER_INFO_KEY).getJSONObject("counters")));
+      } else {
+        task.setCounters(CounterData.EMPTY_COUNTER);
       }
       TezVertex vertex = vertices.get(vertexId);
       vertex.addTask(task);
@@ -210,6 +212,8 @@ public class TezFetcher extends ApplicationInfoFetcher {
       if (vertex.getCounters() != null) {
         vertex.setCounters(
             parseCountersFromJson(entity.getJSONObject(OTHER_INFO_KEY).getJSONObject("counters")));
+      } else {
+        vertex.setCounters(CounterData.EMPTY_COUNTER);
       }
       SkylineUtils.copyPropertiesIgnoreNull(vertex, vertices.get(vertexId));
     });

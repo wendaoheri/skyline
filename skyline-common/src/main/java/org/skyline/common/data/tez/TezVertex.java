@@ -6,6 +6,7 @@ import com.google.common.collect.Maps;
 import java.util.List;
 import java.util.Map;
 import lombok.Data;
+import lombok.Getter;
 import org.skyline.common.data.CounterData;
 
 /**
@@ -14,6 +15,25 @@ import org.skyline.common.data.CounterData;
  */
 @Data
 public class TezVertex {
+
+  public enum VertexProcessor {
+    /**
+     * org.apache.hadoop.hive.ql.exec.tez.MapTezProcessor
+     */
+    MAP("org.apache.hadoop.hive.ql.exec.tez.MapTezProcessor"),
+
+    /**
+     * org.apache.hadoop.hive.ql.exec.tez.ReduceTezProcessor
+     */
+    REDUCE("org.apache.hadoop.hive.ql.exec.tez.ReduceTezProcessor")
+    ;
+    @Getter
+    private String processorClass;
+
+    VertexProcessor(String processorClass) {
+      this.processorClass = processorClass;
+    }
+  }
 
   @JSONField(name = "vertex_id")
   private String vertexId;

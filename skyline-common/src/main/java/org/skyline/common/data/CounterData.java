@@ -14,6 +14,8 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class CounterData {
 
+  public static final CounterData EMPTY_COUNTER = new CounterData();
+
   @JSONField(name = "counter_data")
   private Map<String, Map<String, Long>> counterData = Maps.newHashMap();
 
@@ -26,12 +28,12 @@ public class CounterData {
     counterGroup.put(counterName, value);
   }
 
-  public long getCounterValue(String groupName, String counterName) {
+  public Long getCounterValue(String groupName, String counterName) {
     try {
       return counterData.get(groupName).get(counterName);
     } catch (NullPointerException e) {
       log.warn("No counter for [group | name] [{} | {}]", groupName, counterName);
-      return 0;
+      return null;
     }
   }
 

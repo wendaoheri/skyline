@@ -1,8 +1,11 @@
 package org.skyline.common.data.tez;
 
 import com.alibaba.fastjson.annotation.JSONField;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 import lombok.Data;
+import org.skyline.common.data.tez.TezVertex.VertexProcessor;
 
 /**
  * @author Sean Liu
@@ -31,5 +34,17 @@ public class TezDAG {
   private Map<String, TezEdge> edges;
 
   private Map<String, TezVertex> vertices;
+
+  /**
+   * type is enum value of #VertexProcessor#
+   * @param type
+   * @return
+   */
+  public List<TezVertex> getVertices(String type) {
+    String processorClass = VertexProcessor.valueOf(type).getProcessorClass();
+    return vertices.values().stream()
+        .filter(x -> x.getProcessorClass().equalsIgnoreCase(processorClass))
+        .collect(Collectors.toList());
+  }
 
 }

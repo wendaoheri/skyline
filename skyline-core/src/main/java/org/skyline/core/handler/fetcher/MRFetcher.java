@@ -109,7 +109,7 @@ public class MRFetcher extends ApplicationInfoFetcher {
             Records.fromObject(mrData));
       }
       result.setApplicationData(mrData);
-      result.setHandlerStatus(HandlerStatus.SUCCESSED);
+      result.setHandlerStatus(HandlerStatus.SUCCEEDED);
     } catch (IOException e) {
       log.error("MapReduce job info fetch failed", e);
       result.setHandlerStatus(HandlerStatus.FAILED);

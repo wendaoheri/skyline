@@ -56,7 +56,7 @@ public class MRFetcherTest {
     HandlerResult result = mrFetcher.handle(applicationData);
     log.info("handle handlerStatus : {}", result);
     log.info(JSON.toJSONString(applicationData, true));
-    assert HandlerStatus.SUCCESSED.equals(result.getHandlerStatus());
+    assert HandlerStatus.SUCCEEDED.equals(result.getHandlerStatus());
   }
 
 }
