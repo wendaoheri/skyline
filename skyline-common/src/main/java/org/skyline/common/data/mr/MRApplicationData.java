@@ -37,9 +37,6 @@ public class MRApplicationData implements ApplicationData {
   @JSONField(name = "tasks")
   private List<MRTask> tasks;
 
-  @JSONField(name = "job_attempts")
-  private List<JobAttempt> jobAttempts;
-
 
   @Override
   public String getApplicationId() {

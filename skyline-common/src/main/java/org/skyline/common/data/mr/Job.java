@@ -1,6 +1,7 @@
 package org.skyline.common.data.mr;
 
 import com.alibaba.fastjson.annotation.JSONField;
+import java.util.List;
 import lombok.Data;
 
 /**
@@ -78,4 +79,7 @@ public class Job {
 
   @JSONField(name = "finish_time")
   private Long finishTime;
+
+  @JSONField(name = "job_attempts")
+  private List<JobAttempt> jobAttempts;
 }

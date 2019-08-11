@@ -74,7 +74,7 @@ public class MRFetcher extends ApplicationInfoFetcher {
       jo = getDataFromAHS(getJobAttemptsUrl(jobId));
       List<JobAttempt> jobAttemptList = jo.getJSONObject("jobAttempts")
           .getJSONArray("jobAttempt").toJavaList(JobAttempt.class);
-      mrData.setJobAttempts(jobAttemptList);
+      job.setJobAttempts(jobAttemptList);
 
       // fetch job counter
       jo = getDataFromAHS(getJobCounterUrl(jobId));

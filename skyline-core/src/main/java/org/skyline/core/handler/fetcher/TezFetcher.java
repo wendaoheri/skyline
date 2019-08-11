@@ -27,7 +27,7 @@ public class TezFetcher extends ApplicationInfoFetcher {
 
   private static final String TEZ_DAG_URL = "/ws/v1/timeline/TEZ_DAG_ID?primaryFilter=applicationId:%s";
   private static final String TEZ_APPLICATION_URL = "/ws/v1/timeline/TEZ_APPLICATION/tez_%s";
-  private static final String TEZ_VERTEX_URL = "/ws/v1/timeline/TEZ_VERTEX_ID?primaryFilter=TEZ_DAG_ID:%s";
+  private static final String TEZ_VERTEX_URL = "/ws/v1/timeline/TEZ_VERTEX_ID?primaryFilter=TEZ_DAG_ID:%s&limits=%s";
   private static final String TEZ_TASK_URL = "/ws/v1/timeline/TEZ_TASK_ID?primaryFilter=TEZ_DAG_ID:%s&limits=%s";
   private static final String TEZ_TASK_ATTEMPT_URL = "/ws/v1/timeline/TEZ_TASK_ATTEMPT_ID?primaryFilter=TEZ_DAG_ID:%s&limits=%s";
 
@@ -62,7 +62,7 @@ public class TezFetcher extends ApplicationInfoFetcher {
       url = this.getTezDagUrl(applicationId);
       fetchedData = getDataFromTLS(url);
       TezDAG tezDAG = parseDag(fetchedData);
-      tezData.setTezDAG(tezDAG);
+      tezData.setDag(tezDAG);
 
       // Application data, parse config here
       url = this.getTezApplicationUrl(applicationId);
