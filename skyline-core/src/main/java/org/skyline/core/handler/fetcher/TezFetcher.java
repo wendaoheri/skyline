@@ -14,6 +14,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.skyline.common.data.ApplicationData;
 import org.skyline.common.data.CounterData;
 import org.skyline.common.data.HandlerResult;
+import org.skyline.common.data.HandlerStatus;
+import org.skyline.common.data.Records;
 import org.skyline.common.data.tez.TezApplicationData;
 import org.skyline.common.data.tez.TezDAG;
 import org.skyline.common.data.tez.TezEdge;
@@ -21,6 +23,7 @@ import org.skyline.common.data.tez.TezTask;
 import org.skyline.common.data.tez.TezTaskAttempt;
 import org.skyline.common.data.tez.TezVertex;
 import org.skyline.core.http.HadoopHACallService;
+import org.skyline.core.storage.IStorage;
 import org.skyline.core.utils.SkylineUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -52,6 +55,9 @@ public class TezFetcher extends ApplicationInfoFetcher {
 
   @Value("${skyline.handler.fetcher.tez.max_task_size:10000}")
   private int maxTaskSize;
+
+  @Autowired
+  private IStorage storage;
 
   @Autowired
   private HadoopHACallService callService;
@@ -95,11 +101,17 @@ public class TezFetcher extends ApplicationInfoFetcher {
       fetchedData = getDataFromTLS(url);
       parseVertexTaskAttemptInfo(fetchedData, tezDAG.getVertices());
 
+      tezData.setId(applicationId);
+      if (saveApplicationData) {
+        storage.upsert(ApplicationData.INDEX_NAME, ApplicationData.TYPE_NAME,
+            Records.fromObject(tezData));
+      }
       log.info("End fetch Tez application data for {}", applicationId);
     } catch (IOException e) {
       log.error("Error fetch TEZ application data, url : {}", url, e);
     }
     result.setApplicationData(tezData);
+    result.setHandlerStatus(HandlerStatus.SUCCESSED);
     return result;
   }
 
