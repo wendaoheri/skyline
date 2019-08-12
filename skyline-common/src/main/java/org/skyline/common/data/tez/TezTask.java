@@ -41,7 +41,7 @@ public class TezTask {
 
   private List<TezTaskAttempt> attempts;
 
-  public void addAttemp(TezTaskAttempt attempt) {
+  public void addAttempt(TezTaskAttempt attempt) {
     if (this.attempts == null) {
       attempts = Lists.newArrayList();
     }

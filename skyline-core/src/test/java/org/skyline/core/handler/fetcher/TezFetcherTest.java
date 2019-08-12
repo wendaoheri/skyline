@@ -3,12 +3,15 @@ package org.skyline.core.handler.fetcher;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import java.io.IOException;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.skyline.common.data.ApplicationData;
+import org.skyline.common.data.HandlerResult;
 import org.skyline.common.data.YarnApplication;
 import org.skyline.common.data.tez.TezApplicationData;
 import org.skyline.core.MockBeanTest;
@@ -50,7 +53,9 @@ public class TezFetcherTest extends MockBeanTest {
     application.setApplicationId(applicationId);
     tezApplicationData.setApplication(application);
 
-    tezFetcher.handle(tezApplicationData);
+    HandlerResult result = tezFetcher.handle(tezApplicationData);
+    ApplicationData applicationData = result.getApplicationData();
+    log.info("Application Data : {}", JSON.toJSONString(applicationData, true));
 
   }
 

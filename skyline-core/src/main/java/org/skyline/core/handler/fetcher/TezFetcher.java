@@ -39,9 +39,9 @@ public class TezFetcher extends ApplicationInfoFetcher {
 
   private static final String TEZ_DAG_URL = "/ws/v1/timeline/TEZ_DAG_ID?primaryFilter=applicationId:%s";
   private static final String TEZ_APPLICATION_URL = "/ws/v1/timeline/TEZ_APPLICATION/tez_%s";
-  private static final String TEZ_VERTEX_URL = "/ws/v1/timeline/TEZ_VERTEX_ID?primaryFilter=TEZ_DAG_ID:%s&limits=%s";
-  private static final String TEZ_TASK_URL = "/ws/v1/timeline/TEZ_TASK_ID?primaryFilter=TEZ_DAG_ID:%s&limits=%s";
-  private static final String TEZ_TASK_ATTEMPT_URL = "/ws/v1/timeline/TEZ_TASK_ATTEMPT_ID?primaryFilter=TEZ_DAG_ID:%s&limits=%s";
+  private static final String TEZ_VERTEX_URL = "/ws/v1/timeline/TEZ_VERTEX_ID?primaryFilter=TEZ_DAG_ID:%s&limit=%s";
+  private static final String TEZ_TASK_URL = "/ws/v1/timeline/TEZ_TASK_ID?primaryFilter=TEZ_DAG_ID:%s&limit=%s";
+  private static final String TEZ_TASK_ATTEMPT_URL = "/ws/v1/timeline/TEZ_TASK_ATTEMPT_ID?primaryFilter=TEZ_DAG_ID:%s&limit=%s";
 
   private static final String ENTITIES_KEY = "entities";
   private static final String ENTITY_KEY = "entity";
@@ -128,7 +128,9 @@ public class TezFetcher extends ApplicationInfoFetcher {
 
       TezTaskAttempt attempt = entity.getObject(OTHER_INFO_KEY, TezTaskAttempt.class);
       attempt.setAttemptId(attemptId);
-      task.addAttemp(attempt);
+      if (task != null) {
+        task.addAttempt(attempt);
+      }
     });
   }
 
@@ -172,6 +174,7 @@ public class TezFetcher extends ApplicationInfoFetcher {
     dag.setStartTime(otherInfo.getLongValue("startTime"));
     dag.setEndTime(otherInfo.getLongValue("endTime"));
     dag.setStatus(otherInfo.getString("status"));
+    dag.setCounters(parseCountersFromJson(otherInfo.getJSONObject("counters")));
 
     // parse vertex & edge info when inited
     parseBasicVertexAndEdge(otherInfo, dag);
@@ -220,6 +223,9 @@ public class TezFetcher extends ApplicationInfoFetcher {
   }
 
   private CounterData parseCountersFromJson(JSONObject counters) {
+    if (counters == null) {
+      return CounterData.EMPTY_COUNTER;
+    }
     CounterData counterData = new CounterData();
     counters.getJSONArray("counterGroups").forEach(x -> {
       JSONObject counterGroup = (JSONObject) x;
