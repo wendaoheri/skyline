@@ -1,0 +1,28 @@
+{
+    "job": {
+        "submitTime": 1565575750262,
+        "startTime": 1565575756211,
+        "finishTime": 1565577168613,
+        "id": "job_1562840950978_1908821",
+        "name": "Orc File Reader and create mapping:fund_20190811",
+        "queue": "root.ui",
+        "user": "dsp",
+        "state": "SUCCEEDED",
+        "mapsTotal": 350,
+        "mapsCompleted": 350,
+        "reducesTotal": 1,
+        "reducesCompleted": 1,
+        "uberized": false,
+        "diagnostics": "",
+        "avgMapTime": 83395,
+        "avgReduceTime": 1231891,
+        "avgShuffleTime": 43569,
+        "avgMergeTime": 8932,
+        "failedReduceAttempts": 0,
+        "killedReduceAttempts": 0,
+        "successfulReduceAttempts": 1,
+        "failedMapAttempts": 0,
+        "killedMapAttempts": 0,
+        "successfulMapAttempts": 350
+    }
+}

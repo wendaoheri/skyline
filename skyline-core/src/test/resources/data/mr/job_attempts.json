@@ -1,0 +1,14 @@
+{
+    "jobAttempts": {
+        "jobAttempt": [
+            {
+                "nodeHttpAddress": "fakehost:8042",
+                "nodeId": "fakehost:40866",
+                "id": 1,
+                "startTime": 1565575751590,
+                "containerId": "container_1562840950978_1908821_01_000001",
+                "logsLink": "http://0.0.0.0:19888/jobhistory/logs/cnsz035591:40866/container_1562840950978_1908821_01_000001/job_1562840950978_1908821/dsp"
+            }
+        ]
+    }
+}

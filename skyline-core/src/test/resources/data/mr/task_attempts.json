@@ -1,0 +1,25 @@
+{
+    "taskAttempts": {
+        "taskAttempt": [
+            {
+                "type": "REDUCE",
+                "startTime": 1565575883843,
+                "finishTime": 1565577168235,
+                "elapsedTime": 1284392,
+                "progress": 100,
+                "id": "attempt_1562840950978_1908821_r_000000_0",
+                "rack": "/GL1-18A",
+                "state": "SUCCEEDED",
+                "status": "reduce > reduce",
+                "nodeHttpAddress": "cnsz033399:8042",
+                "diagnostics": "",
+                "assignedContainerId": "container_1562840950978_1908821_01_000387",
+                "shuffleFinishTime": 1565575927412,
+                "mergeFinishTime": 1565575936344,
+                "elapsedShuffleTime": 43569,
+                "elapsedMergeTime": 8932,
+                "elapsedReduceTime": 1231891
+            }
+        ]
+    }
+}

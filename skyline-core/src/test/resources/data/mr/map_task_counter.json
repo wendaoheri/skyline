@@ -1,0 +1,126 @@
+{
+    "jobTaskCounters": {
+        "id": "task_1562840950978_1908821_m_000167",
+        "taskCounterGroup": [
+            {
+                "counterGroupName": "org.apache.hadoop.mapreduce.FileSystemCounter",
+                "counter": [
+                    {
+                        "name": "FILE_BYTES_READ",
+                        "value": 1078816
+                    },
+                    {
+                        "name": "FILE_BYTES_WRITTEN",
+                        "value": 1336378
+                    },
+                    {
+                        "name": "FILE_READ_OPS",
+                        "value": 0
+                    },
+                    {
+                        "name": "FILE_LARGE_READ_OPS",
+                        "value": 0
+                    },
+                    {
+                        "name": "FILE_WRITE_OPS",
+                        "value": 0
+                    },
+                    {
+                        "name": "HDFS_BYTES_READ",
+                        "value": 50074392
+                    },
+                    {
+                        "name": "HDFS_BYTES_WRITTEN",
+                        "value": 0
+                    },
+                    {
+                        "name": "HDFS_READ_OPS",
+                        "value": 4
+                    },
+                    {
+                        "name": "HDFS_LARGE_READ_OPS",
+                        "value": 0
+                    },
+                    {
+                        "name": "HDFS_WRITE_OPS",
+                        "value": 0
+                    }
+                ]
+            },
+            {
+                "counterGroupName": "org.apache.hadoop.mapreduce.TaskCounter",
+                "counter": [
+                    {
+                        "name": "MAP_INPUT_RECORDS",
+                        "value": 8762
+                    },
+                    {
+                        "name": "MAP_OUTPUT_RECORDS",
+                        "value": 18498356
+                    },
+                    {
+                        "name": "MAP_OUTPUT_BYTES",
+                        "value": 844913682
+                    },
+                    {
+                        "name": "MAP_OUTPUT_MATERIALIZED_BYTES",
+                        "value": 84168
+                    },
+                    {
+                        "name": "SPLIT_RAW_BYTES",
+                        "value": 143
+                    },
+                    {
+                        "name": "COMBINE_INPUT_RECORDS",
+                        "value": 18757657
+                    },
+                    {
+                        "name": "COMBINE_OUTPUT_RECORDS",
+                        "value": 282312
+                    },
+                    {
+                        "name": "SPILLED_RECORDS",
+                        "value": 372770
+                    },
+                    {
+                        "name": "FAILED_SHUFFLE",
+                        "value": 0
+                    },
+                    {
+                        "name": "MERGED_MAP_OUTPUTS",
+                        "value": 0
+                    },
+                    {
+                        "name": "GC_TIME_MILLIS",
+                        "value": 940
+                    },
+                    {
+                        "name": "CPU_MILLISECONDS",
+                        "value": 109930
+                    },
+                    {
+                        "name": "PHYSICAL_MEMORY_BYTES",
+                        "value": 1693716480
+                    },
+                    {
+                        "name": "VIRTUAL_MEMORY_BYTES",
+                        "value": 4292431872
+                    },
+                    {
+                        "name": "COMMITTED_HEAP_BYTES",
+                        "value": 2151677952
+                    }
+                ]
+            },
+            {
+                "counterGroupName": "org.apache.hadoop.mapreduce.lib.input.FileInputFormatCounter",
+                "counter": [
+                    {
+                        "name": "BYTES_READ",
+                        "value": 50074249
+                    }
+                ]
+            }
+        ]
+    }
+}
