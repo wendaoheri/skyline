@@ -6,6 +6,7 @@ import org.skyline.common.data.HandlerResult;
 import org.skyline.common.data.YarnApplication;
 import org.skyline.common.data.YarnApplication.ApplicationType;
 import org.skyline.common.data.mr.MRApplicationData;
+import org.skyline.common.data.tez.TezApplicationData;
 import org.skyline.common.message.Message;
 import org.skyline.common.message.MessageType;
 import org.skyline.core.handler.fetcher.MRFetcher;
@@ -42,7 +43,8 @@ public class FetcherDispatcher implements MessageDispatcher<YarnApplication, Han
       return returnMessage;
     }
 
-    ApplicationData data = new MRApplicationData();
+    ApplicationData data = newApplicationDataByType(
+        ApplicationType.valueOf(application.getApplicationType()));
     data.setApplication(application);
     HandlerResult result = null;
     switch (ApplicationType.valueOf(application.getApplicationType())) {
@@ -62,6 +64,17 @@ public class FetcherDispatcher implements MessageDispatcher<YarnApplication, Han
     returnMessage.setMessageContent(result);
     returnMessage.setMessageType(MessageType.APPLICATION_FETCH_DONE);
     return returnMessage;
+  }
+
+  ApplicationData newApplicationDataByType(ApplicationType type) {
+    switch (type) {
+      case MAPREDUCE:
+        return new MRApplicationData();
+      case TEZ:
+        return new TezApplicationData();
+      default:
+        return null;
+    }
   }
 
 }
