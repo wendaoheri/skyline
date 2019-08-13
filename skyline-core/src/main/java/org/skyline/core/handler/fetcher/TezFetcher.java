@@ -47,7 +47,7 @@ public class TezFetcher extends ApplicationInfoFetcher {
   private static final String ENTITY_KEY = "entity";
   private static final String OTHER_INFO_KEY = "otherinfo";
 
-  @Value("${hadoop.timelineServerAddress}")
+  @Value("${hadoop.timelineServerAddress:null}")
   private String tlsAddress;
 
   @Value("${skyline.handler.fetcher.tez.save_data:false}")
