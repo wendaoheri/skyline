@@ -179,23 +179,30 @@ public class TezFetcher extends ApplicationInfoFetcher {
     return dag;
   }
 
+  private static final String EDGES_KEY = "edges";
+
   /**
    * Parse Basic Vertex & Edge info in dag response
    *
    * This is generated when dag inited
    */
   private void parseBasicVertexAndEdge(JSONObject otherInfo, TezDAG dag) {
+    JSONObject dagPlan = otherInfo.getJSONObject("dagPlan");
 
-    List<TezVertex> vertices = otherInfo.getJSONObject("dagPlan").getJSONArray("vertices")
+    List<TezVertex> vertices = dagPlan.getJSONArray("vertices")
         .toJavaList(TezVertex.class);
-    List<TezEdge> edges = otherInfo.getJSONObject("dagPlan").getJSONArray("edges")
-        .toJavaList(TezEdge.class);
 
     JSONObject vertexNameIdMapping = otherInfo.getJSONObject("vertexNameIdMapping");
     vertices.forEach(x -> x.setVertexId(vertexNameIdMapping.getString(x.getVertexName())));
 
     dag.setVertices(vertices.stream().collect(Collectors.toMap(TezVertex::getVertexId, v -> v)));
-    dag.setEdges(edges.stream().collect(Collectors.toMap(TezEdge::getEdgeId, e -> e)));
+
+    // For map only DAG, no edges in dag
+    if (dagPlan.containsKey(EDGES_KEY)) {
+      List<TezEdge> edges = dagPlan.getJSONArray(EDGES_KEY)
+          .toJavaList(TezEdge.class);
+      dag.setEdges(edges.stream().collect(Collectors.toMap(TezEdge::getEdgeId, e -> e)));
+    }
 
   }
 
