@@ -117,15 +117,13 @@ public class TezFetcher extends ApplicationInfoFetcher {
 
   private void parseVertexTaskAttemptInfo(JSONObject fetchedData, Map<String, TezVertex> vertices) {
     JSONArray entities = fetchedData.getJSONArray(ENTITIES_KEY);
-    entities.forEach(x -> {
-      JSONObject entity = (JSONObject) x;
+    entities.stream().map(x -> (JSONObject) x).forEach(entity -> {
       String attemptId = entity.getString(ENTITY_KEY);
       String vertexId = entity.getJSONObject("primaryfilters").getJSONArray("TEZ_VERTEX_ID")
           .toJavaList(String.class).get(0);
       String taskId = entity.getJSONObject("primaryfilters").getJSONArray("TEZ_TASK_ID")
           .toJavaList(String.class).get(0);
       TezTask task = vertices.get(vertexId).getTaskByTaskId(taskId);
-
       TezTaskAttempt attempt = entity.getObject(OTHER_INFO_KEY, TezTaskAttempt.class);
       attempt.setAttemptId(attemptId);
       if (task != null) {
@@ -136,8 +134,7 @@ public class TezFetcher extends ApplicationInfoFetcher {
 
   private void parseVertexTaskInfo(JSONObject fetchedData, Map<String, TezVertex> vertices) {
     JSONArray entities = fetchedData.getJSONArray(ENTITIES_KEY);
-    entities.forEach(x -> {
-      JSONObject entity = (JSONObject) x;
+    entities.stream().map(x -> (JSONObject) x).forEach(entity -> {
       String taskId = entity.getString(ENTITY_KEY);
       String vertexId = entity.getJSONObject("primaryfilters").getJSONArray("TEZ_VERTEX_ID")
           .toJavaList(String.class).get(0);
@@ -191,7 +188,6 @@ public class TezFetcher extends ApplicationInfoFetcher {
 
     List<TezVertex> vertices = otherInfo.getJSONObject("dagPlan").getJSONArray("vertices")
         .toJavaList(TezVertex.class);
-
     List<TezEdge> edges = otherInfo.getJSONObject("dagPlan").getJSONArray("edges")
         .toJavaList(TezEdge.class);
 
