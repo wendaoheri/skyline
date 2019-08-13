@@ -113,6 +113,7 @@ public class YarnApplication implements Model {
   @JSONField(name = "dt")
   private String dt;
 
+  @JSONField(serialize = false)
   public boolean isFinished(){
     FinalStatus finalStatus = FinalStatus.valueOf(this.getFinalStatus());
     return !FinalStatus.UNDEFINED.equals(finalStatus);
