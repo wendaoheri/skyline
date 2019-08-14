@@ -4,7 +4,6 @@ import java.util.Collection;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.math3.stat.descriptive.SummaryStatistics;
 
 /**
@@ -20,7 +19,7 @@ public class StatUtils {
   @NoArgsConstructor
   public static class StatSummary {
 
-    public static final StatSummary ZERO = new StatSummary(0, 0, 0, 0, 0, 0);
+    public static final StatSummary ZERO = newZero();
 
     private double mean;
     private int count;
@@ -31,31 +30,32 @@ public class StatUtils {
     private double cv;
     private double max;
     private double min;
-  }
 
-  public static StatSummary summary(long[] values) {
-    double[] dValues = new double[values.length];
-    for (int i = 0; i < values.length; i++) {
-      dValues[i] = values[i];
+    static StatSummary newZero() {
+      return new StatSummary(0, 0, 0, 0, 0, 0);
     }
-    return summary(dValues);
   }
 
-  public static StatSummary summary(Collection<Double> values) {
-    // TODO handle null Double value
-    double[] valueArray = ArrayUtils.toPrimitive(values.toArray(new Double[values.size()]), 0.);
-    return summary(valueArray);
+  public static StatSummary summary(Collection<? extends Number> values) {
+    Number[] valueArr = new Number[values.size()];
+    return summary(values.toArray(valueArr));
   }
 
-  public static StatSummary summary(double[] values) {
+  public static StatSummary summary(Number[] values) {
     if (values == null || values.length == 0) {
       return StatSummary.ZERO;
     }
     SummaryStatistics stats = new SummaryStatistics();
-    for (double value : values) {
-      stats.addValue(value);
+    for (Number value : values) {
+      if (value != null) {
+        stats.addValue(value.doubleValue());
+      }
     }
-
+    if (stats.getN() == 0) {
+      StatSummary zero = StatSummary.newZero();
+      zero.setCount(values.length);
+      return zero;
+    }
     StatSummary summary = new StatSummary();
     summary.setCount(values.length);
     summary.setMean(stats.getMean());
@@ -63,7 +63,7 @@ public class StatUtils {
     summary.setMin(stats.getMin());
 
     //noinspection AlibabaUndefineMagicConstant
-    if (summary.count == 1) {
+    if (stats.getN() == 1) {
       summary.setStd(0);
       summary.setCv(0);
     } else {
