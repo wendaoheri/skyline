@@ -96,6 +96,7 @@ public class YarnApplicationServiceImpl implements YarnApplicationService {
 
   @Override
   public List<YarnApplication> getWithoutScheduleInfo(long begin, long end) {
+    // TODO should sort by ts desc
     String dsl = "{\n"
         + "    \"bool\": {\n"
         + "      \"must_not\": [\n"
