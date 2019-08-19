@@ -38,6 +38,7 @@ import org.elasticsearch.search.sort.SortOrder;
 import org.joda.time.DateTime;
 import org.skyline.core.dto.Filter;
 import org.skyline.core.dto.Order;
+import org.skyline.core.dto.Order.OrderType;
 import org.skyline.core.dto.ScrolledPageResult;
 import org.skyline.core.dto.SearchRequest;
 import org.skyline.core.storage.IStorage;
@@ -108,7 +109,6 @@ public class ESStorage implements IStorage {
     indexName = indexName.toLowerCase();
     typeName = typeName.toLowerCase();
 
-//    Iterator<Record> iter = records.iterator();
     Iterator<Object> iter = records.iterator();
     JSONObject item;
     BulkRequestBuilder bulkRequestBuilder = null;
@@ -187,6 +187,13 @@ public class ESStorage implements IStorage {
 
   @Override
   public <T> List<T> findByDSL(String indexName, String typeName, String dsl, Class<T> clazz) {
+
+    return findByDSL(indexName, typeName, dsl, clazz, Lists.newArrayList());
+  }
+
+  @Override
+  public <T> List<T> findByDSL(String indexName, String typeName, String dsl, Class<T> clazz,
+      List<Order> orders) throws IndexNotFoundException {
     List<T> result = Lists.newArrayList();
 
     QueryBuilder query = QueryBuilders.wrapperQuery(dsl);
@@ -196,6 +203,7 @@ public class ESStorage implements IStorage {
         .setSize(10000)
         .setQuery(query);
 
+    addOrders(builder, orders);
     SearchResponse response = builder.get();
 
     for (SearchHit hit : response.getHits().getHits()) {
@@ -209,13 +217,26 @@ public class ESStorage implements IStorage {
   @Override
   public <T> List<T> findByDSL(String indexName, String typeName, String dsl, Class<T> clazz,
       String... fields) {
+    return findByDSL(indexName, typeName, dsl, clazz, null, fields);
+  }
 
+  @Override
+  public <T> List<T> findByDSL(String indexName, String typeName, String dsl, Class<T> clazz,
+      List<Order> orders, String... fields) throws IndexNotFoundException {
     QueryBuilder query = QueryBuilders.wrapperQuery(dsl);
     SearchRequestBuilder builder = fieldSearchBuilder(indexName, typeName, query,
         fields);
+    addOrders(builder, orders);
     SearchResponse response = builder.get();
 
     return parseResponse(response, clazz);
+  }
+
+  private void addOrders(SearchRequestBuilder builder, List<Order> orders) {
+    if (!CollectionUtils.isEmpty(orders)) {
+      orders.forEach(x -> builder.addSort(x.getName(),
+          x.getOrderType().equals(OrderType.ASC) ? SortOrder.ASC : SortOrder.DESC));
+    }
   }
 
   @Override

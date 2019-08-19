@@ -6,10 +6,12 @@ import java.util.List;
 import java.util.Set;
 import java.util.concurrent.ExecutionException;
 import org.elasticsearch.index.IndexNotFoundException;
+import org.skyline.core.dto.Order;
 import org.skyline.core.dto.ScrolledPageResult;
 import org.skyline.core.dto.SearchRequest;
 
 /**
+ * TODO DAO layer need refactor
  * @author Sean Liu
  * @date 2019-04-17
  */
@@ -29,8 +31,15 @@ public interface IStorage {
       throws IndexNotFoundException;
 
   <T> List<T> findByDSL(String indexName, String typeName, String dsl, Class<T> clazz,
+      List<Order> orders)
+      throws IndexNotFoundException;
+
+  <T> List<T> findByDSL(String indexName, String typeName, String dsl, Class<T> clazz,
       String... fields)
       throws IndexNotFoundException;
+
+  <T> List<T> findByDSL(String indexName, String typeName, String dsl, Class<T> clazz,
+      List<Order> orders, String... fields) throws IndexNotFoundException;
 
   <T> ScrolledPageResult<T> scrollSearch(String indexName, String typeName,
       SearchRequest searchRequest, Class<T> clazz)
@@ -41,16 +50,9 @@ public interface IStorage {
 
   /**
    * Max size is 10000
-   *
-   * @param indexName
-   * @param typeName
-   * @param clazz
-   * @param fields
-   * @param <T>
-   * @return
-   * @throws IndexNotFoundException
    */
-  <T> List<T> findAll(String indexName, String typeName, Class<T> clazz, boolean fetchSource,String... fields)
+  <T> List<T> findAll(String indexName, String typeName, Class<T> clazz, boolean fetchSource,
+      String... fields)
       throws IndexNotFoundException;
 
   boolean indexExists(String indexName);

@@ -16,6 +16,8 @@ import org.skyline.common.data.ScheduleInfo;
 import org.skyline.common.data.YarnApplication;
 import org.skyline.common.message.Message;
 import org.skyline.common.message.MessageType;
+import org.skyline.core.dto.Order;
+import org.skyline.core.dto.Order.OrderType;
 import org.skyline.core.dto.ScrolledPageResult;
 import org.skyline.core.dto.SearchRequest;
 import org.skyline.core.handler.MessageSerdes;
@@ -118,8 +120,9 @@ public class YarnApplicationServiceImpl implements YarnApplicationService {
         + "      ]\n"
         + "    }\n"
         + "  }";
+    List<Order> orders = Lists.newArrayList(new Order(OrderType.DESC, "finished_time"));
     return storage.findByDSL(YarnApplication.INDEX_NAME, YarnApplication.TYPE_NAME,
-        String.format(dsl, begin, end), YarnApplication.class);
+        String.format(dsl, begin, end), YarnApplication.class, orders);
   }
 
   @Override
@@ -137,8 +140,9 @@ public class YarnApplicationServiceImpl implements YarnApplicationService {
 
   @Override
   public ScrolledPageResult<YarnApplication> search(SearchRequest request) {
-    
-    return storage.scrollSearch(YarnApplication.INDEX_NAME,YarnApplication.TYPE_NAME,request,YarnApplication.class);
+
+    return storage.scrollSearch(YarnApplication.INDEX_NAME, YarnApplication.TYPE_NAME, request,
+        YarnApplication.class);
   }
 
 
