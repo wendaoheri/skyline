@@ -36,11 +36,15 @@ public class HadoopHACallService {
     try {
       return httpCallService.doGet(url);
     } catch (IOException e) {
-      log.info("Current domain is not available : {}", currDomain);
-      switchDomain(domainKey, domains.length);
-      currDomain = getCurrDomain(domainKey, domains);
-      url = "http://" + currDomain + pathAndParam;
-      return httpCallService.doGet(url);
+      log.info("Invoke url error : {}", url);
+      if (domains.length > 1) {
+        switchDomain(domainKey, domains.length);
+        currDomain = getCurrDomain(domainKey, domains);
+        url = "http://" + currDomain + pathAndParam;
+        return httpCallService.doGet(url);
+      } else {
+        throw e;
+      }
     }
   }
 
@@ -60,6 +64,7 @@ public class HadoopHACallService {
   }
 
   private void switchDomain(String domainKey, int domainSize) {
+    log.info("Domain key : {}, domain size : {}", domainKey, domainSize);
     Integer lastIndex = currDomainIndexMap.get(domainKey);
     Integer currIndex = (lastIndex + 1) >= domainSize ? 0 : lastIndex + 1;
     currDomainIndexMap.put(domainKey, currIndex);
