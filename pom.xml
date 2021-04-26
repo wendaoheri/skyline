@@ -31,7 +31,7 @@
     <beanutils.version>1.9.3</beanutils.version>
     <es.version>6.4.0</es.version>
     <commons-math3.version>3.6.1</commons-math3.version>
-    <commons-io.version>2.6</commons-io.version>
+    <commons-io.version>2.7</commons-io.version>
   </properties>
 
   <dependencyManagement>
